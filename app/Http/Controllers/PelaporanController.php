@@ -41,39 +41,29 @@ class PelaporanController extends Controller
 
     public function edit($id)
     {
-        $penugasan = Penugasan::find($id);
-        $tim = Tim::all();
-        return view('penugasan.penugasan_edit', ['penugasan' => $penugasan,'tim' => $tim] );
+        $pelaporan = Pelaporan::find($id);
+        $daerah = Daerah::all();
+        return view('pelaporan.pelaporan_edit', ['pelaporan' => $pelaporan,'daerah' => $daerah] );
     }
 
     public function update($id, Request $request)
     {
         $this->validate($request,[
-    		'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'tim' => 'required',
-            // 'pelapor' => 'required',
-            // 'nomor_telepon_pelapor' => 'required',
-            // 'banyak_pengeluaran' => 'required',
-            // 'laporan' => 'required'
+            'daerah' => 'required',
+            'deskripsi' => 'required',
     	]);
     
-        $penugasan = Penugasan::find($id);
-        $penugasan->nama = $request->nama;
-        $penugasan->deskripsi = $request->deskripsi;
-        $penugasan->tim = $request->tim;
-        $penugasan->pelapor = $request->pelapor;
-        $penugasan->nomor_telepon_pelapor = $request->nomor_telepon_pelapor;
-        // $penugasan->banyak_pengeluaran = $request->banyak_pengeluaran;
-        // $penugasan->tanggal_berakhir = Carbon::now()->toDateTimeString(); 
-        $penugasan->save();
-        return redirect('/penugasan');
+        $pelaporan = Pelaporan::find($id);
+        $pelaporan->daerah = $request->daerah;
+        $pelaporan->deskripsi = $request->deskripsi;
+        $pelaporan->save();
+        return redirect('/pelaporan');
     }
 
     public function delete($id)
     {
-        $penugasan = Penugasan::find($id);
-        $penugasan->delete();
+        $pelaporan = Pelaporan::find($id);
+        $pelaporan->delete();
         return redirect()->back();
     }
 
@@ -110,4 +100,9 @@ class PelaporanController extends Controller
         return redirect('/penugasan');
     }
 
+    public function buat_penugasan($id){
+        $pelaporan = Penugasan::find($id);
+        $tim = Tim::all();
+        return view('pelaporan.pelaporan_buat_penugasan', ['pelaporan' => $pelaporan,'tim' => $tim]);
+    }
 }

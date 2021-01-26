@@ -17,6 +17,8 @@ class CreateDaerahTable extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->unsignedInteger('kategori_daerah');
+
+            $table->foreign('kategori_daerah')->references('id')->on('kategori_daerah');
         });
     }
 

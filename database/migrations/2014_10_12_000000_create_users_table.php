@@ -25,7 +25,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            // $table->foreign('tipe_user')->references('id')->on('tipe_user');
         });
+        
     }
 
     /**

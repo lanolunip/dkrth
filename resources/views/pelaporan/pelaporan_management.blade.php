@@ -71,11 +71,11 @@
                                 <a href="/pelaporan/edit/{{ $pl->id }}" class="btn btn-warning">Edit</a>
                                 <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Hapus</a>
                                 @if (empty($pl->Laporan->penugasan))
-                                    <a href="/pelaporan/laporan/{{ $pl->id }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
+                                    <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
                                 @endif
                             @elseif (Auth::user()->id == $pl->Tim->Petugas->id)
                                 @if (empty($pl->Laporan->penugasan))
-                                    <a href="/pelaporan/laporan/{{ $pl->id }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
+                                    <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
                                 @endif
                             @endif
                             

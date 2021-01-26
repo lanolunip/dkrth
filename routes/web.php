@@ -60,10 +60,13 @@ Route::get('/laporan/edit/{id}', 'LaporanController@edit');
 Route::put('/laporan/update/{id}', 'LaporanController@update');
 Route::get('/laporan/hapus/{id}', 'LaporanController@delete');
 
-#mengatur Pelaporan
+#mengatur Pelaporan -- Bagian Pelapor saja
 Route::get('/pelaporan', 'PelaporanController@index');
 Route::get('/pelaporan/tambah', 'PelaporanController@tambah');
 Route::post('/pelaporan/store', 'PelaporanController@store');
+
+#Mengatur Pelaporan -- Bagian Admin
 Route::get('/pelaporan/edit/{id}', 'PelaporanController@edit');
 Route::put('/pelaporan/update/{id}', 'PelaporanController@update');
 Route::get('/pelaporan/hapus/{id}', 'PelaporanController@delete');
+Route::get('/pelaporan/buat_penugasan/{id}', 'PelaporanController@buat_penugasan');

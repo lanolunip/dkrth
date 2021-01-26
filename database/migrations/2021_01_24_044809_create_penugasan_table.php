@@ -23,6 +23,8 @@ class CreatePenugasanTable extends Migration
             $table->double('banyak_pengeluaran');
             $table->timestamps();
             $table->timestamp('tanggal_berakhir')->nullable();
+
+            $table->foreign('tim')->references('id')->on('tim');
         });
     }
 

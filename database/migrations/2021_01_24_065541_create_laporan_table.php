@@ -17,6 +17,8 @@ class CreateLaporanTable extends Migration
             $table->increments('id');
             $table->text('isi');
             $table->unsignedInteger('penugasan');
+
+            $table->foreign('penugasan')->references('id')->on('penugasan')->onDelete('cascade');
         });
     }
 

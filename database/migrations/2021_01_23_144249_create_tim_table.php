@@ -20,7 +20,7 @@ class CreateTimTable extends Migration
             $table->unsignedInteger('jenis_tim');
             $table->unsignedInteger('kategori_daerah');
 
-            $table->foreign('petugas')->references('id')->on('users');
+            // $table->foreign('petugas')->references('id')->on('users');
             $table->foreign('jenis_tim')->references('id')->on('jenis_tim');
             $table->foreign('kategori_daerah')->references('id')->on('kategori_daerah');
         });

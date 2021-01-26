@@ -30,7 +30,11 @@
                     <tr>
                         <td>{{ $i }}</td>
                         <td>{{ $t->nama }}</td>
-                        <td>{{ $t->Petugas->nama }}</td>
+                        @if (!empty($t->Petugas->nama))
+                            <td>{{$t->Petugas->nama}}</td>
+                        @else
+                            <td>Belum Memiliki Penanggung Jawab</td>
+                        @endif
                         <td>{{ $t->JenisTim->nama }}</td>
                         <td>{{ $t->KategoriDaerah->nama}}</td>
                         <td>

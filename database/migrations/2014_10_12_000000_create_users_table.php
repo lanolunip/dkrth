@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('nip')->nullable();
             $table->string('nomor_telepon')->nullable();
             $table->string('email')->unique();
-            $table->unsignedInteger('tipe_user');
+            $table->unsignedInteger('tipe_user')->default(3);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -49,6 +49,15 @@
 
                     </div>
                     <hr>
+                    <div class="row my-2">
+                        <div class="col-2">
+                            <strong>Bagian Keuangan :</strong>
+                        </div>
+                        <div class="col">
+                            <a href="/keuangan" type="button" class="btn btn-primary btn-lg mx-auto">Keuangan</a>
+                        </div>
+
+                    </div>
                     <!-- <div class="row my-2 ">
                         <strong>Bagian Hasil dan Laporan</strong>
                         <div class="col">

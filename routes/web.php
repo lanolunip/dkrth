@@ -71,3 +71,9 @@ Route::put('/pelaporan/update/{id}', 'PelaporanController@update');
 Route::get('/pelaporan/hapus/{id}', 'PelaporanController@delete');
 Route::get('/pelaporan/buat_penugasan/{id}', 'PelaporanController@buat_penugasan');
 Route::post('/pelaporan/selesai_buat_penugasan/{id_pelaporan}', 'PelaporanController@selesai_buat_penugasan');
+
+#Mengatur Keuangan
+Route::get('/keuangan', 'KeuanganController@index');
+Route::get('/keuangan/hitung', 'KeuanganController@hitung');
+
+

@@ -1,0 +1,89 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-header text-center">
+            CRUD Data Pelaporan - <strong>TAMBAH PELAPORAN</strong>
+        </div>
+        <div class="card-body">
+            <a href="/pelaporan" class="btn btn-primary">Kembali</a>
+            <br/>
+            <br/>
+            
+            <form method="post" action="/pelaporan/store">
+
+                {{ csrf_field() }}
+
+                <!-- Nama -->
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" name="nama" class="form-control" placeholder="Nama Pelaporan .." value="{{Auth::user()->nama}}" readonly>
+
+                    @if($errors->has('nama'))
+                        <div class="text-danger">
+                            {{ $errors->first('nama')}}
+                        </div>
+                    @endif
+
+                </div>
+                <!-- Deskripsi -->
+                <div class="form-group">
+                    <label>Deskripsi</label>
+                    <textarea type="text" name="deskripsi" class="form-control" placeholder="Deskripsi Masalah .. (Jangan lupa Masukan Nama Jalan , alamat / nama gedung(jika kejadian memang terjadi di suatu tempat yang spesifik)"></textarea>
+
+                    @if($errors->has('deskripsi'))
+                        <div class="text-danger">
+                            {{ $errors->first('deskripsi')}}
+                        </div>
+                    @endif
+
+                </div>
+                <!-- Nomor Telepon Pelapor -->
+                <div class="form-group">
+                    <label>Nomor Telepon</label>
+                    <input type="text" name="nomor_telepon_pelapor" class="form-control" placeholder="Nomor Telepon.." value="{{Auth::user()->nomor_telepon}}" readonly>
+
+                    @if($errors->has('nomor_telepon_pelapor'))
+                        <div class="text-danger">
+                            {{ $errors->first('nomor_telepon_pelapor')}}
+                        </div>
+                    @endif
+
+                </div>
+                <!-- Daerah -->
+                <div class="form-group">
+                    <label>Daerah</label>
+                        <select size="0" name="daerah" class="form-control" placeholder="Daerah ..">
+                           
+                            @php
+                            $i = 1
+                            @endphp
+                            @foreach($daerah as $d)
+
+                                <option value="{{$d->id}}">{{ $i }} - {{ $d->nama }} - {{ $d->nama }} </option>
+
+                            @php
+                            $i++
+                            @endphp
+                            @endforeach
+
+                        </select>
+
+                        @if($errors->has('daerah'))
+                        <div class="text-danger">
+                            {{ $errors->first('daerah')}}
+                        </div>
+                        @endif
+                </div>
+
+              
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Simpan">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+@endsection

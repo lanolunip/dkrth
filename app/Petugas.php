@@ -1,0 +1,42 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Petugas extends Model 
+{
+
+    protected $table = "users";
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+
+    protected $fillable = ['nama','alamat','nip','nomor_telepon','email','tipe_user', 'password'];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function TipeUser(){
+        return $this->belongsTo('App\TipeUser','tipe_user');
+    }
+
+}

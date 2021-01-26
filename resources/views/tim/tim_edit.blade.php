@@ -31,7 +31,7 @@
                 </div>
                 <!-- Petugas -->
                 <div class="form-group">
-                    <label>Jenis Tim</label>
+                    <label>Petugas Penanggung Jawab</label>
                         <select name="petugas" class="form-control" placeholder="Nama Petugas ..">
                            
                             @php

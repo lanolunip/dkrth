@@ -7,15 +7,15 @@
             CRUD Data Tim - <strong>List Tim</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-            <a href="/tim/tambah" class="btn btn-primary">TAMBAH Tim</a>
+            <a href="/tim/tambah" class="btn btn-primary">TAMBAH TIM</a>
             <br/>
             <br/>
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
-                        <th>Petugas</th>
+                        <th>Nama Tim</th>
+                        <th>Petugas yang Bertanggun Jawab</th>
                         <th>Jenis Tim</th>
                         <th>Kategori Daerah</th>
                         <th>OPSI</th>

@@ -7,7 +7,7 @@
             CRUD Data Daerah - <strong>List Daerah</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-            <a href="/daerah/tambah" class="btn btn-primary">TAMBAH Daerah</a>
+            <a href="/daerah/tambah" class="btn btn-primary">TAMBAH DAERAH</a>
             <br/>
             <br/>
             <table class="table table-bordered table-hover table-striped">

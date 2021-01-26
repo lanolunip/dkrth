@@ -8,7 +8,7 @@
         </div>
         <div class="card-body" style="overflow-x:auto;">
             @if (Auth::user()->TipeUser->nama == "Ketua")
-                <a href="/penugasan/tambah" class="btn btn-primary">TAMBAH Penugasan</a>
+                <a href="/penugasan/tambah" class="btn btn-primary">TAMBAH PENUGASAN</a>
             @endif
             <br/>
             <br/>
@@ -22,7 +22,7 @@
                         <th>Pelapor</th>
                         <th>Nomor Telepon Pelapor</th>
                         <th>Banyak Pengeluaran</th>
-                        <th>ID Laporan</th>
+                        <th>Laporan</th>
                         <th>Tanggal Laporan Dibuat</th>
                         <th>Tanggal Laporan Diselesaikan</th>
                         <th>OPSI</th>
@@ -38,12 +38,16 @@
                         <td>{{ $i }}</td>
                         <td>{{ $pn->nama }}</td>
                         <td>{{ $pn->deskripsi }}</td>
-                        <td>{{ $pn->Tim->nama }}</td>
+                        @if (!empty($pn->Tim->nama))
+                            <td><a href="/tim/edit/{{$pn->Tim->id}}">{{$pn->Tim->nama}}</a></td>
+                        @else
+                            <td>Tim telah dihapus, Segera gantikan dengan Tim Baru !</td>
+                        @endif
                         <td>{{ $pn->pelapor}}</td>
                         <td>{{ $pn->nomor_telepon_pelapor }}</td>
                         <td>{{ $pn->banyak_pengeluaran}}</td>
                         @if (!empty($pn->Laporan->penugasan))
-                            <td><a href="/laporan/edit/{{$pn->Laporan->id}}">{{$pn->Laporan->id}}</a></td>
+                            <td><a href="/laporan/edit/{{$pn->Laporan->id}}">link laporan</a></td>
                         @else
                             <td>Belum Terselesaikan</td>
                         @endif

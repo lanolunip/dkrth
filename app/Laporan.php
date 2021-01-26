@@ -13,9 +13,8 @@ class Laporan extends Model
         'isi','penugasan'
     ];
 
-    public static function Penugasan(){
-        return $this->belongsTo('App\Penugasan','id');
-        //atau laporan mungkin hue hue hue
+    public function Penugasan(){
+        return $this->belongsTo('App\Penugasan','penugasan');
     }
 
 }

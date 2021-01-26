@@ -8,7 +8,7 @@
         </div>
         <div class="card-body" style="overflow-x:auto;">
             <!-- @if (Auth::user()->TipeUser->nama == "Ketua") -->
-                <a href="/pelaporan/tambah" class="btn btn-primary">Buat Pelaporan</a>
+                <a href="/pelaporan/tambah" class="btn btn-primary">BUAT PELAPORAN</a>
             <!-- @endif -->
             <br/>
             <br/>
@@ -21,7 +21,7 @@
                         <th>Deskripsi Masalah</th>
                         <th>Tim yang Mengurusi</th>
                         <th>Nomor Telepon Pelapor</th>
-                        <th>ID Penugasan</th>
+                        <th>Penugasan</th>
                         <th>Tanggal Laporan Dibuat</th>
                         <th>Tanggal Laporan Diselesaikan</th>
                         <th>OPSI</th>
@@ -45,7 +45,7 @@
                         @endif
                         <td>{{ $pl->Pelapor->nomor_telepon }}</td>
                         @if (!empty($pl->Penugasan->id))
-                            <td>{{ $pl->Penugasan->id}}</td>
+                            <td><a href="/penugasan/edit/{{$pl->Penugasan->id}}">{{ $pl->Penugasan->id}}</a></td>
                         @else
                             <td>Belum Dikerjakan</td>
                         @endif

@@ -24,7 +24,7 @@ class CreatePenugasanTable extends Migration
             $table->timestamps();
             $table->timestamp('tanggal_berakhir')->nullable();
 
-            $table->foreign('tim')->references('id')->on('tim');
+            // $table->foreign('tim')->references('id')->on('tim');
         });
     }
 

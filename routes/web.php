@@ -70,3 +70,4 @@ Route::get('/pelaporan/edit/{id}', 'PelaporanController@edit');
 Route::put('/pelaporan/update/{id}', 'PelaporanController@update');
 Route::get('/pelaporan/hapus/{id}', 'PelaporanController@delete');
 Route::get('/pelaporan/buat_penugasan/{id}', 'PelaporanController@buat_penugasan');
+Route::post('/pelaporan/selesai_buat_penugasan/{id_pelaporan}', 'PelaporanController@selesai_buat_penugasan');

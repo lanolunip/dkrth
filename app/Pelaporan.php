@@ -24,4 +24,11 @@ class Pelaporan extends Model
     public function Tim(){
         return $this->belongsTo('App\Tim','tim');
     }
+
+    public function Penugasan(){
+        return $this->belongsTo('App\Penugasan','penugasan');
+    }
+
+    
+    
 }

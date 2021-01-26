@@ -21,4 +21,8 @@ class Penugasan extends Model
     public function Tim(){
         return $this->belongsTo('App\Tim','tim');
     }
+
+    public function Pelaporan(){
+        return $this->hasOne('App\Pelaporan','penugasan');
+    }
 }

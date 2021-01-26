@@ -23,10 +23,10 @@ class CreatePelaporanTable extends Migration
             $table->timestamps();
             $table->time('tanggal_terselesaikan')->nullable();
 
-            // $table->foreign('pelapor')->references('id')->on('users');
-            // $table->foreign('daerah')->references('id')->on('daerah');
-            // $table->foreign('tim')->references('id')->on('tim');
-            // $table->foreign('penugasan')->references('id')->on('penugasan');
+            $table->foreign('pelapor')->references('id')->on('users');
+            $table->foreign('daerah')->references('id')->on('daerah');
+            $table->foreign('tim')->references('id')->on('tim');
+            $table->foreign('penugasan')->references('id')->on('penugasan')->onDelete('cascade');
         });
     }
 

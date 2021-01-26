@@ -38,8 +38,8 @@
                         <td>{{ $pl->Pelapor->nama }}</td>
                         <td>{{ $pl->Daerah->nama }}</td>
                         <td>{{ $pl->deskripsi }}</td>
-                        @if (!empty($pl->Tim->nama))
-                            <td>{{ $pl->Tim->nama}}</td>
+                        @if (!empty($pl->Penugasan->Tim->nama))
+                            <td>{{ $pl->Penugasan->Tim->nama}}</td>
                         @else
                             <td>Belum Dikerjakan</td>
                         @endif
@@ -50,8 +50,8 @@
                             <td>Belum Dikerjakan</td>
                         @endif
                         <td>{{ $pl->created_at}}</td>
-                        @if (!empty($pl->tanggal_terselesaikan))
-                            <td>{{ $pl->tanggal_terselesaikan}}</td>
+                        @if (!empty($pl->Penugasan->tanggal_berakhir))
+                            <td>{{ $pl->Penugasan->tanggal_berakhir}}</td>
                         @else
                             <td>Belum Terselesaikan</td>
                         @endif
@@ -70,12 +70,12 @@
                             @if (Auth::user()->TipeUser->nama == "Ketua")
                                 <a href="/pelaporan/edit/{{ $pl->id }}" class="btn btn-warning">Edit</a>
                                 <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Hapus</a>
-                                @if (empty($pl->Laporan->penugasan))
-                                    <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
+                                @if (empty($pl->penugasan))
+                                    <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Buat Penugasan</a>
                                 @endif
                             @elseif (Auth::user()->id == $pl->Tim->Petugas->id)
-                                @if (empty($pl->Laporan->penugasan))
-                                    <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
+                                @if (empty($pl->penugasan))
+                                    <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Buat Penugasan</a>
                                 @endif
                             @endif
                             

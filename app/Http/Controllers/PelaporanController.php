@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Pelaporan;
 use App\Daerah;
 use Auth;
+use App\Tim;
+use App\Penugasan;
+
 class PelaporanController extends Controller
 {
     public function index()
@@ -67,42 +70,42 @@ class PelaporanController extends Controller
         return redirect()->back();
     }
 
-    public function laporan($id){
-        $penugasan = Penugasan::find($id);
-        $tim = Tim::all();
-        return view('penugasan.penugasan_laporan', ['penugasan' => $penugasan,'tim' => $tim]);
+    public function buat_penugasan($id_pelaporan){
+        $pelaporan = Pelaporan::find($id_pelaporan);
+        $tim = Tim::where('kategori_daerah','LIKE',$pelaporan->daerah)->get();
+        return view('pelaporan.pelaporan_buat_penugasan', ['pelaporan' => $pelaporan,'tim' => $tim]);
     }
 
-    public function selesaikan($id,Request $request){
+    public function selesai_buat_penugasan($id_pelaporan,Request $request){
+
+        $pelaporan = Pelaporan::find($id_pelaporan);
 
 
+        //Bagian Penugasan Baru
         $this->validate($request,[
-            //Bagian Penugasan
-            'banyak_pengeluaran' => 'required',
-
-            //Bagian Laporan
-            'isi' => 'required|string',
+    		'nama' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'tim' => 'required',
+            // 'pelapor' => 'required',
+            // 'nomor_telepon_pelapor' => 'required',
+            // 'banyak_pengeluaran' => 'required',
+            // 'laporan' => 'required',
+    	]);
+ 
+        Penugasan::create([
+    		'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'tim' => $request->tim,
+            'pelapor' => $pelaporan->pelapor,
+            'nomor_telepon_pelapor' => $pelaporan->Pelapor->nomor_telepon,
+            'banyak_pengeluaran' => 0,
         ]);
         
-        //Bagian Penugasan
-        $penugasan = Penugasan::find($id);
-        $penugasan->banyak_pengeluaran = $request->banyak_pengeluaran;
-        $penugasan->tanggal_berakhir = Carbon::now()->toDateTimeString(); 
-        $penugasan->save();
+        //Bagian Pelaporan
+        $pelaporan->penugasan = Penugasan::all()->last()->id;
+        $pelaporan->save();
+ 
+    	return redirect('/penugasan');
 
-        // Bagian Laporan
-        Laporan::create([
-            'isi' => $request->isi,
-            'penugasan' => $id
-    	]);
-
-
-        return redirect('/penugasan');
-    }
-
-    public function buat_penugasan($id){
-        $pelaporan = Penugasan::find($id);
-        $tim = Tim::all();
-        return view('pelaporan.pelaporan_buat_penugasan', ['pelaporan' => $pelaporan,'tim' => $tim]);
     }
 }

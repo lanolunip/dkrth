@@ -61,7 +61,7 @@
                             @endphp
                             @foreach($daerah as $d)
 
-                                <option value="{{$d->id}}">{{ $i }} - {{ $d->nama }} - {{ $d->nama }} </option>
+                                <option value="{{$d->id}}">{{ $i }} - {{ $d->nama }} - {{ $d->KategoriDaerah->nama }} </option>
 
                             @php
                             $i++

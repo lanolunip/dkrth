@@ -8,6 +8,12 @@ use App\KategoriDaerah;
 
 class DaerahController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
     	$daerah = Daerah::orderBy('id', 'desc')->paginate(10);

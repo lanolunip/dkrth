@@ -41,4 +41,26 @@ class User extends Authenticatable
     public function TipeUser(){
         return $this->belongsTo('App\TipeUser','tipe_user');
     }
+
+    public function isAdmin()
+    {
+        if($this->tipe_user == 1)
+        { 
+            return true; 
+        } 
+        else 
+        { 
+            return false; 
+        }
+    }
+
+    public function hasRole($role)
+    {
+        if($this->TipeUser->nama == $role){
+            return true;
+        }else{
+            return false;
+        } 
+    }
+    
 }

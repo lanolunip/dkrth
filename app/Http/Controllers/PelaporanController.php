@@ -72,7 +72,7 @@ class PelaporanController extends Controller
 
     public function buat_penugasan($id_pelaporan){
         $pelaporan = Pelaporan::find($id_pelaporan);
-        $tim = Tim::where('kategori_daerah','LIKE',$pelaporan->daerah)->get();
+        $tim = Tim::where('kategori_daerah','LIKE',$pelaporan->Daerah->kategori_daerah)->get();
         return view('pelaporan.pelaporan_buat_penugasan', ['pelaporan' => $pelaporan,'tim' => $tim]);
     }
 

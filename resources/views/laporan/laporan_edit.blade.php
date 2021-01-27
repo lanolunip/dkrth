@@ -33,6 +33,28 @@
                     @endif
 
                 </div>
+
+                <!-- Banyak Pengeluaran -->
+                <div class="form-group">
+                    <label>Banyak Pengeluaran</label>
+                    <div class="form-row">
+                        <div class="col-auto">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Rp.</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="number" name="banyak_pengeluaran" class="form-control" placeholder="Banyak Pengeluaran .." value="{{ $laporan->Penugasan->banyak_pengeluaran }}">
+                        </div>
+                    </div>
+
+                    @if($errors->has('banyak_pengeluaran'))
+                        <div class="text-danger">
+                            {{ $errors->first('banyak_pengeluaran')}}
+                        </div>
+                    @endif
+
+                </div>
                 
         
                 <div class="form-group">

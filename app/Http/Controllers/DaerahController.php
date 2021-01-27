@@ -53,7 +53,7 @@ class DaerahController extends Controller
     {
         $this->validate($request,[
             'nama' => 'required|string|max:255',
-            'kategori_daerah' => $request->kategori_daerah,
+            'kategori_daerah' => 'required',
     	]);
     
         $daerah = Daerah::find($id);

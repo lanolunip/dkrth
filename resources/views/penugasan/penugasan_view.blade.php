@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
-            CRUD Data Penugasan - <strong>EDIT DATA</strong>
+           <strong>Penugasan</strong>
         </div>
         <div class="card-body">
             <br/>

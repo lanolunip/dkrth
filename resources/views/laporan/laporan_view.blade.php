@@ -13,7 +13,7 @@
             <!-- Nama -->
             <div class="form-group">
                 <label>Nama</label>
-                <input type="text" name="nama" class="form-control" placeholder="Nama Tim .." value="{{ $penugasan->nama }}" readonly>
+                <input type="text" name="nama" class="form-control" placeholder="Nama Tim .." value="{{ $laporan->Penugasan->nama }}" readonly>
 
                 @if($errors->has('nama'))
                     <div class="text-danger">
@@ -25,38 +25,41 @@
             <!-- Deskripsi -->
             <div class="form-group">
                 <label>Deskripsi</label>
-                <textarea type="text" name="deskripsi" class="form-control" placeholder="Deskripsi .." readonly>{{ $penugasan->deskripsi }}</textarea>
+                <textarea type="text" name="deskripsi" class="form-control" placeholder="Deskripsi .." readonly>{{ $laporan->Penugasan->deskripsi }}</textarea>
 
             </div>
     
             <!-- Tim -->
             <div class="form-group">
                 <label>Tim</label>
-                    <input name="tim" class="form-control" placeholder="Tim .." value="{{$penugasan->Tim->nama}}" readonly>
+                    <input name="tim" class="form-control" placeholder="Tim .." value="{{$laporan->Penugasan->Tim->nama}}" readonly>
     
             </div>
             <!-- Nama Pelapor -->
             
             <div class="form-group">
                 <label>Nama Pelapor</label>
-                @if(!empty($penugasan->Pelapor->nama))
-                <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$penugasan->Pelapor->nama}}" readonly>
+                @if(!empty($laporan->Penugasan->Pelapor->nama))
+                <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$laporan->Penugasan->Pelapor->nama}}" readonly>
                 @else
-                <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$penugasan->pelapor}}" readonly>
+                <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$laporan->Penugasan->pelapor}}" readonly>
                 @endif
             </div>
                       
             <!-- Nomor Telepon Pelapor -->
             <div class="form-group">
                 <label>Nomor Telepon Pelapor</label>
-                @if(!empty($penugasan->Pelapor->nomor_telepon))
-                <input type="text" name="pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$penugasan->Pelapor->nomor_telepon}}" readonly>
+                @if(!empty($laporan->Penugasan->Pelapor->nomor_telepon))
+                <input type="text" name="pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$laporan->Penugasan->Pelapor->nomor_telepon}}" readonly>
                 @else
-                <input type="text" name="pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$penugasan->nomor_telepon_pelapor}}" readonly>
+                <input type="text" name="pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$laporan->Penugasan->nomor_telepon_pelapor}}" readonly>
                 @endif
             </div>
-            
-            
+            <!-- Isi Laporan Pengerjaan -->
+            <div class="form-group">
+                <label>Isi Laporan Pengerjaan</label>
+                <textarea type="text" name="deskripsi" class="form-control" placeholder="Deskripsi .." readonly>{{ $laporan->isi }}</textarea>
+            </div>
             <!-- Banyak Pengeluaran -->
             <div class="form-group">
                 <div class="form-row">
@@ -69,13 +72,11 @@
                         </div>
                     </div>
                     <div class="col">
-                        <input type="number" name="banyak_pengeluaran" class="form-control" placeholder="Banyak Pengeluaran .." value="{{$penugasan->banyak_pengeluaran}}" readonly>
+                        <input type="number" name="banyak_pengeluaran" class="form-control" placeholder="Banyak Pengeluaran .." value="{{$laporan->Penugasan->banyak_pengeluaran}}" readonly>
                     </div>
                 </div>
-                
-
             </div>
-
+           
         </div>
     </div>
 </div>

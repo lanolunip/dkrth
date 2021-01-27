@@ -12,6 +12,7 @@
             @endif
             <br/>
             <br/>
+            
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
@@ -60,15 +61,16 @@
                         @endif
 
                         <td>{{ $pn->banyak_pengeluaran}}</td>
-
                         @if (!empty($pn->Laporan->penugasan))
-                            <td><a href="/laporan/edit/{{$pn->Laporan->id}}">link laporan</a></td>
+                        
+                            @if (Auth::user()->TipeUser->nama == "Ketua"))
+                                <td><a href="/laporan/edit/{{$pn->Laporan->id}}">link laporan</a></td>
+                            @elseif (Auth::user()->TipeUser->nama == "Petugas")
+                                <td><a href="/laporan/view/{{$pn->Laporan->id}}">link laporan</a></td>
+                            @endif
                         @else
                             <td>Belum Terselesaikan</td>
                         @endif
-                        <!-- <td>  {{ !empty($pn->Laporan->penugasan) ? $pn->Laporan->id:'Belum Terselesaikan'}}</td> -->
-                       
-                        <!-- <td>{{ !empty($pn->Laporan) ? $pn->Laporan->id:'Belum Terselesaikan' }}</td> -->
 
                         <td>{{ $pn->created_at }}</td>
                         <td>{{ $pn->tanggal_berakhir }}</td>

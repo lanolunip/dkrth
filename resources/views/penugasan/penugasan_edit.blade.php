@@ -71,30 +71,36 @@
                         </div>
                         @endif
                 </div>
-                 <!-- Pelapor -->
+                <!-- Nama Pelapor -->
                 <div class="form-group">
-                    <label>Pelapor</label>
+                    <label>Nama Pelapor</label>
+                    @if(!empty($penugasan->Pelapor->nama))
+                    <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$penugasan->Pelapor->nama}}" readonly>
+                    @else
                     <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$penugasan->pelapor}}">
-
+                    @endif
                     @if($errors->has('pelapor'))
                         <div class="text-danger">
                             {{ $errors->first('pelapor')}}
                         </div>
                     @endif
-
                 </div>
                 <!-- Nomor Telepon Pelapor -->
                 <div class="form-group">
                     <label>Nomor Telepon Pelapor</label>
-                    <input type="tel" name="nomor_telepon_pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$penugasan->nomor_telepon_pelapor}}">
+                    @if(!empty($penugasan->Pelapor->nomor_telepon))
+                    <input type="text" name="nomor_telepon_pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$penugasan->Pelapor->nomor_telepon}}" readonly>
+                    @else
+                    <input type="text" name="nomor_telepon_pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$penugasan->nomor_telepon_pelapor}}">
+                    @endif
 
                     @if($errors->has('nomor_telepon_pelapor'))
                         <div class="text-danger">
                             {{ $errors->first('nomor_telepon_pelapor')}}
                         </div>
                     @endif
-
                 </div>
+              
                 <!-- Banyak Pengeluaran -->
                 <!-- <div class="form-group">
                     <div class="form-row">

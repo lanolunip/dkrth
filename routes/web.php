@@ -58,6 +58,7 @@ Route::put('/penugasan/selesaikan/{id}', 'PenugasanController@selesaikan')->midd
 
 #mengatur Laporan
 Route::get('/laporan', 'LaporanController@index')->middleware('role:Ketua,Petugas');
+Route::get('/laporan/view/{id}', 'LaporanController@view')->middleware('role:Ketua,Petugas,Pelapor');
 Route::get('/laporan/edit/{id}', 'LaporanController@edit')->middleware('role:Ketua,Petugas');
 Route::put('/laporan/update/{id}', 'LaporanController@update')->middleware('role:Ketua');
 Route::get('/laporan/hapus/{id}', 'LaporanController@delete')->middleware('role:Ketua');

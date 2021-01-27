@@ -27,18 +27,6 @@
                     @endif
 
                 </div>
-                <!-- Deskripsi -->
-                <div class="form-group">
-                    <label>Deskripsi</label>
-                    <textarea type="text" name="deskripsi" class="form-control" placeholder="Deskripsi Masalah .. (Jangan lupa Masukan Nama Jalan , alamat / nama gedung(jika kejadian memang terjadi di suatu tempat yang spesifik)"></textarea>
-
-                    @if($errors->has('deskripsi'))
-                        <div class="text-danger">
-                            {{ $errors->first('deskripsi')}}
-                        </div>
-                    @endif
-
-                </div>
                 <!-- Nomor Telepon Pelapor -->
                 <div class="form-group">
                     <label>Nomor Telepon</label>
@@ -51,6 +39,19 @@
                     @endif
 
                 </div>
+                <!-- Deskripsi -->
+                <div class="form-group">
+                    <label>Deskripsi</label>
+                    <textarea type="text" name="deskripsi" class="form-control" placeholder="Deskripsi Masalah .. (Jangan lupa Masukan Nama Jalan , alamat / nama gedung(jika kejadian memang terjadi di suatu tempat yang spesifik)"></textarea>
+
+                    @if($errors->has('deskripsi'))
+                        <div class="text-danger">
+                            {{ $errors->first('deskripsi')}}
+                        </div>
+                    @endif
+
+                </div>
+                
                 <!-- Daerah -->
                 <div class="form-group">
                     <label>Daerah</label>

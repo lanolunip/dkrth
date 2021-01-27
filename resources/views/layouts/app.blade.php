@@ -19,6 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/card.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('images/favicon/favicon.ico') }}">
     <!-- <style>
         html,body{
             background-image : linear-gradient(to right, #d3cce3, #e9e4f0);

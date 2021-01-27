@@ -17,14 +17,26 @@
 
                 {{ csrf_field() }}
                 
-                <!-- Nama Pelapor-->
+                <!-- Nama Penugasan-->
                 <div class="form-group">
-                    <label>Nama</label>
-                    <input type="text" name="nama" class="form-control" placeholder="Nama Pelapor .." value="{{ $pelaporan->Pelapor->nama }}" readonly>
+                    <label>Nama Penugasan</label>
+                    <input type="text" name="nama" class="form-control" placeholder="Nama Penugasan ..">
 
                     @if($errors->has('nama'))
                         <div class="text-danger">
                             {{ $errors->first('nama')}}
+                        </div>
+                    @endif
+
+                </div>
+                <!-- Nama Pelaporan-->
+                <div class="form-group">
+                    <label>Nama Pelapor</label>
+                    <input type="text" name="nama_pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{ $pelaporan->Pelapor->nama }}" readonly>
+
+                    @if($errors->has('nama_pelapor'))
+                        <div class="text-danger">
+                            {{ $errors->first('nama_pelapor')}}
                         </div>
                     @endif
 
@@ -56,11 +68,11 @@
                 <!-- Daerah -->
                 <div class="form-group">
                     <label>Daerah</label>
-                    <input type="text" name="nama" class="form-control" placeholder="Nama Pelapor .." value="{{$pelaporan->Daerah->nama}} - {{ $pelaporan->Daerah->KategoriDaerah->nama }}" readonly>
+                    <input type="text" name="daerah" class="form-control" placeholder="Nama Pelapor .." value="{{$pelaporan->Daerah->nama}} - {{ $pelaporan->Daerah->KategoriDaerah->nama }}" readonly>
 
-                    @if($errors->has('nama'))
+                    @if($errors->has('daerah'))
                         <div class="text-danger">
-                            {{ $errors->first('nama')}}
+                            {{ $errors->first('daerah')}}
                         </div>
                     @endif
 

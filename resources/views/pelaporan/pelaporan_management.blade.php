@@ -4,12 +4,10 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
-            CRUD Data Tim - <strong>List Penugasan</strong>
+            <strong>List Pelaporan</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-            <!-- @if (Auth::user()->TipeUser->nama == "Ketua") -->
                 <a href="/pelaporan/tambah" class="btn btn-primary">BUAT PELAPORAN</a>
-            <!-- @endif -->
             <br/>
             <br/>
             <table class="table table-bordered table-hover table-striped">
@@ -24,7 +22,9 @@
                         <th>Penugasan</th>
                         <th>Tanggal Laporan Dibuat</th>
                         <th>Tanggal Laporan Diselesaikan</th>
-                        <th>OPSI</th>
+                        @if (Auth::user()->TipeUser->nama == "Ketua")
+                            <th>OPSI</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@
                     $i = 1
                     @endphp
                     @foreach($pelaporan as $pl)
-                    @if (Auth::user()->TipeUser->nama == "Ketua" || Auth::user()->id == $pn->Tim->Petugas->id)
+                    @if (Auth::user()->TipeUser->nama == "Ketua" || Auth::user()->id == $pl->pelapor)
                     <tr>
                         <td>{{ $i }}</td>
                         <td>{{ $pl->Pelapor->nama }}</td>
@@ -63,20 +63,16 @@
                         @else
                             <td>Belum Terselesaikan</td>
                         @endif
+                        
+                        @if (Auth::user()->TipeUser->nama == "Ketua")
                         <td>
-                            @if (Auth::user()->TipeUser->nama == "Ketua")
-                                <a href="/pelaporan/edit/{{ $pl->id }}" class="btn btn-warning">Edit</a>
-                                <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Hapus</a>
-                                @if (empty($pl->penugasan))
-                                    <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Buat Penugasan</a>
-                                @endif
-                            @elseif (Auth::user()->id == $pl->Tim->Petugas->id)
-                                @if (empty($pl->penugasan))
-                                    <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Buat Penugasan</a>
-                                @endif
+                            <a href="/pelaporan/edit/{{ $pl->id }}" class="btn btn-warning">Edit</a>
+                            <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Hapus</a>
+                            @if (empty($pl->penugasan))
+                                <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Buat Penugasan</a>
                             @endif
-                            
-                        </td>
+                            </td>
+                        @endif
                     </tr>
                     @php
                     $i++

@@ -28,7 +28,7 @@ class PenugasanSeeder extends Seeder
         	'id' => 2,
             'nama' => 'Pohon Jatuh Di Jalan Manyar',
             'deskripsi' => 'Ranting Pohon Mengganggu Jalur Listrik',
-            'tim' => 3,
+            'tim' => 2,
             'pelapor' => null,
             'nomor_telepon_pelapor' => null,
             'banyak_pengeluaran' => 0,

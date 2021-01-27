@@ -14,6 +14,12 @@ class LaporanController extends Controller
     	return view('laporan.laporan_management',['laporan' => $laporan]);
     }
 
+    public function view($id)
+    {
+        $laporan = Laporan::find($id);
+    	return view('laporan.laporan_view',['laporan' => $laporan]);
+    }
+
     public function edit($id)
     {
         $laporan = Laporan::find($id);

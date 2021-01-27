@@ -13,74 +13,181 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="row mb-4">
-                        Status Akun Anda :
-                        {{Auth::user()->TipeUser->nama}}
-                    </div>
+                        <!-- <div class="row mb-4">
+                            Status Akun Anda :
+                            {{Auth::user()->TipeUser->nama}}
+                        </div> -->
                     @if (Auth::user()->TipeUser->nama == 'Ketua')
-                    <div class="row my-2 ">
-                        <div class="col-2">
-                            <strong>Bagian Data :</strong>
+                        <center>
+                            <h1 class="display-4"> Bagian Data</h1>
+                        </center>
+                        <div class="row my-2 justify-content-md-center">
+                            <div class="card-deck">
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/user.jpg')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manajemen User</h5>
+                                        <p class="card-text">Manajemen user dapat digunakan untuk 
+                                            Membuat Petugas, Mengedit, serta Menghapus User yang terdaftar pada sistem.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="/petugas" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/team.png')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manajemen Tim</h5>
+                                        <p class="card-text">Manajemen tim dapat digunakan untuk 
+                                            Membuat, Mengedit, serta Menghapus tim yang terdaftar pada sistem.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="/tim" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/marker.png')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manajemen Daerah</h5>
+                                        <p class="card-text">Manajemen daerah dapat digunakan untuk 
+                                            Membuat, Mengedit, serta Menghapus Daerah yang terdaftar pada sistem.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="/daerah" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
-                            <a href="/petugas" type="button" class="btn btn-primary btn-lg mx-auto">Manajemen User</a>
+                        <hr>
+                        <center>
+                            <h1 class="display-4"> Bagian Penugasan</h1>
+                        </center>
+                        <div class="row my-2 justify-content-md-center">
+                            <div class="card-deck">
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/list.png')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manajemen Penugasan</h5>
+                                        <p class="card-text">Manajemen penugasan dapat digunakan untuk 
+                                            Membuat, Mengedit, serta Menghapus Penugasan yang terdaftar pada sistem.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="/penugasan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/report.png')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manajemen Laporan</h5>
+                                        <p class="card-text">Manajemen laporan dapat digunakan untuk 
+                                            Membuat, Mengedit, serta Menghapus laporan yang terdaftar pada sistem.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="/laporan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/exclamation-mark-in-a-circle.png')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manajemen Pelaporan</h5>
+                                        <p class="card-text">Manajemen pelaporan dapat digunakan untuk 
+                                            Membuat, Mengedit, serta Menghapus pelaporan yang terdaftar pada sistem.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="/pelaporan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
-                            <a href="/tim" type="button" class="btn btn-primary btn-lg mx-auto">Manajemen Tim</a>
+                        <hr>
+                        <center>
+                            <h1 class="display-4"> Bagian Keuangan</h1>
+                        </center>
+                        <div class="row my-2 justify-content-md-center">
+                            <div class="card-deck">
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/price-tag.png')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Keuangan</h5>
+                                        <p class="card-text">Keuangan digunakan untuk 
+                                            melihat banyak pengeluaran pada periode tertentu.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="/keuangan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
-                            <a href="/daerah" type="button" class="btn btn-primary btn-lg mx-auto">Manajemen Daerah</a>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row my-2">
-                        <div class="col-2">
-                            <strong>Bagian Penugasan :</strong>
-                        </div>
-                        <div class="col">
-                            <a href="/penugasan" type="button" class="btn btn-primary btn-lg mx-auto">Manajemen Penugasan</a>
-                        </div>
-                        <div class="col">
-                            <a href="/laporan" type="button" class="btn btn-primary btn-lg mx-auto">Manajemen Laporan</a>
-                        </div>
-                        <div class="col">
-                            <a href="/pelaporan" type="button" class="btn btn-primary btn-lg mx-auto">Manajemen Pelaporan</a>
-                        </div>
-
-                    </div>
-                    <hr>
-                    <div class="row my-2">
-                        <div class="col-2">
-                            <strong>Bagian Keuangan :</strong>
-                        </div>
-                        <div class="col">
-                            <a href="/keuangan" type="button" class="btn btn-primary btn-lg mx-auto">Keuangan</a>
-                        </div>
-
-                    </div>
-                    <!-- <div class="row my-2 ">
-                        <strong>Bagian Hasil dan Laporan</strong>
-                        <div class="col">
-                            <a href="/laporan" type="button" class="btn btn-primary btn-lg mx-auto">Laporan Keuangan</a>
-                        </div>
-                    </div> -->
-
                     @elseif (Auth::user()->TipeUser->nama == 'Petugas')
-                    <div class="row justify-content-center">
-                        <div class="col">
-                            <a href="/penugasan" type="button" class="btn btn-primary btn-lg mx-auto">Manajemen Penugasan</a>
+                    <center>
+                            <h1 class="display-4"> Bagian Penugasan</h1>
+                        </center>
+                        <div class="row my-2 justify-content-md-center">
+                            <div class="card-deck">
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/list.png')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manajemen Penugasan</h5>
+                                        <p class="card-text">Manajemen penugasan dapat digunakan untuk 
+                                            Membuat, Mengedit, serta Menghapus Penugasan yang terdaftar pada sistem.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="/penugasan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                     @else
-                    <div class="row justify-content-center">
-                        <div class="col">
-                            <a href="/pelaporan" type="button" class="btn btn-primary btn-lg mx-auto">Manajemen Pelaporan</a>
+                    <center>
+                            <h1 class="display-4"> Bagian Penugasan</h1>
+                        </center>
+                        <div class="row my-2 justify-content-md-center">
+                            <div class="card-deck">
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/exclamation-mark-in-a-circle.png')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manajemen Pelaporan</h5>
+                                        <p class="card-text">Manajemen pelaporan dapat digunakan untuk 
+                                            Membuat, Mengedit, serta Menghapus pelaporan yang terdaftar pada sistem.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="/pelaporan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                     @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 @endsection

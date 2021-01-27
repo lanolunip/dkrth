@@ -76,7 +76,7 @@
                         <td>{{ $pn->tanggal_berakhir }}</td>
                         <td>
                             @if (Auth::user()->TipeUser->nama == "Ketua")
-                                <a href="/penugasan/edit/{{ $pn->id }}" class="btn btn-warning">Edit</a>
+                                <a href="/penugasan/view/{{ $pn->id }}" class="btn btn-warning">View</a>
                                 <a href="/penugasan/hapus/{{ $pn->id }}" class="btn btn-danger">Hapus</a>
                                 @if (empty($pn->Laporan->penugasan))
                                     <a href="/penugasan/laporan/{{ $pn->id }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>

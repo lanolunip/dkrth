@@ -56,7 +56,11 @@ class PenugasanController extends Controller
     public function edit($id)
     {
         $penugasan = Penugasan::find($id);
-        $tim = Tim::all();
+        if(!empty($penugasan->Tim()->kategori_daerah)){
+            $tim = Tim::where('kategori_daerah','LIKE',$penugasan->Tim()->kategori_daerah);
+        }else{
+            $tim = Tim::all();
+        }
         return view('penugasan.penugasan_edit', ['penugasan' => $penugasan,'tim' => $tim] );
     }
 
@@ -70,14 +74,19 @@ class PenugasanController extends Controller
             // 'nomor_telepon_pelapor' => 'required',
             // 'banyak_pengeluaran' => 'required',
             // 'laporan' => 'required'
-    	]);
-    
+        ]);
+        
         $penugasan = Penugasan::find($id);
         $penugasan->nama = $request->nama;
         $penugasan->deskripsi = $request->deskripsi;
         $penugasan->tim = $request->tim;
-        $penugasan->pelapor = $request->pelapor;
-        $penugasan->nomor_telepon_pelapor = $request->nomor_telepon_pelapor;
+        if (!empty($penugasan->Pelapor()->nama)) {
+            $penugasan->pelapor = $penugasan->Pelapor()->id;
+            $penugasan->nomor_telepon_pelapor = $penugasan->Pelapor()->nomor_telepon;
+        }else{
+            $penugasan->pelapor = $request->pelapor;
+            $penugasan->nomor_telepon_pelapor = $request->nomor_telepon_pelapor;
+        }
         // $penugasan->banyak_pengeluaran = $request->banyak_pengeluaran;
         // $penugasan->tanggal_berakhir = Carbon::now()->toDateTimeString(); 
         $penugasan->save();

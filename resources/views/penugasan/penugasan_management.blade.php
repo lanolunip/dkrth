@@ -63,10 +63,10 @@
                         <td>{{ $pn->banyak_pengeluaran}}</td>
                         @if (!empty($pn->Laporan->penugasan))
                         
-                            @if (Auth::user()->TipeUser->nama == "Ketua"))
-                                <td><a href="/laporan/edit/{{$pn->Laporan->id}}">link laporan</a></td>
+                            @if (Auth::user()->TipeUser->nama == "Ketua")
+                                <td><a href="/laporan/edit/{{ $pn->Laporan->id }}">link laporan</a></td>
                             @elseif (Auth::user()->TipeUser->nama == "Petugas")
-                                <td><a href="/laporan/view/{{$pn->Laporan->id}}">link laporan</a></td>
+                                <td><a href="/laporan/view/{{ $pn->Laporan->id }}">link laporan</a></td>
                             @endif
                         @else
                             <td>Belum Terselesaikan</td>

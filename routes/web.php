@@ -38,6 +38,7 @@ Route::get('/daerah/hapus/{id}', 'DaerahController@delete')->middleware('role:Ke
 
 #mengatur Tim
 Route::get('/tim', 'TimController@index')->middleware('role:Ketua');
+Route::get('/tim/view/{id}', 'TimController@view')->middleware('role:Ketua,Petugas,Pelapor');
 Route::get('/tim/tambah', 'TimController@tambah')->middleware('role:Ketua');
 Route::post('/tim/store', 'TimController@store')->middleware('role:Ketua');
 Route::get('/tim/edit/{id}', 'TimController@edit')->middleware('role:Ketua');
@@ -46,6 +47,7 @@ Route::get('/tim/hapus/{id}', 'TimController@delete')->middleware('role:Ketua');
 
 #mengatur Penugasan
 Route::get('/penugasan', 'PenugasanController@index')->middleware('role:Ketua,Petugas');
+Route::get('/penugasan/view/{id}', 'PenugasanController@view')->middleware('role:Ketua,Petugas,Pelapor');
 Route::get('/penugasan/tambah', 'PenugasanController@tambah')->middleware('role:Ketua');
 Route::post('/penugasan/store', 'PenugasanController@store')->middleware('role:Ketua');
 Route::get('/penugasan/edit/{id}', 'PenugasanController@edit')->middleware('role:Ketua');

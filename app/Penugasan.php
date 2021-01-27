@@ -14,6 +14,10 @@ class Penugasan extends Model
         'banyak_pengeluaran','laporan','tanggal_berakhir'
     ];
 
+    public function Pelapor(){
+        return $this->belongsTo('App\Petugas','pelapor');
+    }
+    
     public function Laporan(){
         return $this->hasOne('App\Laporan','penugasan');
     }

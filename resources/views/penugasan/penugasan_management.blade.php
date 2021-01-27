@@ -38,14 +38,29 @@
                         <td>{{ $i }}</td>
                         <td>{{ $pn->nama }}</td>
                         <td>{{ $pn->deskripsi }}</td>
-                        @if (!empty($pn->Tim->nama))
+
+                        @if (!empty($pn->Tim->nama) && Auth::user()->tipe_user == 1)
                             <td><a href="/tim/edit/{{$pn->Tim->id}}">{{$pn->Tim->nama}}</a></td>
+                        @elseif (!empty($pn->Tim->nama) && Auth::user()->tipe_user == 2)
+                            <td><a href="/tim/view/{{$pn->Tim->id}}">{{$pn->Tim->nama}}</a></td>
                         @else
                             <td>Tim telah dihapus, Segera gantikan dengan Tim Baru !</td>
                         @endif
-                        <td>{{ $pn->pelapor}}</td>
-                        <td>{{ $pn->nomor_telepon_pelapor }}</td>
+
+                        @if(!empty($pn->Pelapor->nama))
+                            <td> {{$pn->Pelapor->nama}} </td>
+                        @else
+                            <td> {{$pn->pelapor}} </td>
+                        @endif
+
+                        @if(!empty($pn->Pelapor->nomor_telepon))
+                            <td> {{$pn->Pelapor->nomor_telepon}} </td>
+                        @else
+                            <td> {{$pn->nomor_telepon_pelapor}} </td>
+                        @endif
+
                         <td>{{ $pn->banyak_pengeluaran}}</td>
+
                         @if (!empty($pn->Laporan->penugasan))
                             <td><a href="/laporan/edit/{{$pn->Laporan->id}}">link laporan</a></td>
                         @else

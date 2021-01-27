@@ -17,6 +17,15 @@ class TimController extends Controller
     	return view('tim.tim_management', ['tim' => $tim]);
     }
 
+    public function view($id)
+    {
+    	$jenis_tim = JenisTim::all();
+        $kategori_daerah = KategoriDaerah::all();
+        $petugas = Petugas::all();
+        $tim = Tim::find($id);
+        return view('tim.tim_view', ['tim' => $tim,'petugas' => $petugas,'jenis_tim' => $jenis_tim,'kategori_daerah' => $kategori_daerah]);
+    }
+
     public function tambah()
     {
         $jenis_tim = JenisTim::all();

@@ -38,34 +38,31 @@
                         <td>{{ $pl->Pelapor->nama }}</td>
                         <td>{{ $pl->Daerah->nama }}</td>
                         <td>{{ $pl->deskripsi }}</td>
-                        @if (!empty($pl->Penugasan->Tim->nama))
-                            <td>{{ $pl->Penugasan->Tim->nama}}</td>
+                        
+                        @if (!empty($pl->Penugasan->Tim->nama) && Auth::user()->tipe_user == 1)
+                            <td><a href="/tim/edit/{{ $pl->Penugasan->Tim->id }}">{{ $pl->Penugasan->Tim->nama}}</a></td>
+                        @elseif (!empty($pl->Penugasan->Tim->nama) && Auth::user()->tipe_user == 2)
+                            <td><a href="/tim/view/{{ $pl->Penugasan->Tim->id }}">{{ $pl->Penugasan->Tim->nama}}</a></td>
                         @else
                             <td>Belum Dikerjakan</td>
                         @endif
+
                         <td>{{ $pl->Pelapor->nomor_telepon }}</td>
-                        @if (!empty($pl->Penugasan->id))
-                            <td><a href="/penugasan/edit/{{$pl->Penugasan->id}}">{{ $pl->Penugasan->id}}</a></td>
+
+                        @if (!empty($pl->Penugasan->id) && Auth::user()->tipe_user == 1)
+                            <td><a href="/penugasan/edit/{{$pl->Penugasan->id}}">link penugasan</a></td>
+                        @elseif (!empty($pl->Penugasan->id) && Auth::user()->tipe_user == 2)
+                            <td><a href="/penugasan/view/{{$pl->Penugasan->id}}">link penugasan</a></td>
                         @else
                             <td>Belum Dikerjakan</td>
                         @endif
+
                         <td>{{ $pl->created_at}}</td>
                         @if (!empty($pl->Penugasan->tanggal_berakhir))
                             <td>{{ $pl->Penugasan->tanggal_berakhir}}</td>
                         @else
                             <td>Belum Terselesaikan</td>
                         @endif
-                        <!-- @if (!empty($pl->Laporan->penugasan))
-                            <td><a href="/laporan/edit/{{$pl->Laporan->id}}">{{$pl->Laporan->id}}</a></td>
-                        @else
-                            <td>Belum Terselesaikan</td>
-                        @endif -->
-                        <!-- <td>  {{ !empty($pl->Laporan->penugasan) ? $pl->Laporan->id:'Belum Terselesaikan'}}</td> -->
-                       
-                        <!-- <td>{{ !empty($pl->Laporan) ? $pl->Laporan->id:'Belum Terselesaikan' }}</td> -->
-
-                        <!-- <td>{{ $pl->created_at }}</td>
-                        <td>{{ $pl->tanggal_berakhir }}</td> -->
                         <td>
                             @if (Auth::user()->TipeUser->nama == "Ketua")
                                 <a href="/pelaporan/edit/{{ $pl->id }}" class="btn btn-warning">Edit</a>

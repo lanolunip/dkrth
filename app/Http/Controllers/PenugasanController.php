@@ -17,6 +17,12 @@ class PenugasanController extends Controller
     	return view('penugasan.penugasan_management', ['penugasan' => $penugasan,'laporan',$laporan]);
     }
 
+    public function view($id)
+    {
+        $penugasan = Penugasan::find($id);
+        return view('penugasan.penugasan_view', ['penugasan' => $penugasan] );
+    }
+
     public function tambah()
     {
         $tim = Tim::all();

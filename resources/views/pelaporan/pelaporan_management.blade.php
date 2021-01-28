@@ -41,6 +41,8 @@
                             <td><a href="/tim/edit/{{ $pl->Penugasan->Tim->id }}">{{ $pl->Penugasan->Tim->nama}}</a></td>
                         @elseif (!empty($pl->Penugasan->Tim->nama) && Auth::user()->tipe_user == 2)
                             <td><a href="/tim/view/{{ $pl->Penugasan->Tim->id }}">{{ $pl->Penugasan->Tim->nama}}</a></td>
+                        @elseif (!empty($pl->Penugasan->id))
+                            <td><a href="/tim/view/{{$pl->Penugasan->Tim->id}}">{{ $pl->Penugasan->Tim->nama}}</a></td>
                         @else
                             <td>Belum Dikerjakan</td>
                         @endif
@@ -50,6 +52,8 @@
                         @if (!empty($pl->Penugasan->id) && Auth::user()->tipe_user == 1)
                             <td><a href="/penugasan/edit/{{$pl->Penugasan->id}}">link penugasan</a></td>
                         @elseif (!empty($pl->Penugasan->id) && Auth::user()->tipe_user == 2)
+                            <td><a href="/penugasan/view/{{$pl->Penugasan->id}}">link penugasan</a></td>
+                        @elseif (!empty($pl->Penugasan->id))
                             <td><a href="/penugasan/view/{{$pl->Penugasan->id}}">link penugasan</a></td>
                         @else
                             <td>Belum Dikerjakan</td>

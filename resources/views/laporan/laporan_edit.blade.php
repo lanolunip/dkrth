@@ -23,7 +23,7 @@
                 
                 <!-- Isi -->
                 <div class="form-group">
-                    <label>Nama</label>
+                    <label>Isi Laporan</label>
                     <input type="text" name="isi" class="form-control" placeholder="Isi .." value="{{ $laporan->isi }}">
 
                     @if($errors->has('isi'))

@@ -19,7 +19,7 @@
 
                 <!-- Nama -->
                 <div class="form-group">
-                    <label>Nama</label>
+                    <label>Nama Tim</label>
                     <input type="text" name="nama" class="form-control" placeholder="Nama Tim .." value="{{ $tim->nama }}">
 
                     @if($errors->has('nama'))

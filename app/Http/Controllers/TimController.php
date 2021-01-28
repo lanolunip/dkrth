@@ -30,7 +30,7 @@ class TimController extends Controller
     {
         $jenis_tim = JenisTim::all();
         $kategori_daerah = KategoriDaerah::all();
-        $petugas = Petugas::all();
+        $petugas = Petugas::where('tipe_user','like',2)->get();
     	return view('tim.tim_tambah',['petugas' => $petugas,'jenis_tim' => $jenis_tim,'kategori_daerah' => $kategori_daerah]);
     }
  

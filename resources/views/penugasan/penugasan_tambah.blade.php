@@ -10,7 +10,11 @@
             <a href="/penugasan" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
-            
+            @if(session()->has('message'))
+                <div class="alert alert-info">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <form method="post" action="/penugasan/store">
 
                 {{ csrf_field() }}

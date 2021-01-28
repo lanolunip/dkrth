@@ -39,8 +39,12 @@ class PenugasanController extends Controller
             // 'nomor_telepon_pelapor' => 'required',
             // 'banyak_pengeluaran' => 'required',
             // 'laporan' => 'required',
-    	]);
- 
+        ]);
+        
+        if (is_numeric($request->pelapor)){
+            return redirect()->back()->with('message', 'Pelapor Tidak Boleh Diisi Angka !');
+        }
+
         Penugasan::create([
     		'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,

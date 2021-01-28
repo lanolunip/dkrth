@@ -29,30 +29,32 @@
                     @endif
 
                 </div>
-                <!-- Alamat -->
-                <div class="form-group">
-                    <label>Alamat</label>
-                    <textarea name="alamat" class="form-control" placeholder="Alamat Petugas ..">{{ $petugas->alamat }}</textarea>
+                @if ($petugas->tipe_user != 3)
+                    <!-- Alamat -->
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea name="alamat" class="form-control" placeholder="Alamat Petugas ..">{{ $petugas->alamat }}</textarea>
 
-                    @if($errors->has('alamat'))
-                        <div class="text-danger">
-                            {{ $errors->first('alamat')}}
-                        </div>
-                    @endif
+                        @if($errors->has('alamat'))
+                            <div class="text-danger">
+                                {{ $errors->first('alamat')}}
+                            </div>
+                        @endif
 
-                </div>
-                <!-- NIP -->
-                <div class="form-group">
-                    <label>NIP</label>
-                    <input name="nip" class="form-control" placeholder="NIP Petugas .." value="{{ $petugas->nip }}"></input>
+                    </div>
+                    <!-- NIP -->
+                    <div class="form-group">
+                        <label>NIP</label>
+                        <input name="nip" class="form-control" placeholder="NIP Petugas .." value="{{ $petugas->nip }}"></input>
 
-                    @if($errors->has('nip'))
-                        <div class="text-danger">
-                            {{ $errors->first('nip')}}
-                        </div>
-                    @endif
+                        @if($errors->has('nip'))
+                            <div class="text-danger">
+                                {{ $errors->first('nip')}}
+                            </div>
+                        @endif
 
-                </div>
+                    </div>
+                @endif
                 <!-- Nomor Telepon -->
                 <div class="form-group">
                     <label>Nomor Telepon</label>

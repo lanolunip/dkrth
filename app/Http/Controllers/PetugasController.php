@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Petugas;
 use App\TipeUser;
+use Auth;
 
 class PetugasController extends Controller
 {
@@ -54,16 +55,26 @@ class PetugasController extends Controller
 
     public function update($id, Request $request)
     {
-        $this->validate($request,[
-    		'nama' => 'required|string|max:255',
-            'alamat' => 'required|string',
-            'nip' => 'required|min:18|max:18',
-            'nomor_telepon' => 'required',
-            'email' => 'required|email|max:255',
-            'tipe_user' => 'required',
-    	]);
-    
+
         $petugas = Petugas::find($id);
+        if($petugas->tipe_user == 3){
+            $this->validate($request,[
+                'nama' => 'required|string|max:255',
+                'nomor_telepon' => 'required',
+                'email' => 'required|email|max:255',
+                'tipe_user' => 'required',
+            ]);
+        }else{
+            $this->validate($request,[
+                'nama' => 'required|string|max:255',
+                'alamat' => 'required|string',
+                'nip' => 'required|min:18|max:18',
+                'nomor_telepon' => 'required',
+                'email' => 'required|email|max:255',
+                'tipe_user' => 'required',
+            ]);
+        }
+            
         $petugas->nama = $request->nama;
         $petugas->alamat = $request->alamat;
         $petugas->nip = $request->nip;

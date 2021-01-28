@@ -15,6 +15,10 @@ class KeuanganController extends Controller
 
     public function hitung(Request $request)
     {
+        $this->validate($request,[
+    		'tanggal_mulai' => 'required',
+            'tanggal_akhir' => 'required',
+        ]);
         $penugasan = Penugasan::whereDate('created_at','>=',$request->tanggal_mulai)->whereDate('created_at','<=',$request->tanggal_akhir);
         $keuangan = $penugasan->sum('banyak_pengeluaran');
     	return view('keuangan.keuangan_management',['keuangan' => $keuangan,'tanggal_mulai' => $request->tanggal_mulai,'tanggal_akhir' => $request->tanggal_akhir]);

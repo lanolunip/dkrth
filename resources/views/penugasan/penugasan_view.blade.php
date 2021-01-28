@@ -56,6 +56,11 @@
                 @endif
             </div>
             
+            <!-- Isi Laporan -->
+            <div class="form-group">
+                <label>Isi Laporan</label>
+                <textarea type="text" name="pelapor" class="form-control" placeholder="Isi Laporan .." readonly>{{$penugasan->Laporan->isi}}</textarea>
+            </div>
             
             <!-- Banyak Pengeluaran -->
             <div class="form-group">

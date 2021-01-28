@@ -46,6 +46,8 @@ class PelaporanController extends Controller
     {
         $pelaporan = Pelaporan::find($id);
         $daerah = Daerah::all();
+        // simpanan VVVV
+        // $tim = Tim::where('kategori_daerah','LIKE',$pelaporan->Daerah->kategori_daerah)->get();
         return view('pelaporan.pelaporan_edit', ['pelaporan' => $pelaporan,'daerah' => $daerah] );
     }
 
@@ -72,7 +74,7 @@ class PelaporanController extends Controller
 
     public function buat_penugasan($id_pelaporan){
         $pelaporan = Pelaporan::find($id_pelaporan);
-        $tim = Tim::where('kategori_daerah','LIKE',$pelaporan->Daerah->kategori_daerah)->get();
+        $tim = Tim::where('kategori_daerah','like',$pelaporan->Daerah->kategori_daerah)->get();
         return view('pelaporan.pelaporan_buat_penugasan', ['pelaporan' => $pelaporan,'tim' => $tim]);
     }
 

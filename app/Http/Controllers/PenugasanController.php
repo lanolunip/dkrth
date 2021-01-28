@@ -61,7 +61,7 @@ class PenugasanController extends Controller
     {
         $penugasan = Penugasan::find($id);
         if(!empty($penugasan->Tim()->kategori_daerah)){
-            $tim = Tim::where('kategori_daerah','LIKE',$penugasan->Tim()->kategori_daerah);
+            $tim = Tim::where('kategori_daerah','LIKE',$penugasan->Tim->kategori_daerah);
         }else{
             $tim = Tim::all();
         }
@@ -84,9 +84,9 @@ class PenugasanController extends Controller
         $penugasan->nama = $request->nama;
         $penugasan->deskripsi = $request->deskripsi;
         $penugasan->tim = $request->tim;
-        if (!empty($penugasan->Pelapor()->nama)) {
-            $penugasan->pelapor = $penugasan->Pelapor()->id;
-            $penugasan->nomor_telepon_pelapor = $penugasan->Pelapor()->nomor_telepon;
+        if (!empty($penugasan->Pelapor->nama)) {
+            $penugasan->pelapor = $penugasan->Pelapor->id;
+            $penugasan->nomor_telepon_pelapor = $penugasan->Pelapor->nomor_telepon;
         }else{
             $penugasan->pelapor = $request->pelapor;
             $penugasan->nomor_telepon_pelapor = $request->nomor_telepon_pelapor;

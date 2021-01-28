@@ -22,9 +22,7 @@
                         <th>Penugasan</th>
                         <th>Tanggal Laporan Dibuat</th>
                         <th>Tanggal Laporan Diselesaikan</th>
-                        @if (Auth::user()->TipeUser->nama == "Ketua")
-                            <th>OPSI</th>
-                        @endif
+                        <th>OPSI</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,13 +63,26 @@
                         @endif
                         
                         @if (Auth::user()->TipeUser->nama == "Ketua")
-                        <td>
-                            <a href="/pelaporan/edit/{{ $pl->id }}" class="btn btn-warning">Edit</a>
-                            <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Hapus</a>
-                            @if (empty($pl->penugasan))
-                                <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Buat Penugasan</a>
-                            @endif
+                            <td>
+                                @if (empty($pl->Penugasan->id))
+                                    <a href="/pelaporan/edit/{{ $pl->id }}" class="btn btn-warning">Edit</a>
+                                    <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Hapus</a>
+                                @else
+                                    <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Hapus</a>
+                                @endif
+                                @if (empty($pl->penugasan))
+                                    <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Buat Penugasan</a>
+                                @endif
                             </td>
+                        @elseif (empty($pl->Penugasan->id))
+                            @if(Auth::user()->id == $pl->pelapor)
+                                <td>
+                                    <a href="/pelaporan/edit/{{ $pl->id }}" class="btn btn-warning">Edit</a>
+                                    <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Batalkan Pelaporan</a>
+                                </td>
+                            @endif
+                        @else
+                            <td>Sedang dikerjakan / Sudah Selesai</td>
                         @endif
                     </tr>
                     @php

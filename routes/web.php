@@ -50,7 +50,7 @@ Route::get('/penugasan', 'PenugasanController@index')->middleware('role:Ketua,Pe
 Route::get('/penugasan/view/{id}', 'PenugasanController@view')->middleware('role:Ketua,Petugas,Pelapor');
 Route::get('/penugasan/tambah', 'PenugasanController@tambah')->middleware('role:Ketua');
 Route::post('/penugasan/store', 'PenugasanController@store')->middleware('role:Ketua');
-Route::get('/penugasan/edit/{id}', 'PenugasanController@edit')->middleware('role:Ketua');
+// Route::get('/penugasan/edit/{id}', 'PenugasanController@edit')->middleware('role:Ketua');
 Route::put('/penugasan/update/{id}', 'PenugasanController@update')->middleware('role:Ketua');
 Route::get('/penugasan/hapus/{id}', 'PenugasanController@delete')->middleware('role:Ketua');
 Route::get('/penugasan/laporan/{id}', 'PenugasanController@laporan')->middleware('role:Ketua,Petugas');

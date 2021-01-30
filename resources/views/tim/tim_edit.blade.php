@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
-            CRUD Data daerah - <strong>EDIT DATA</strong>
+            CRUD Data Tim - <strong>EDIT DATA</strong>
         </div>
         <div class="card-body">
             <a href="/tim" class="btn btn-primary">Kembali</a>

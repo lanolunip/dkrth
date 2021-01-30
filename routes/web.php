@@ -70,7 +70,7 @@ Route::post('/pelaporan/store', 'PelaporanController@store')->middleware('role:K
 
 #Mengatur Pelaporan -- Bagian Admin
 Route::get('/pelaporan/edit/{id}', 'PelaporanController@edit')->middleware('role:Ketua,Pelapor');
-Route::put('/pelaporan/update/{id}', 'PelaporanController@update')->middleware('role:Ketua');
+Route::put('/pelaporan/update/{id}', 'PelaporanController@update')->middleware('role:Ketua,Pelapor');
 Route::get('/pelaporan/hapus/{id}', 'PelaporanController@delete')->middleware('role:Ketua');
 Route::get('/pelaporan/buat_penugasan/{id}', 'PelaporanController@buat_penugasan')->middleware('role:Ketua');
 Route::post('/pelaporan/selesai_buat_penugasan/{id_pelaporan}', 'PelaporanController@selesai_buat_penugasan')->middleware('role:Ketua');

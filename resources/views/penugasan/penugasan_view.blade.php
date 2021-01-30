@@ -56,12 +56,19 @@
                 @endif
             </div>
             
+            @if(!empty($penugasan->Laporan->isi))
             <!-- Isi Laporan -->
             <div class="form-group">
                 <label>Isi Laporan</label>
                 <textarea type="text" name="pelapor" class="form-control" placeholder="Isi Laporan .." readonly>{{$penugasan->Laporan->isi}}</textarea>
             </div>
-            
+            @else
+                <!-- Isi Laporan -->
+                <div class="form-group">
+                    <label>Isi Laporan</label>
+                    <textarea type="text" name="pelapor" class="form-control" placeholder="Isi Laporan Belum Diisi" readonly></textarea>
+                </div>
+            @endif
             <!-- Banyak Pengeluaran -->
             <div class="form-group">
                 <div class="form-row">

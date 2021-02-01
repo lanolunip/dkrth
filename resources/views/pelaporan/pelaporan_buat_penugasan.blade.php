@@ -44,7 +44,7 @@
                  <!-- Nomor Telepon Pelapor -->
                  <div class="form-group">
                     <label>Nomor Telepon Pelapor</label>
-                    <input type="tel" name="nomor_telepon_pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$pelaporan->Pelapor->nomor_telepon_pelapor}}" readonly>
+                    <input type="tel" name="nomor_telepon_pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$pelaporan->Pelapor->nomor_telepon}}" readonly>
 
                     @if($errors->has('nomor_telepon_pelapor'))
                         <div class="text-danger">

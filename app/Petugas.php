@@ -59,9 +59,4 @@ class Petugas extends Model
             return false;
         } 
     }
-
-    public function memiliki_kepentingan(){
-        return $this->id;
-    }
-
 }

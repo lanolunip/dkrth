@@ -125,6 +125,7 @@ class PenugasanController extends Controller
         $penugasan = Penugasan::find($id);
         $penugasan->banyak_pengeluaran = $request->banyak_pengeluaran;
         $penugasan->tanggal_berakhir = Carbon::now()->toDateTimeString(); 
+        $penugasan->status = 3;
         $penugasan->save();
 
         // Bagian Laporan

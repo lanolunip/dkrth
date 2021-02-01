@@ -41,6 +41,18 @@
                     @endif
 
                 </div>
+                <!-- Kategori Pelaporan -->
+                <div class="form-group">
+                    <label>Kategori Pelaporan</label>
+                    <input type="text" name="" class="form-control" placeholder="Nama Kategori Pelaporan .." value="{{$pelaporan->KategoriPelaporan->nama}}" disabled>
+                    <input type="hidden" name="kategori_pelaporan" value="{{$pelaporan->KategoriPelaporan->id}}">
+                    @if($errors->has('kategori_pelaporan'))
+                        <div class="text-danger">
+                            {{ $errors->first('kategori_pelaporan')}}
+                        </div>
+                    @endif
+
+                </div>
                 <!-- Deskripsi -->
                 <div class="form-group">
                     <label>Deskripsi</label>

@@ -11,6 +11,7 @@ class Pelaporan extends Model
 
      protected $fillable = [
         'pelapor', 'daerah', 'tim','deskripsi','penugasan',
+        'kategori_pelaporan','status_pelaporan'
     ];
 
     public function Pelapor(){
@@ -29,6 +30,12 @@ class Pelaporan extends Model
         return $this->belongsTo('App\Penugasan','penugasan');
     }
 
-    
+    public function KategoriPelaporan(){
+        return $this->belongsTo('App\KategoriPelaporan','kategori_pelaporan');
+    }
+
+    public function StatusPelaporan(){
+        return $this->belongsTo('App\StatusPelaporan','status');
+    }
     
 }

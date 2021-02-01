@@ -8,6 +8,7 @@ use App\Daerah;
 use Auth;
 use App\Tim;
 use App\Penugasan;
+use App\KategoriPelaporan;
 
 class PelaporanController extends Controller
 {
@@ -17,26 +18,31 @@ class PelaporanController extends Controller
     	return view('pelaporan.pelaporan_management', ['pelaporan' => $pelaporan]);
     }
 
-    public function tambah()
-    {
+    public function kategori_pelaporan(){
+        $kategori_pelaporan = KategoriPelaporan::all();
+        return view('pelaporan.kategori_pelaporan',['kategori_pelaporan' => $kategori_pelaporan]);
+    }
+
+    public function tambah(Request $request,$id){
+        $kategori_pelaporan = KategoriPelaporan::find($id);
         $daerah = Daerah::all();
-    	return view('pelaporan.pelaporan_tambah',['daerah' => $daerah]);
+        return view('pelaporan.pelaporan_tambah', ['kategori_pelaporan' => $kategori_pelaporan,'daerah' => $daerah]);
     }
  
     public function store(Request $request)
     {
         $user_id = Auth::user()->id;
     	$this->validate($request,[
-            // 'pelapor', 'daerah', 'tim','deskripsi','penugasan',
-            // 'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'daerah' => 'required',
+            'kategori_pelaporan' => 'required'
     	]);
             
         Pelaporan::create([
             'deskripsi' => $request->deskripsi,
             'daerah' => $request->daerah,
             'pelapor' => $user_id,
+            'kategori_pelaporan' => $request->kategori_pelaporan
     	]);
  
     	return redirect('/pelaporan');
@@ -72,6 +78,12 @@ class PelaporanController extends Controller
         return redirect()->back();
     }
 
+    public function tolak($id){
+        $pelaporan = Pelaporan::find($id);
+        $pelaporan->status = 2;
+        $pelaporan->save();
+        return redirect('/pelaporan');
+    }
     public function buat_penugasan($id_pelaporan){
         $pelaporan = Pelaporan::find($id_pelaporan);
         $tim = Tim::where('kategori_daerah','like',$pelaporan->Daerah->kategori_daerah)->get();

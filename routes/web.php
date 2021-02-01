@@ -55,6 +55,7 @@ Route::put('/penugasan/update/{id}', 'PenugasanController@update')->middleware('
 Route::get('/penugasan/hapus/{id}', 'PenugasanController@delete')->middleware('role:Ketua');
 Route::get('/penugasan/laporan/{id}', 'PenugasanController@laporan')->middleware('role:Ketua,Petugas');
 Route::put('/penugasan/selesaikan/{id}', 'PenugasanController@selesaikan')->middleware('role:Ketua,Petugas');
+Route::get('/penugasan/rotasi', 'PenugasanController@index_rotasi')->middleware('role:Ketua');
 
 #mengatur Laporan
 Route::get('/laporan', 'LaporanController@index')->middleware('role:Ketua,Petugas');

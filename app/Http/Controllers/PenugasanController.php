@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Penugasan;
 use App\Tim;
+use App\KategoriDaerah;
 use App\Laporan;
 use Carbon\Carbon;
 
@@ -138,5 +139,9 @@ class PenugasanController extends Controller
         return redirect('/penugasan');
     }
 
-
+    public function index_rotasi()
+    {
+        $kategori_daerah = KategoriDaerah::all();
+    	return view('penugasan.rotasi.rotasi_management',['kategori_daerah' => $kategori_daerah]);
+    }
 }

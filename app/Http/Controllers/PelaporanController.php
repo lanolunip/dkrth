@@ -9,6 +9,7 @@ use Auth;
 use App\Tim;
 use App\Penugasan;
 use App\KategoriPelaporan;
+use App\TipeKategoriPelaporan;
 
 class PelaporanController extends Controller
 {
@@ -17,11 +18,16 @@ class PelaporanController extends Controller
         $pelaporan = Pelaporan::orderBy('id', 'desc')->paginate(10);
     	return view('pelaporan.pelaporan_management', ['pelaporan' => $pelaporan]);
     }
-
-    public function kategori_pelaporan(){
-        $kategori_pelaporan = KategoriPelaporan::all();
+    
+    public function tipe_kategori_pelaporan(){
+    $tipe_kategori_pelaporan = TipeKategoriPelaporan::all();
+    return view('pelaporan.tipe_kategori_pelaporan',['tipe_kategori_pelaporan' => $tipe_kategori_pelaporan]);
+}
+    public function kategori_pelaporan($id_tipe_kategori_pelaporan){
+        $kategori_pelaporan = KategoriPelaporan::where('tipe_kategori_pelaporan','like',$id_tipe_kategori_pelaporan)->get();
         return view('pelaporan.kategori_pelaporan',['kategori_pelaporan' => $kategori_pelaporan]);
     }
+
 
     public function tambah(Request $request,$id){
         $kategori_pelaporan = KategoriPelaporan::find($id);

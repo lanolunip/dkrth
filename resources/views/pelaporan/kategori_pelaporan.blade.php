@@ -7,7 +7,7 @@
             <strong>Pilih Kategori Pelaporan</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-                <a href="/pelaporan" class="btn btn-primary">Kembali</a>
+                <a href="/pelaporan/tipe_kategori_pelaporan" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             @php
@@ -22,8 +22,12 @@
                     <div class="row no-gutters bg-light position-relative">
                 @endif
                     <div class="col position-static p-4 pl-md-0">
-                        <h5 class="mt-0">{{$k->nama}}</h5>
-                        <a class="btn btn-primary" name="kategori" href="/pelaporan/tambah/{{$k->id}}" class="stretched-link">Pilih !</a>
+                        <div class="row d-flex justify-content-center">
+                            <h5 class="mt-0">{{$k->nama}}</h5>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <a class="btn btn-primary" name="kategori" href="/pelaporan/tambah/{{$k->id}}" class="stretched-link">Pilih !</a>
+                        </div>
                     </div>
                 @php
                     $i++;

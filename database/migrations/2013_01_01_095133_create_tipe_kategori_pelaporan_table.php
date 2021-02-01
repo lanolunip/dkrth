@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKategoriPelaporanTable extends Migration
+class CreateTipeKategoriPelaporanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateKategoriPelaporanTable extends Migration
      */
     public function up()
     {
-        Schema::create('kategori_pelaporan', function (Blueprint $table) {
+        Schema::create('tipe_kategori_pelaporan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->unsignedInteger('tipe_kategori_pelaporan');
-
-            $table->foreign('tipe_kategori_pelaporan')->references('id')->on('tipe_kategori_pelaporan')->onDelete('cascade');
         });
     }
 
@@ -29,6 +26,6 @@ class CreateKategoriPelaporanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kategori_pelaporan');
+        Schema::dropIfExists('tipe_kategori_pelaporan');
     }
 }

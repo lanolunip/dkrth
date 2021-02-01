@@ -13,23 +13,28 @@ class KategoriPelaporanSeeder extends Seeder
     {
         DB::table('kategori_pelaporan')->insert([
         	'id' => 1,
-        	'nama' => 'Keluhan Pohon Mengganggu Aktivitas Suatu Pemasangan'
+            'nama' => 'Keluhan Pohon Mengganggu Aktivitas Suatu Pemasangan',
+            'tipe_kategori_pelaporan' => 1
         ]);
         DB::table('kategori_pelaporan')->insert([
         	'id' => 2,
-        	'nama' => 'Keluhan Pohon Tumbang'
+            'nama' => 'Keluhan Pohon Tumbang',
+            'tipe_kategori_pelaporan' => 1
         ]);
         DB::table('kategori_pelaporan')->insert([
         	'id' => 3,
-        	'nama' => 'Keluhan Pohon Diserang Ulat'
+            'nama' => 'Keluhan Pohon Diserang Ulat',
+            'tipe_kategori_pelaporan' => 1
         ]);
         DB::table('kategori_pelaporan')->insert([
         	'id' => 4,
-        	'nama' => 'Permintaan Pemotongan Pohon'
+            'nama' => 'Permintaan Pemotongan Pohon',
+            'tipe_kategori_pelaporan' => 2
         ]);
         DB::table('kategori_pelaporan')->insert([
         	'id' => 5,
-        	'nama' => 'Permintaan Pemindahan Kayu'
+            'nama' => 'Permintaan Pemindahan Kayu',
+            'tipe_kategori_pelaporan' => 2
         ]);
     }
 }

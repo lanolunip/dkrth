@@ -7,7 +7,7 @@
             <strong>List Pelaporan</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-                <a href="/pelaporan/kategori_pelaporan" class="btn btn-primary">BUAT PELAPORAN</a>
+                <a href="/pelaporan/tipe_kategori_pelaporan" class="btn btn-primary">BUAT PELAPORAN</a>
             <br/>
             <br/>
             <table class="table table-bordered table-hover table-striped">
@@ -42,7 +42,7 @@
                             <td>{{ $pl->Pelapor->nama }}</td>
                         @endif
                         <td>{{ $pl->Daerah->nama }}</td>
-                        <td>{{ $pl->KategoriPelaporan->nama }}</td>
+                        <td> {{ $pl->KategoriPelaporan->TipeKategoriPelaporan->nama }} - {{ $pl->KategoriPelaporan->nama }}</td>
                         <td>{{ $pl->deskripsi }}</td>
                         
                         @if (Auth::user()->TipeUser->nama == "Ketua")

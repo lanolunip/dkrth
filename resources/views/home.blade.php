@@ -51,6 +51,12 @@
                                     </div>
                                     </center>
                                 </div>
+                                
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row my-2 justify-content-md-center">
+                            <div class="card-deck">
                                 <div class="card card-small">
                                     <img class="card-img-top" src="{{asset('images/home_card/marker.png')}}" alt="Card image cap">
                                     <div class="card-body">
@@ -62,6 +68,20 @@
                                     <center>
                                     <div class="card-footer">
                                         <a href="/daerah" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/tipe.png')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Manajemen Tipe dan Kategori Pelaporan</h5>
+                                        <p class="card-text">Manajemen Tipe dan Kategori Pelaporan dapat digunakan untuk 
+                                            Membuat, Mengedit, serta Menghapus tipe maupun kategori pelaporan yang terdaftar pada sistem.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="/tipe_kategori_pelaporan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>

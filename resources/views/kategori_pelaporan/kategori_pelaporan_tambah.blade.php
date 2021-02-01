@@ -4,46 +4,38 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
-            CRUD Data daerah - <strong>EDIT DATA</strong>
+            CRUD Data Kategori Pelaporan - <strong>TAMBAH DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/daerah" class="btn btn-primary">Kembali</a>
+            <a href="/kategori_pelaporan" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             
-
-            <form method="post" action="/daerah/update/{{ $daerah->id }}">
+            <form method="post" action="/kategori_pelaporan/store">
 
                 {{ csrf_field() }}
-                {{ method_field('PUT') }}
 
                 <!-- Nama -->
                 <div class="form-group">
                     <label>Nama</label>
-                    <input type="text" name="nama" class="form-control" placeholder="Nama Daerah .." value="{{ $daerah->nama }}">
+                    <input type="text" name="nama" class="form-control" placeholder="Nama Tipe Kategori Pelaporan ..">
 
                     @if($errors->has('nama'))
                         <div class="text-danger">
                             {{ $errors->first('nama')}}
                         </div>
                     @endif
-
-                </div>
-                <!-- Kategori Daerah -->
-                <div class="form-group">
-                    <label>Kategori Daerah</label>
-                        <select name="kategori_daerah" class="form-control" placeholder="Kategori Daerah ..">
+                    <!-- Tipe Kategori Pelaporan -->
+                    <div class="form-group">
+                        <label>Tipe Kategori Pelaporan</label>
+                        <select name="tipe_kategori_pelaporan" class="form-control" placeholder="Tipe Kategori Pelaporan ..">
                            
                             @php
                             $i = 1
                             @endphp
-                            @foreach($kategori_daerah as $kd)
+                            @foreach($tipe_kategori_pelaporan as $tkp)
 
-                                @if($daerah->kategori_daerah == $kd->id)
-                                <option value="{{$kd->id}}" selected>{{ $i }} - {{ $kd->nama }} </option>
-                                @else
-                                <option value="{{$kd->id}}">{{ $i }} - {{ $kd->nama }} </option>
-                                @endif
+                                <option value="{{$tkp->id}}">{{ $i }} - {{ $tkp->nama }} </option>
 
                             @php
                             $i++
@@ -52,16 +44,16 @@
 
                         </select>
 
-                        @if($errors->has('kategori_daerah'))
+                        @if($errors->has('tipe_kategori_pelaporan'))
                         <div class="text-danger">
-                            {{ $errors->first('kategori_daerah')}}
+                            {{ $errors->first('tipe_kategori_pelaporan')}}
                         </div>
                         @endif
+                    </div>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Simpan">
                 </div>
-
             </form>
 
         </div>

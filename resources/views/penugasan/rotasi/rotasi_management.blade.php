@@ -29,18 +29,18 @@
                             </div>
                             <div class="card-body d-flex justify-content-center">
                                 @for($j = 0; $j <= $kd->Daerah->count()-1;$j++)
-                                    @if($step_tracker->step % $kd->daerah->count() == $j)
+                                    @if($step_tracker[$i]->step % $kd->daerah->count() == $j)
                                         <div class="col">
                                             <div class="row d-flex justify-content-center">
-                                                {{$kd->Daerah[$step_tracker->step % $kd->daerah->count()]->nama}}
+                                                {{$kd->Daerah[$step_tracker[$i]->step % $kd->daerah->count()]->nama}}
                                             </div>
                                             @if($step_tracker[$kd->id - 1]->status != 2)
                                             <div class="row d-flex justify-content-center">
-                                                <a href="/penugasan/rotasi/buat_penugasan/{{$kd->Daerah[$step_tracker->step % $kd->daerah->count()]->id}}" class="btn btn-primary"> Buat Penugasan</a>
+                                                <a href="/penugasan/rotasi/buat_penugasan/{{$kd->Daerah[$step_tracker[$i]->step % $kd->daerah->count()]->id}}" class="btn btn-primary"> Buat Penugasan</a>
                                             </div>
                                             @else
                                             <div class="row d-flex justify-content-center">
-                                                <a href="/penugasan/rotasi/buat_penugasan/{{$kd->Daerah[$step_tracker->step % $kd->daerah->count()]->id}}" class="btn btn-primary disabled" aria-disabled="true"> Sedang Dikerjakan</a>
+                                                <a href="/penugasan/rotasi/buat_penugasan/{{$kd->Daerah[$step_tracker[$i]->step % $kd->daerah->count()]->id}}" class="btn btn-primary disabled" aria-disabled="true"> Sedang Dikerjakan</a>
                                             </div>
                                             @endif
                                         </div>

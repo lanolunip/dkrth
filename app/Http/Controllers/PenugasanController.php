@@ -103,6 +103,11 @@ class PenugasanController extends Controller
     public function delete($id)
     {
         $penugasan = Penugasan::find($id);
+        if ($penugasan->tipe_penugasan == 2){
+            $step_tracker = StepTracker::find($penugasan->Tim->kategori_daerah);
+            $step_tracker->status = 1;
+            $step_tracker->save();
+        }
         $penugasan->delete();
         return redirect()->back();
     }

@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(KategoriPelaporanSeeder::class);
         $this->call(StatusPelaporanSeeder::class);
 
+        $this->call(StepTrackerStatusSeeder::class);
         $this->call(StepTrackerSeeder::class);
     }
 }

@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Penugasan;
 use App\Tim;
 use App\KategoriDaerah;
+use App\Daerah;
 use App\Laporan;
+use App\StepTracker;
 use Carbon\Carbon;
 
 class PenugasanController extends Controller
@@ -125,9 +127,19 @@ class PenugasanController extends Controller
         //Bagian Penugasan
         $penugasan = Penugasan::find($id);
         $penugasan->banyak_pengeluaran = $request->banyak_pengeluaran;
-        $penugasan->tanggal_berakhir = Carbon::now()->toDateTimeString(); 
-        $penugasan->status = 3;
+        $penugasan->tanggal_berakhir = Carbon::now()->toDateTimeString();
+        if(!empty($penugasan->Pelaporan->status)){
+            $penugasan->Pelaporan->status = 3;
+            $penugasan->Pelaporan->save();
+        }
+        if ($penugasan->tipe_penugasan == 2){
+            $step_tracker = StepTracker::find($penugasan->Tim->kategori_daerah);
+            $step_tracker->status = 1;
+            $step_tracker->step+=1;
+            $step_tracker->save();
+        }
         $penugasan->save();
+        
 
         // Bagian Laporan
         Laporan::create([
@@ -142,6 +154,39 @@ class PenugasanController extends Controller
     public function index_rotasi()
     {
         $kategori_daerah = KategoriDaerah::all();
-    	return view('penugasan.rotasi.rotasi_management',['kategori_daerah' => $kategori_daerah]);
+        $step_tracker = StepTracker::all();
+    	return view('penugasan.rotasi.rotasi_management',['kategori_daerah' => $kategori_daerah,'step_tracker'=> $step_tracker]);
+    }
+
+    public function tambah_rotasi($id)
+    {
+        $daerah = Daerah::find($id);
+        $tim = Tim::where('kategori_daerah','like',$daerah->KategoriDaerah->id)->get();
+        return view('penugasan.rotasi.rotasi_tambah',['tim' => $tim,'daerah' => $daerah]);
+    }
+
+    public function store_rotasi(Request $request){
+        $this->validate($request,[
+    		'nama' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'tim' => 'required',
+        ]);
+        
+        Penugasan::create([
+    		'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'tipe_penugasan' => 2,
+            'tim' => $request->tim,
+            'banyak_pengeluaran' => 0,
+        ]);
+        
+
+        $daerah = Daerah::find($request->daerah);
+        $step_tracker = StepTracker::find($daerah->KategoriDaerah->id);
+        
+        $step_tracker->status = 2;
+        $step_tracker->save();
+ 
+    	return redirect('/penugasan/rotasi');
     }
 }

@@ -10,6 +10,6 @@ class KategoriDaerah extends Model
     protected $table = "kategori_daerah";
 
     public function Daerah(){
-        return $this->hasMany('App\Daerah');
+        return $this->hasMany('App\Daerah','kategori_daerah');
     }
 }

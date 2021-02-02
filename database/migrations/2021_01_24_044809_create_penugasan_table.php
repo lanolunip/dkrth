@@ -15,6 +15,7 @@ class CreatePenugasanTable extends Migration
     {
         Schema::create('penugasan', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('tipe_penugasan')->default(1);
             $table->string('nama');
             $table->text('deskripsi');
             $table->unsignedInteger('tim');
@@ -24,7 +25,8 @@ class CreatePenugasanTable extends Migration
             $table->timestamps();
             $table->timestamp('tanggal_berakhir')->nullable();
 
-            // $table->foreign('tim')->references('id')->on('tim');
+            $table->foreign('tim')->references('id')->on('tim');
+            $table->foreign('tipe_penugasan')->references('id')->on('tipe_penugasan');
         });
     }
 

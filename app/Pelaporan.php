@@ -37,5 +37,6 @@ class Pelaporan extends Model
     public function StatusPelaporan(){
         return $this->belongsTo('App\StatusPelaporan','status');
     }
+
     
 }

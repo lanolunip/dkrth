@@ -57,8 +57,12 @@
                  <!-- Pelapor -->
                 <div class="form-group">
                     <label>Pelapor</label>
-                    <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$penugasan->pelapor}}" readonly>
-
+                    @if(!empty($penugasan->Pelapor))
+                        <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$penugasan->Pelapor->nama}}" disabled>
+                        <input type="hidden" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$penugasan->Pelapor->id}}">
+                    @else
+                        <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$penugasan->pelapor}}" readonly>
+                    @endif
                     @if($errors->has('pelapor'))
                         <div class="text-danger">
                             {{ $errors->first('pelapor')}}

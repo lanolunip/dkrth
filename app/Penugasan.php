@@ -10,7 +10,7 @@ class Penugasan extends Model
      protected $table = "penugasan";
 
      protected $fillable = [
-        'nama', 'deskripsi', 'tim','pelapor','nomor_telepon_pelapor',
+        'nama', 'tipe_penugasan','deskripsi', 'tim','pelapor','nomor_telepon_pelapor',
         'banyak_pengeluaran','laporan','tanggal_berakhir'
     ];
 
@@ -28,5 +28,9 @@ class Penugasan extends Model
 
     public function Pelaporan(){
         return $this->hasOne('App\Pelaporan','penugasan');
+    }
+
+    public function TipePenugasan(){
+        return $this->belongsTo('App\TipePenugasan','tipe_penugasan');
     }
 }

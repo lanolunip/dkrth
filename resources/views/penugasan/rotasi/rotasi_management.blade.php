@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
-            CRUD Data Tim - <strong>List Penugasan</strong>
+           <strong>List Penugasan Rotasi Yang Aktif</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
         <a href="/penugasan" class="btn btn-primary"> Kembali</a>
@@ -12,7 +12,6 @@
             <br/>
             @php
                 $i = 0;
-                $step_kategori_daerah_1 = 10;
             @endphp
             @foreach ($kategori_daerah as $kd)
                 @if ($i%2 == 0 && $i!=0)

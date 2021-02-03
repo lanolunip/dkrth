@@ -65,8 +65,34 @@
                     <input type="submit" class="btn btn-success" value="Cari">
                 </div>
             </form>
-
             
+            @if(!empty($penugasan))
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Penugasan</th>
+                        <th>Banyak Pengeluaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                    $i = 1
+                    @endphp
+                    @foreach($penugasan as $p)
+                    
+                    <tr>
+                        <td>{{ $i }}</td>
+                        <td><a href="/penugasan/view/{{$p->id}}">{{ $p->nama }}</a></td>
+                        <td>Rp.{{ $p->banyak_pengeluaran }}</td>
+                    </tr>
+                    @php
+                    $i++
+                    @endphp
+                    @endforeach
+                </tbody>
+            </table>
+            @endif
         </div>
     </div>
 </div>

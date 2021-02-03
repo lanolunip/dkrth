@@ -76,7 +76,31 @@
                     </div>
                 </div>
             </div>
-           
+            <!-- Tanggal Dibuat -->
+            <div class="form-group">
+                <label>Tanggal Dibuat (yyyy-mm-dd)</label>
+                <input type="text" name="nama" class="form-control" placeholder="Tanggal Mulai .." value="{{ $laporan->Penugasan->created_at }}" readonly>
+
+                @if($errors->has('nama'))
+                    <div class="text-danger">
+                        {{ $errors->first('nama')}}
+                    </div>
+                @endif
+
+            </div>
+
+            <!-- Tanggal Selesai -->
+            <div class="form-group">
+                <label>Tanggal Selesai (yyyy-mm-dd)</label>
+                <input type="text" name="nama" class="form-control" placeholder="Tanggal Selesai .." value="{{ $laporan->Penugasan->tanggal_berakhir }}" readonly>
+
+                @if($errors->has('nama'))
+                    <div class="text-danger">
+                        {{ $errors->first('nama')}}
+                    </div>
+                @endif
+
+            </div>
         </div>
     </div>
 </div>

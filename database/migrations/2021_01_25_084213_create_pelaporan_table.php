@@ -25,8 +25,8 @@ class CreatePelaporanTable extends Migration
             $table->unsignedInteger('status')->default(1);
 
             $table->foreign('pelapor')->references('id')->on('users');
-            $table->foreign('daerah')->references('id')->on('daerah');
-            $table->foreign('kategori_pelaporan')->references('id')->on('kategori_pelaporan');
+            $table->foreign('daerah')->references('id')->on('daerah')->onDelete('cascade');
+            $table->foreign('kategori_pelaporan')->references('id')->on('kategori_pelaporan')->onDelete('cascade');
             $table->foreign('tim')->references('id')->on('tim');
             $table->foreign('penugasan')->references('id')->on('penugasan')->onDelete('cascade');
             $table->foreign('status')->references('id')->on('status_pelaporan');

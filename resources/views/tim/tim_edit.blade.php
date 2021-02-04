@@ -7,12 +7,12 @@
             CRUD Data Tim - <strong>EDIT DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/tim" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/tim')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             
 
-            <form method="post" action="/tim/update/{{ $tim->id }}">
+            <form method="post" action="{{url('/tim/update/' . $tim->id) }}">
 
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}

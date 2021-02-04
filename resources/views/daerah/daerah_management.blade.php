@@ -7,7 +7,7 @@
             CRUD Data Daerah - <strong>List Daerah</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-            <a href="/daerah/tambah" class="btn btn-primary">TAMBAH DAERAH</a>
+            <a href="{{url('/daerah/tambah')}}" class="btn btn-primary">TAMBAH DAERAH</a>
             <br/>
             <br/>
             <table class="table table-bordered table-hover table-striped">
@@ -30,8 +30,8 @@
                         <td>{{ $d->nama }}</td>
                         <td>{{ $d->KategoriDaerah->nama}}</td>
                         <td>
-                            <a href="/daerah/edit/{{ $d->id }}" class="btn btn-warning">Edit</a>
-                            <a href="/daerah/hapus/{{ $d->id }}" class="btn btn-danger">Hapus</a>
+                            <a href="{{url('/daerah/edit/' . $d->id)}} " class="btn btn-warning">Edit</a>
+                            <a href="{{url('/daerah/hapus/' . $d->id)}} " class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>
                     @php

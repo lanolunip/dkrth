@@ -7,11 +7,11 @@
             CRUD Data Tipe Kategori Pelaporan - <strong>TAMBAH DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/tipe_kategori_pelaporan" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/tipe_kategori_pelaporan')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             
-            <form method="post" action="/tipe_kategori_pelaporan/store">
+            <form method="post" action="{{url('/tipe_kategori_pelaporan/store')}}">
 
                 {{ csrf_field() }}
 

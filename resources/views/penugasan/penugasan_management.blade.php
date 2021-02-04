@@ -10,10 +10,10 @@
             @if (Auth::user()->TipeUser->nama == "Ketua")
                 <div class="row ">
                     <div class="col d-flex m-auto justify-content-center">
-                        <a href="/penugasan/tambah" class="btn btn-primary">TAMBAH PENUGASAN</a>
+                        <a href="{{url('/penugasan/tambah')}}" class="btn btn-primary">TAMBAH PENUGASAN</a>
                     </div>
                     <div class="col d-flex m-auto justify-content-center">
-                        <a href="/penugasan/rotasi" class="btn btn-primary">MANAGEMENT PENUGASAN ROTASI</a>
+                        <a href="{{url('/penugasan/rotasi')}}" class="btn btn-primary">MANAGEMENT PENUGASAN ROTASI</a>
                     </div>
                 </div>
             @endif
@@ -47,9 +47,9 @@
                         <td>{{ $pn->deskripsi }}</td>
 
                         @if (!empty($pn->Tim->nama) && Auth::user()->tipe_user == 1)
-                            <td><a href="/tim/edit/{{$pn->Tim->id}}">{{$pn->Tim->nama}}</a></td>
+                            <td><a href="{{url('/tim/edit/' .$pn->Tim->id)}}">{{$pn->Tim->nama}}</a></td>
                         @elseif (!empty($pn->Tim->nama) && Auth::user()->tipe_user == 2)
-                            <td><a href="/tim/view/{{$pn->Tim->id}}">{{$pn->Tim->nama}}</a></td>
+                            <td><a href="{{url('/tim/view/' .$pn->Tim->id)}}">{{$pn->Tim->nama}}</a></td>
                         @else
                             <td>Tim telah dihapus, Segera gantikan dengan Tim Baru !</td>
                         @endif
@@ -70,9 +70,9 @@
                         @if (!empty($pn->Laporan->penugasan))
                         
                             @if (Auth::user()->TipeUser->nama == "Ketua")
-                                <td><a href="/laporan/edit/{{ $pn->Laporan->id }}">link laporan</a></td>
+                                <td><a href="{{url('/laporan/edit/' . $pn->Laporan->id) }}">link laporan</a></td>
                             @elseif (Auth::user()->TipeUser->nama == "Petugas")
-                                <td><a href="/laporan/view/{{ $pn->Laporan->id }}">link laporan</a></td>
+                                <td><a href="{{url('/laporan/view/' . $pn->Laporan->id) }}">link laporan</a></td>
                             @endif
                         @else
                             <td>Belum Terselesaikan</td>
@@ -82,14 +82,14 @@
                         <td>{{ $pn->tanggal_berakhir }}</td>
                         <td>
                             @if (Auth::user()->TipeUser->nama == "Ketua")
-                                <a href="/penugasan/view/{{ $pn->id }}" class="btn btn-warning">View</a>
-                                <a href="/penugasan/hapus/{{ $pn->id }}" class="btn btn-danger">Hapus</a>
+                                <a href="{{url('/penugasan/view/' . $pn->id) }}" class="btn btn-warning">View</a>
+                                <a href="{{url('/penugasan/hapus/' . $pn->id) }}" class="btn btn-danger">Hapus</a>
                                 @if (empty($pn->Laporan->penugasan))
-                                    <a href="/penugasan/laporan/{{ $pn->id }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
+                                    <a href="{{url('/penugasan/laporan/' . $pn->id) }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
                                 @endif
                             @elseif (Auth::user()->id == $pn->Tim->Petugas->id)
                                 @if (empty($pn->Laporan->penugasan))
-                                    <a href="/penugasan/laporan/{{ $pn->id }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
+                                    <a href="{{url('/penugasan/laporan/' . $pn->id) }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
                                 @endif
                             @endif
                             

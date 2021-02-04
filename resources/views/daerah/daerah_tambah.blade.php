@@ -7,7 +7,7 @@
             CRUD Data Daerah - <strong>TAMBAH DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/daerah" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/daerah')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             

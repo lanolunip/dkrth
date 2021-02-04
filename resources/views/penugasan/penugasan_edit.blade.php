@@ -7,12 +7,12 @@
             CRUD Data Penugasan - <strong>EDIT DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/penugasan" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/penugasan')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             
 
-            <form method="post" action="/penugasan/update/{{ $penugasan->id }}">
+            <form method="post" action="{{url('/penugasan/update/' . $penugasan->id) }}">
 
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}

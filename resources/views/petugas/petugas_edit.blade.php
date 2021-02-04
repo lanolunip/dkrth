@@ -7,12 +7,12 @@
             CRUD Data User - <strong>EDIT DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/petugas" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/petugas')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             
 
-            <form method="post" action="/petugas/update/{{ $petugas->id }}">
+            <form method="post" action="{{url('/petugas/update/' . $petugas->id) }}">
 
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}

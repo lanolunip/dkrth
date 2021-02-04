@@ -7,13 +7,13 @@
             CRUD Data Penugasan - <strong>EDIT DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/pelaporan" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/pelaporan')}}" class="btn btn-primary">Kembali</a>
 
             <br/>
             <br/>
             
 
-            <form method="post" action="/pelaporan/selesai_buat_penugasan/{{$pelaporan->id}}">
+            <form method="post" action="{{url('/pelaporan/selesai_buat_penugasan/' . $pelaporan->id)}}">
 
                 {{ csrf_field() }}
                 

@@ -7,11 +7,11 @@
             CRUD Data Pelaporan - <strong>TAMBAH PELAPORAN</strong>
         </div>
         <div class="card-body">
-            <a href="/pelaporan" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/pelaporan')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             
-            <form method="post" action="/pelaporan/store">
+            <form method="post" action="{{url('/pelaporan/store')}}">
 
                 {{ csrf_field() }}
 

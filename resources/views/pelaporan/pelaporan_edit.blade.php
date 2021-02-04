@@ -7,12 +7,11 @@
             CRUD Data Pelaporan - <strong>EDIT DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/pelaporan" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/pelaporan')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
-            
 
-            <form method="post" action="/pelaporan/update/{{ $pelaporan->id }}">
+            <form method="post" action="{{url('/pelaporan/update/'. $pelaporan->id) }}">
 
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}

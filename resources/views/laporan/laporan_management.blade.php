@@ -29,10 +29,10 @@
                         <td>{{ $i }}</td>
                         <td>{{ $l->isi }}</td>
                         <td>{{ $l->Penugasan->banyak_pengeluaran }}</td>
-                        <td><a href="/penugasan/view/{{$l->Penugasan->id}}"> {{ $l->Penugasan->nama }}</a></td>
+                        <td><a href="{{url('/penugasan/view/' . $l->Penugasan->id)}}"> {{ $l->Penugasan->nama }}</a></td>
                         <td>
-                            <a href="/laporan/edit/{{ $l->id }}" class="btn btn-warning">Edit</a>
-                            <a href="/laporan/hapus/{{ $l->id }}" class="btn btn-danger">Hapus</a>
+                            <a href="{{url('/laporan/edit/' . $l->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{url('/laporan/hapus/' . $l->id) }}" class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>
                     @php

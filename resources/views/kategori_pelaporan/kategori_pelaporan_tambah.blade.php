@@ -11,7 +11,7 @@
             <br/>
             <br/>
             
-            <form method="post" action="/kategori_pelaporan/store">
+            <form method="post" action="{{url('/kategori_pelaporan/store')}}">
 
                 {{ csrf_field() }}
 

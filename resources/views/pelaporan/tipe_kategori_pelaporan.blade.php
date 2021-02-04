@@ -7,7 +7,7 @@
             <strong>Pilih Tipe Kategori Pelaporan</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-                <a href="/pelaporan" class="btn btn-primary">Kembali</a>
+                <a href="{{url('/pelaporan')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             @php
@@ -26,7 +26,7 @@
                             <h5 class="mt-0">{{$tpk->nama}}</h5>
                         </div>
                         <div class="row d-flex justify-content-center">
-                            <a class="btn btn-primary" name="kategori" href="/pelaporan/kategori_pelaporan/{{$tpk->id}}" class="stretched-link">Pilih !</a>
+                            <a class="btn btn-primary" name="kategori" href="{{url('/pelaporan/kategori_pelaporan/'.$tpk->id)}}" class="stretched-link">Pilih !</a>
                         </div>
                     </div>
                 @php

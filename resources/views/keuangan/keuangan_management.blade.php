@@ -7,11 +7,11 @@
             CRUD Data Keuangan
         </div>
         <div class="card-body">
-            <a href="/home" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/home')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
         
-            <form method="get" action="/keuangan/hitung">
+            <form method="get" action="{{url('/keuangan/hitung')}}">
 
                 {{ csrf_field() }}
 
@@ -83,7 +83,7 @@
                     
                     <tr>
                         <td>{{ $i }}</td>
-                        <td><a href="/penugasan/view/{{$p->id}}">{{ $p->nama }}</a></td>
+                        <td><a href="{{url('/penugasan/view/'. $p->id)}}">{{ $p->nama }}</a></td>
                         <td>Rp.{{ $p->banyak_pengeluaran }}</td>
                     </tr>
                     @php

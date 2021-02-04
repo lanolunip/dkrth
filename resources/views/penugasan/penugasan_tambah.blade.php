@@ -7,7 +7,7 @@
             CRUD Data Penugasan - <strong>TAMBAH DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/penugasan" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/penugasan')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             @if(session()->has('message'))
@@ -15,7 +15,7 @@
                     {{ session()->get('message') }}
                 </div>
             @endif
-            <form method="post" action="/penugasan/store">
+            <form method="post" action="{{url('/penugasan/store')}}">
 
                 {{ csrf_field() }}
 

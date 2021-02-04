@@ -8,15 +8,15 @@
         </div>
         <div class="card-body">
             @if (Auth::user()->TipeUser->nama == "Ketua")
-                <a href="/laporan" class="btn btn-primary">Kembali</a>
+                <a href="{{url('/laporan')}}" class="btn btn-primary">Kembali</a>
             @else
-                <a href="/penugasan" class="btn btn-primary">Kembali</a>
+                <a href="{{url('/penugasan')}}" class="btn btn-primary">Kembali</a>
             @endif
             <br/>
             <br/>
             
 
-            <form method="post" action="/laporan/update/{{ $laporan->id }}">
+            <form method="post" action="{{url('/laporan/update/'. $laporan->id )}}">
 
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}

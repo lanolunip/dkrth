@@ -33,7 +33,7 @@
                                     </div>
                                     <center>
                                     <div class="card-footer">
-                                        <a href="/petugas" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                        <a href="{{ url('/petugas')}}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>
@@ -47,11 +47,10 @@
                                     </div>
                                     <center>
                                     <div class="card-footer">
-                                        <a href="/tim" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                        <a href="{{ url('/tim')}}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>
-                                
                             </div>
                         </div>
                         <hr>
@@ -67,7 +66,7 @@
                                     </div>
                                     <center>
                                     <div class="card-footer">
-                                        <a href="/daerah" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                        <a href="{{ url('/daerah') }}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>
@@ -81,7 +80,7 @@
                                     </div>
                                     <center>
                                     <div class="card-footer">
-                                        <a href="/tipe_kategori_pelaporan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                        <a href="{{url('/tipe_kategori_pelaporan')}}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>
@@ -103,7 +102,7 @@
                                     </div>
                                     <center>
                                     <div class="card-footer">
-                                        <a href="/penugasan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                        <a href="{{url('/penugasan')}}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>
@@ -117,7 +116,7 @@
                                     </div>
                                     <center>
                                     <div class="card-footer">
-                                        <a href="/laporan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                        <a href="{{url('/laporan')}}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>
@@ -131,7 +130,7 @@
                                     </div>
                                     <center>
                                     <div class="card-footer">
-                                        <a href="/pelaporan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                        <a href="{{url('/pelaporan')}}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>
@@ -153,7 +152,7 @@
                                     </div>
                                     <center>
                                     <div class="card-footer">
-                                        <a href="/keuangan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                        <a href="{{url('/keuangan')}}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>
@@ -175,7 +174,7 @@
                                     </div>
                                     <center>
                                     <div class="card-footer">
-                                        <a href="/penugasan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                        <a href="{{url('/penugasan')}}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>
@@ -197,7 +196,7 @@
                                     </div>
                                     <center>
                                     <div class="card-footer">
-                                        <a href="/pelaporan" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                        <a href="{{url('/pelaporan')}}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
                                     </div>
                                     </center>
                                 </div>

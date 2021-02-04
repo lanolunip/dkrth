@@ -7,12 +7,12 @@
             CRUD Data daerah - <strong>EDIT DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/daerah" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/daerah')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             
 
-            <form method="post" action="/daerah/update/{{ $daerah->id }}">
+            <form method="post" action="{{url('/daerah/update/'. $daerah->id )}}">
 
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}

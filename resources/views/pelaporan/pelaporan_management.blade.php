@@ -7,7 +7,7 @@
             <strong>List Pelaporan</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-                <a href="/pelaporan/tipe_kategori_pelaporan" class="btn btn-primary">BUAT PELAPORAN</a>
+                <a href="{{url('/pelaporan/tipe_kategori_pelaporan')}}" class="btn btn-primary">BUAT PELAPORAN</a>
             <br/>
             <br/>
             <table class="table table-bordered table-hover table-striped">
@@ -50,11 +50,11 @@
                         @endif
                         
                         @if (!empty($pl->Penugasan->id) && Auth::user()->tipe_user == 1)
-                            <td><a href="/penugasan/edit/{{$pl->Penugasan->id}}">link penugasan</a></td>
+                            <td><a href="{{url('/penugasan/edit/'.$pl->Penugasan->id)}}">link penugasan</a></td>
                         @elseif (!empty($pl->Penugasan->id) && Auth::user()->tipe_user == 2)
-                            <td><a href="/penugasan/view/{{$pl->Penugasan->id}}">link penugasan</a></td>
+                            <td><a href="{{url('/penugasan/view/'.$pl->Penugasan->id)}}">link penugasan</a></td>
                         @elseif (!empty($pl->Penugasan->id))
-                            <td><a href="/penugasan/view/{{$pl->Penugasan->id}}">link penugasan</a></td>
+                            <td><a href="{{url('/penugasan/view/'.$pl->Penugasan->id)}}">link penugasan</a></td>
                         @else
                             <td>Belum Dikerjakan</td>
                         @endif
@@ -72,16 +72,16 @@
                             <td>
                                 @if (empty($pl->Penugasan->id))
                                     @if($pl->status == 1)
-                                        <a href="/pelaporan/tolak/{{ $pl->id }}" class="btn btn-dark">Tolak</a>
-                                        <a href="/pelaporan/edit/{{ $pl->id }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{url('/pelaporan/tolak/' . $pl->id) }}" class="btn btn-dark">Tolak</a>
+                                        <a href="{{url('/pelaporan/edit/' . $pl->id) }}" class="btn btn-warning">Edit</a>
                                         @if (empty($pl->penugasan))
-                                            <a href="/pelaporan/buat_penugasan/{{ $pl->id }}" type="button" class="btn btn-info">Buat Penugasan</a>
+                                            <a href="{{url('/pelaporan/buat_penugasan/' . $pl->id) }}" type="button" class="btn btn-info">Buat Penugasan</a>
                                         @endif
                                     @else
-                                        <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Hapus</a>
+                                        <a href="{{url('/pelaporan/hapus/' . $pl->id) }}" class="btn btn-danger">Hapus</a>
                                     @endif
                                 @else
-                                    <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Hapus</a>
+                                    <a href="{{url('/pelaporan/hapus/' . $pl->id) }}" class="btn btn-danger">Hapus</a>
                                 @endif
                                 
                             </td>
@@ -89,9 +89,9 @@
                             @if(Auth::user()->id == $pl->pelapor)
                                 <td>
                                 @if($pl->status != 2)
-                                    <a href="/pelaporan/edit/{{ $pl->id }}" class="btn btn-warning">Edit</a>
+                                    <a href="{{url('/pelaporan/edit/' . $pl->id) }}" class="btn btn-warning">Edit</a>
                                 @endif
-                                    <a href="/pelaporan/hapus/{{ $pl->id }}" class="btn btn-danger">Hapus</a>
+                                    <a href="{{url('/pelaporan/hapus/' . $pl->id) }}" class="btn btn-danger">Hapus</a>
                                 </td>
                                 
                             @endif

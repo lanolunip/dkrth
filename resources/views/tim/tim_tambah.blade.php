@@ -7,11 +7,11 @@
             CRUD Data Tim - <strong>TAMBAH DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/tim" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/tim')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             
-            <form method="post" action="/tim/store">
+            <form method="post" action="{{url('/tim/store')}}">
 
                 {{ csrf_field() }}
 

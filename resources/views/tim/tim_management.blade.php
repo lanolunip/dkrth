@@ -7,7 +7,7 @@
             CRUD Data Tim - <strong>List Tim</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-            <a href="/tim/tambah" class="btn btn-primary">TAMBAH TIM</a>
+            <a href="{{url('/tim/tambah')}}" class="btn btn-primary">TAMBAH TIM</a>
             <br/>
             <br/>
             <table class="table table-bordered table-hover table-striped">
@@ -38,8 +38,8 @@
                         <td>{{ $t->JenisTim->nama }}</td>
                         <td>{{ $t->KategoriDaerah->nama}}</td>
                         <td>
-                            <a href="/tim/edit/{{ $t->id }}" class="btn btn-warning">Edit</a>
-                            <a href="/tim/hapus/{{ $t->id }}" class="btn btn-danger">Hapus</a>
+                            <a href="{{url('/tim/edit/' . $t->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{url('/tim/hapus/' . $t->id) }}" class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>
                     @php

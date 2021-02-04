@@ -7,12 +7,13 @@
             CRUD Data Tipe Kategori Pelaporan - <strong>EDIT DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/kategori_pelaporan" class="btn btn-primary">Kembali</a>
+            
+            <a href="{{url(' /kategori_pelaporan ')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             
 
-            <form method="post" action="/kategori_pelaporan/update/{{ $kategori_pelaporan->id }}">
+            <form method="post" action="{{url('/kategori_pelaporan/update/'. $kategori_pelaporan->id)}}">
 
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}

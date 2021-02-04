@@ -7,7 +7,7 @@
            <strong>List Penugasan Rotasi Yang Aktif</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-        <a href="/penugasan" class="btn btn-primary"> Kembali</a>
+        <a href="{{url('/penugasan')}}" class="btn btn-primary"> Kembali</a>
             <br/>
             <br/>
             @php
@@ -35,11 +35,11 @@
                                             </div>
                                             @if($step_tracker[$kd->id - 1]->status != 2)
                                             <div class="row d-flex justify-content-center">
-                                                <a href="/penugasan/rotasi/buat_penugasan/{{$kd->Daerah[$step_tracker[$i]->step % $kd->daerah->count()]->id}}" class="btn btn-primary"> Buat Penugasan</a>
+                                                <a href="{{url('/penugasan/rotasi/buat_penugasan/' . $kd->Daerah[$step_tracker[$i]->step % $kd->daerah->count()]->id) }}" class="btn btn-primary"> Buat Penugasan</a>
                                             </div>
                                             @else
                                             <div class="row d-flex justify-content-center">
-                                                <a href="/penugasan/rotasi/buat_penugasan/{{$kd->Daerah[$step_tracker[$i]->step % $kd->daerah->count()]->id}}" class="btn btn-primary disabled" aria-disabled="true"> Sedang Dikerjakan</a>
+                                                <a href="{{url('/penugasan/rotasi/buat_penugasan/' . $kd->Daerah[$step_tracker[$i]->step % $kd->daerah->count()]->id) }}" class="btn btn-primary disabled" aria-disabled="true"> Sedang Dikerjakan</a>
                                             </div>
                                             @endif
                                         </div>

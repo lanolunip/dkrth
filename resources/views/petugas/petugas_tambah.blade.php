@@ -7,11 +7,11 @@
             CRUD Data Petugas - <strong>TAMBAH DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/petugas" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/petugas')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             
-            <form method="post" action="/petugas/store">
+            <form method="post" action="{{url('/petugas/store')}}">
 
                 {{ csrf_field() }}
 

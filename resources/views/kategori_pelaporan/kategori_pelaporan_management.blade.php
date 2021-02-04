@@ -7,7 +7,7 @@
             CRUD Data Kategori Pelaporan - <strong>List Kategori Pelaporan</strong>
         </div>
         <div class="card-body" style="overflow-x:auto;">
-            <a href="/kategori_pelaporan/tambah" class="btn btn-primary">TAMBAH KATEGORI PELAPORAN</a>
+            <a href="{{url('/kategori_pelaporan/tambah')}}" class="btn btn-primary">TAMBAH KATEGORI PELAPORAN</a>
             <br/>
             <br/>
             <table class="table table-bordered table-hover table-striped">
@@ -30,8 +30,8 @@
                         <td>{{ $tkp->nama }}</td>
                         <td>{{ $tkp->TipeKategoriPelaporan->nama }}</td>
                         <td>
-                            <a href="/kategori_pelaporan/edit/{{ $tkp->id }}" class="btn btn-warning">Edit</a>
-                            <a href="/kategori_pelaporan/hapus/{{ $tkp->id }}" class="btn btn-danger">Hapus</a>
+                            <a href="{{url('/kategori_pelaporan/edit/'. $tkp->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{url('/kategori_pelaporan/hapus/'. $tkp->id) }}" class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>
                     @php

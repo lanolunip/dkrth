@@ -9,10 +9,10 @@
         <div class="card-body" style="overflow-x:auto;">
             <div class="row ">
                 <div class="col d-flex m-auto justify-content-center">
-                    <a href="/tipe_kategori_pelaporan/tambah" class="btn btn-primary">TAMBAH TIPE KATEGORI PELAPORAN</a>
+                    <a href="{{url('/tipe_kategori_pelaporan/tambah')}}" class="btn btn-primary">TAMBAH TIPE KATEGORI PELAPORAN</a>
                 </div>
                 <div class="col d-flex m-auto justify-content-center">
-                    <a href="/kategori_pelaporan/" class="btn btn-primary">MANAGEMENT KATEGORI LAPORAN</a>
+                    <a href="{{url('/kategori_pelaporan/')}}" class="btn btn-primary">MANAGEMENT KATEGORI LAPORAN</a>
                 </div>
             </div>
             
@@ -36,8 +36,8 @@
                         <td>{{ $i }}</td>
                         <td>{{ $tkp->nama }}</td>
                         <td>
-                            <a href="/tipe_kategori_pelaporan/edit/{{ $tkp->id }}" class="btn btn-warning">Edit</a>
-                            <a href="/tipe_kategori_pelaporan/hapus/{{ $tkp->id }}" class="btn btn-danger">Hapus</a>
+                            <a href="{{url('/tipe_kategori_pelaporan/edit/' . $tkp->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{url('/tipe_kategori_pelaporan/hapus/' . $tkp->id) }}" class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>
                     @php

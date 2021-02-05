@@ -29,7 +29,7 @@
                     @endif
 
                 </div>
-                <!-- Nama Pelaporan-->
+                <!-- Nama Pelapor-->
                 <div class="form-group">
                     <label>Nama Pelapor</label>
                     <input type="text" name="nama_pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{ $pelaporan->Pelapor->nama }}" readonly>
@@ -40,6 +40,17 @@
                         </div>
                     @endif
 
+                </div>
+                <!-- Jenis Pelaporan -->
+                <div class="form-group">
+                    <label>Jenis Pelaporan</label>
+                    <input type="text" name="jenis_pelaporan" class="form-control" placeholder="Deskripsi .." value="{{ $pelaporan->KategoriPelaporan->TipeKategoriPelaporan->nama }} - {{ $pelaporan->KategoriPelaporan->nama }}" disabled>
+
+                    @if($errors->has('jenis_pelaporan'))
+                        <div class="text-danger">
+                            {{ $errors->first('jenis_pelaporan')}}
+                        </div>
+                    @endif
                 </div>
                  <!-- Nomor Telepon Pelapor -->
                  <div class="form-group">

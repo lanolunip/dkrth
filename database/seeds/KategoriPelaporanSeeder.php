@@ -36,5 +36,15 @@ class KategoriPelaporanSeeder extends Seeder
             'nama' => 'Permintaan Pemindahan Kayu',
             'tipe_kategori_pelaporan' => 2
         ]);
+        DB::table('kategori_pelaporan')->insert([
+        	'id' => 6,
+            'nama' => 'Permintaan Lain - Lain',
+            'tipe_kategori_pelaporan' => 2
+        ]);
+        DB::table('kategori_pelaporan')->insert([
+        	'id' => 7,
+            'nama' => 'Gangguan Lain - Lain',
+            'tipe_kategori_pelaporan' => 1
+        ]);
     }
 }

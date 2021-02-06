@@ -11,7 +11,7 @@
             <br/>
             <br/>
             
-            <form method="post" action="/daerah/store">
+            <form method="post" action="{{url('/daerah/store')}}">
 
                 {{ csrf_field() }}
 

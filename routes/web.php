@@ -74,11 +74,11 @@ Route::get('/pelaporan/tambah/{id}', 'PelaporanController@tambah')->middleware('
 Route::get('/pelaporan/tipe_kategori_pelaporan', 'PelaporanController@tipe_kategori_pelaporan')->middleware('role:Ketua,Pelapor');
 Route::get('/pelaporan/kategori_pelaporan/{id}', 'PelaporanController@kategori_pelaporan')->middleware('role:Ketua,Pelapor');
 Route::post('/pelaporan/store', 'PelaporanController@store')->middleware('role:Ketua,Pelapor');
+Route::get('/pelaporan/hapus/{id}', 'PelaporanController@delete')->middleware('role:Ketua,Pelapor');
 
 #Mengatur Pelaporan -- Bagian Admin
 Route::get('/pelaporan/edit/{id}', 'PelaporanController@edit')->middleware('role:Ketua,Pelapor');
 Route::put('/pelaporan/update/{id}', 'PelaporanController@update')->middleware('role:Ketua,Pelapor');
-Route::get('/pelaporan/hapus/{id}', 'PelaporanController@delete')->middleware('role:Ketua');
 Route::get('/pelaporan/tolak/{id}', 'PelaporanController@tolak')->middleware('role:Ketua');
 Route::get('/pelaporan/buat_penugasan/{id}', 'PelaporanController@buat_penugasan')->middleware('role:Ketua');
 Route::post('/pelaporan/selesai_buat_penugasan/{id_pelaporan}', 'PelaporanController@selesai_buat_penugasan')->middleware('role:Ketua');

@@ -15,7 +15,12 @@ class PelaporanController extends Controller
 {
     public function index()
     {
-        $pelaporan = Pelaporan::orderBy('id', 'desc')->paginate(10);
+         if(Auth::user()->TipeUser->nama == 'Pelapor'){
+            $user_id = Auth::user()->id;
+            $pelaporan = Pelaporan::where('pelapor','like',$user_id)->orderBy('id', 'desc')->paginate(10);
+        }else{
+            $pelaporan = Pelaporan::orderBy('id', 'desc')->paginate(10);
+        }
     	return view('pelaporan.pelaporan_management', ['pelaporan' => $pelaporan]);
     }
     
@@ -57,9 +62,11 @@ class PelaporanController extends Controller
     public function edit($id)
     {
         $pelaporan = Pelaporan::find($id);
-        $daerah = Daerah::all();
-        // simpanan VVVV
-        // $tim = Tim::where('kategori_daerah','LIKE',$pelaporan->Daerah->kategori_daerah)->get();
+        if((Auth::user()->id == $pelaporan->pelapor || Auth::user()->TipeUser->nama == "Ketua") && $pelaporan->status == 1){
+            $daerah = Daerah::all();
+        }else{
+            return redirect()->back()->with(['pesan', 'Anda Tidak Memiliki Hak Untuk Melakukan Edit !']);
+        }
         return view('pelaporan.pelaporan_edit', ['pelaporan' => $pelaporan,'daerah' => $daerah] );
     }
 
@@ -80,7 +87,11 @@ class PelaporanController extends Controller
     public function delete($id)
     {
         $pelaporan = Pelaporan::find($id);
-        $pelaporan->delete();
+        if(Auth::user()->id == $pelaporan->pelapor || Auth::user()->TipeUser->nama == "Ketua"){
+            $pelaporan->delete();
+        }else{
+            return redirect()->back()->with(['pesan', 'Dilarang Menghapus Milik Orang Lain !']);
+        }
         return redirect()->back();
     }
 

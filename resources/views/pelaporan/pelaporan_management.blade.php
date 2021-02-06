@@ -50,7 +50,7 @@
                         @endif
                         
                         @if (!empty($pl->Penugasan->id) && Auth::user()->tipe_user == 1)
-                            <td><a href="{{url('/penugasan/edit/'.$pl->Penugasan->id)}}">link penugasan</a></td>
+                            <td><a href="{{url('/penugasan/view/'.$pl->Penugasan->id)}}">link penugasan</a></td>
                         @elseif (!empty($pl->Penugasan->id) && Auth::user()->tipe_user == 2)
                             <td><a href="{{url('/penugasan/view/'.$pl->Penugasan->id)}}">link penugasan</a></td>
                         @elseif (!empty($pl->Penugasan->id))

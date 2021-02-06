@@ -9,14 +9,22 @@ use App\KategoriDaerah;
 use App\Daerah;
 use App\Laporan;
 use App\StepTracker;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class PenugasanController extends Controller
 {
     public function index()
     {
-        $penugasan = Penugasan::orderBy('id', 'desc')->paginate(10);
-        $laporan = Laporan::all();
+        if(Auth::user()->TipeUser->nama == 'Petugas'){
+            $user_id = Auth::user()->id;
+            $tim = Tim::where('petugas','like',$user_id)->first();
+            $penugasan = Penugasan::where('tim','like',$tim->id)->orderBy('id', 'desc')->paginate(10);
+            $laporan = Laporan::all();
+        }else{
+            $penugasan = Penugasan::orderBy('id', 'desc')->paginate(10);
+            $laporan = Laporan::all();
+        }
     	return view('penugasan.penugasan_management', ['penugasan' => $penugasan,'laporan',$laporan]);
     }
 

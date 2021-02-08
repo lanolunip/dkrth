@@ -42,14 +42,14 @@ class LaporanController extends Controller
         $penugasan = Penugasan::find($id_penugasan);
         $penugasan->banyak_pengeluaran = $request->banyak_pengeluaran;
         $penugasan->save();
-        return redirect('/laporan');
+        return redirect('/laporan')->with('pesan', 'Berhasil Mengubah Data Laporan !');
     }
 
     public function delete($id)
     {
         $laporan = Laporan::find($id);
         $laporan->delete();
-        return redirect()->back();
+        return redirect()->back()->with('pesan', 'Berhasil Menghapus Laporan !');
     }
 
     public function getIDLaporan($id){

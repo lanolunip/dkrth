@@ -43,7 +43,7 @@ class PetugasController extends Controller
             'password' => Hash::make($request->password),
     	]);
  
-    	return redirect('/petugas');
+    	return redirect('/petugas')->with('pesan', 'Berhasil Menambahkan Petugas Baru !');
     }
 
     public function edit($id)
@@ -82,13 +82,13 @@ class PetugasController extends Controller
         $petugas->email = $request->email;
         $petugas->tipe_user = $request->tipe_user;
         $petugas->save();
-        return redirect('/petugas');
+        return redirect('/petugas')->with('pesan', 'Berhasil Mengubah Data Petugas !');
     }
 
     public function delete($id)
     {
         $petugas = Petugas::find($id);
         $petugas->delete();
-        return redirect()->back();
+        return redirect()->back()->with('pesan', 'Berhasil Menghapus Petugas !');
     }
 }

@@ -80,8 +80,8 @@
         </nav>
 
         <main class="py-4">
-            @if (Session::has('pesan'))
-                <div class="alert alert-info">{{ Session::get('pesan') }}</div>
+            @if (\Session::has('pesan'))
+                <div class="alert alert-info">{{ \Session::get('pesan') }}</div>
             @endif
             @yield('content')
         </main>

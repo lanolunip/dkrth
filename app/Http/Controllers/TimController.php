@@ -51,7 +51,7 @@ class TimController extends Controller
             'kategori_daerah' => $request->kategori_daerah
     	]);
  
-    	return redirect('/tim');
+    	return redirect('/tim')->with('pesan', 'Berhasil Menabahkan Tim Baru !');
     }
 
     public function edit($id)
@@ -78,13 +78,13 @@ class TimController extends Controller
         $tim->jenis_tim = $request->jenis_tim;
         $tim->kategori_daerah = $request->kategori_daerah;
         $tim->save();
-        return redirect('/tim');
+        return redirect('/tim')->with('pesan', 'Berhasil Mengubah Data Tim !');
     }
 
     public function delete($id)
     {
         $tim = Tim::find($id);
         $tim->delete();
-        return redirect()->back();
+        return redirect()->back()->with('pesan', 'Berhasil Menghapus Tim !');
     }
 }

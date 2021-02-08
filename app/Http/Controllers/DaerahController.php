@@ -39,7 +39,7 @@ class DaerahController extends Controller
             'kategori_daerah' => $request->kategori_daerah,
     	]);
  
-    	return redirect('/daerah');
+    	return redirect('/daerah')->with('pesan', 'Berhasil Menambahkan Daerah Baru !');
     }
 
     public function edit($id)
@@ -60,13 +60,13 @@ class DaerahController extends Controller
         $daerah->nama = $request->nama;
         $daerah->kategori_daerah = $request->kategori_daerah;
         $daerah->save();
-        return redirect('/daerah');
+        return redirect('/daerah')->with('pesan', 'Berhasil Mengubah Data Daerah !');
     }
 
     public function delete($id)
     {
         $daerah = Daerah::find($id);
         $daerah->delete();
-        return redirect()->back();
+        return redirect()->back()->with('pesan', 'Berhasil Menghapus Daerah !');
     }
 }

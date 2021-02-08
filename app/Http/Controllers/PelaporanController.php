@@ -25,9 +25,9 @@ class PelaporanController extends Controller
     }
     
     public function tipe_kategori_pelaporan(){
-    $tipe_kategori_pelaporan = TipeKategoriPelaporan::all();
-    return view('pelaporan.tipe_kategori_pelaporan',['tipe_kategori_pelaporan' => $tipe_kategori_pelaporan]);
-}
+        $tipe_kategori_pelaporan = TipeKategoriPelaporan::all();
+        return view('pelaporan.tipe_kategori_pelaporan',['tipe_kategori_pelaporan' => $tipe_kategori_pelaporan]);
+    }
     public function kategori_pelaporan($id_tipe_kategori_pelaporan){
         $kategori_pelaporan = KategoriPelaporan::where('tipe_kategori_pelaporan','like',$id_tipe_kategori_pelaporan)->get();
         return view('pelaporan.kategori_pelaporan',['kategori_pelaporan' => $kategori_pelaporan]);
@@ -56,7 +56,7 @@ class PelaporanController extends Controller
             'kategori_pelaporan' => $request->kategori_pelaporan
     	]);
  
-    	return redirect('/pelaporan');
+    	return redirect('/pelaporan')->with('pesan', 'Berhasil Membuat Pelaporan !');
     }
 
     public function edit($id)
@@ -81,7 +81,7 @@ class PelaporanController extends Controller
         $pelaporan->daerah = $request->daerah;
         $pelaporan->deskripsi = $request->deskripsi;
         $pelaporan->save();
-        return redirect('/pelaporan');
+        return redirect('/pelaporan')->with('pesan', 'Berhasil Mengubah Data pelaporan !');
     }
 
     public function delete($id)
@@ -90,16 +90,16 @@ class PelaporanController extends Controller
         if(Auth::user()->id == $pelaporan->pelapor || Auth::user()->TipeUser->nama == "Ketua"){
             $pelaporan->delete();
         }else{
-            return redirect()->back()->with(['pesan', 'Dilarang Menghapus Milik Orang Lain !']);
+            return redirect()->back()->with('pesan', 'Dilarang Menghapus Milik Orang Lain !');
         }
-        return redirect()->back();
+        return redirect()->back()->with('pesan', 'Berhasil Menghapus Pelaporan !');
     }
 
     public function tolak($id){
         $pelaporan = Pelaporan::find($id);
         $pelaporan->status = 2;
         $pelaporan->save();
-        return redirect('/pelaporan');
+        return redirect('/pelaporan')->with('pesan', 'Berhasil Menolak Pelaporan');
     }
     public function buat_penugasan($id_pelaporan){
         $pelaporan = Pelaporan::find($id_pelaporan);
@@ -136,7 +136,7 @@ class PelaporanController extends Controller
         $pelaporan->penugasan = Penugasan::all()->last()->id;
         $pelaporan->save();
  
-    	return redirect('/penugasan');
+    	return redirect('/penugasan')->with('pesan', 'Berhasil Membuat Penugasan !');
 
     }
 }

@@ -53,7 +53,7 @@ class PenugasanController extends Controller
         ]);
         
         if (is_numeric($request->pelapor)){
-            return redirect()->back()->with('message', 'Pelapor Tidak Boleh Diisi Angka !');
+            return redirect()->back()->with('pesan', 'Pelapor Tidak Boleh Diisi Angka !');
         }
 
         Penugasan::create([
@@ -65,7 +65,7 @@ class PenugasanController extends Controller
             'banyak_pengeluaran' => 0,
     	]);
  
-    	return redirect('/penugasan');
+    	return redirect('/penugasan')->with('pesan', 'Penugasan Telah Berhasil Dibuat !');
     }
 
     public function edit($id)
@@ -105,7 +105,7 @@ class PenugasanController extends Controller
         // $penugasan->banyak_pengeluaran = $request->banyak_pengeluaran;
         // $penugasan->tanggal_berakhir = Carbon::now()->toDateTimeString(); 
         $penugasan->save();
-        return redirect('/penugasan');
+        return redirect('/penugasan')->with('pesan', 'Penugasan Berhasil Diperbarui !');
     }
 
     public function delete($id)
@@ -117,7 +117,7 @@ class PenugasanController extends Controller
             $step_tracker->save();
         }
         $penugasan->delete();
-        return redirect()->back();
+        return redirect()->back()->with('pesan', 'Penugasan Telah Berhasil Dihapus !');
     }
 
     public function laporan($id){
@@ -161,7 +161,7 @@ class PenugasanController extends Controller
     	]);
 
 
-        return redirect('/penugasan');
+        return redirect('/penugasan')->with('pesan', 'Penugasan Berhasil Diselesaikan !');
     }
 
     public function index_rotasi()
@@ -200,6 +200,6 @@ class PenugasanController extends Controller
         $step_tracker->status = 2;
         $step_tracker->save();
  
-    	return redirect('/penugasan/rotasi');
+    	return redirect('/penugasan/rotasi')->with('pesan', 'Penugasan Rotasi Berhasil Dibuat !');
     }
 }

@@ -30,7 +30,7 @@ class TipeKategoriPelaporanController extends Controller
             'nama' => $request->nama,
     	]);
  
-    	return redirect('/tipe_kategori_pelaporan');
+    	return redirect('/tipe_kategori_pelaporan')->with('pesan', 'Berhasil Menambahkan Tipe Kategori Pelaporan Baru !');
     }
 
     public function edit($id)
@@ -48,13 +48,13 @@ class TipeKategoriPelaporanController extends Controller
         $tipe_kategori_pelaporan = TipeKategoriPelaporan::find($id);
         $tipe_kategori_pelaporan->nama = $request->nama;
         $tipe_kategori_pelaporan->save();
-        return redirect('/tipe_kategori_pelaporan');
+        return redirect('/tipe_kategori_pelaporan')->with('pesan', 'Berhasil Mengubah Data Tipe Kategori Pelaporan !');
     }
 
     public function delete($id)
     {
         $tipe_kategori_pelaporan = TipeKategoriPelaporan::find($id);
         $tipe_kategori_pelaporan->delete();
-        return redirect()->back();
+        return redirect()->back()->with('pesan', 'Berhasil Menghapus Tipe Kategori Pelaporan !');
     }
 }

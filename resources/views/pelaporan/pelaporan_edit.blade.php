@@ -75,7 +75,7 @@
                             @endphp
                             @foreach($daerah as $d)
 
-                                @if ($pelaporan->daerah == $d->KategoriDaerah->id) 
+                                @if ($pelaporan->daerah == $d->id) 
                                     <option value="{{$d->id}}" selected>{{ $i }} - {{ $d->nama }} - {{ $d->nama }} - {{ $d->KategoriDaerah->nama }} </option>
                                 @else
                                     <option value="{{$d->id}}">{{ $i }} - {{ $d->nama }} - {{ $d->nama }} - {{ $d->KategoriDaerah->nama }} </option>

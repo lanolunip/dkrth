@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
             
-            <a href="{{url(' /kategori_pelaporan ')}}" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/kategori_pelaporan')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             

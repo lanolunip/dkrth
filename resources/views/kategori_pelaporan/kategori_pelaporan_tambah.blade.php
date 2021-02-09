@@ -7,7 +7,7 @@
             CRUD Data Kategori Pelaporan - <strong>TAMBAH DATA</strong>
         </div>
         <div class="card-body">
-            <a href="/kategori_pelaporan" class="btn btn-primary">Kembali</a>
+            <a href="{{url('/kategori_pelaporan')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
             

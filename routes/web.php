@@ -21,84 +21,141 @@ Auth::routes(['register' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 #Mengatur Petugas
-Route::get('/petugas', 'PetugasController@index')->middleware('role:Ketua');
-Route::get('/petugas/tambah', 'PetugasController@tambah')->middleware('role:Ketua');
-Route::post('/petugas/store', 'PetugasController@store')->middleware('role:Ketua');
-Route::get('/petugas/edit/{id}', 'PetugasController@edit')->middleware('role:Ketua');
-Route::put('/petugas/update/{id}', 'PetugasController@update')->middleware('role:Ketua');
-Route::get('/petugas/hapus/{id}', 'PetugasController@delete')->middleware('role:Ketua');
+Route::group(['prefix' => 'petugas','middleware' => 'role:Ketua'],function(){
+    $c = 'PetugasController@';
+    Route::get('/', $c.'index');
+    Route::get('/tambah', $c.'tambah');
+    Route::post('/store', $c.'store');
+    Route::get('/edit/{id}', $c.'edit');
+    Route::put('/update/{id}', $c.'update');
+    Route::get('/hapus/{id}', $c.'delete');
+});
 
 #mengatur Daerah
-Route::get('/daerah', 'DaerahController@index')->middleware('role:Ketua');
-Route::get('/daerah/tambah', 'DaerahController@tambah')->middleware('role:Ketua');
-Route::post('/daerah/store', 'DaerahController@store')->middleware('role:Ketua');
-Route::get('/daerah/edit/{id}', 'DaerahController@edit')->middleware('role:Ketua');
-Route::put('/daerah/update/{id}', 'DaerahController@update')->middleware('role:Ketua');
-Route::get('/daerah/hapus/{id}', 'DaerahController@delete')->middleware('role:Ketua');
+Route::group(['prefix' => 'daerah' ,'middleware' => 'role:Ketua'],function(){
+    $c = 'DaerahController@';
+    Route::get('/', $c.'index');
+    Route::get('/tambah', $c.'tambah');
+    Route::post('/store', $c.'store');
+    Route::get('/edit/{id}', $c.'edit');
+    Route::put('/update/{id}', $c.'update');
+    Route::get('/hapus/{id}', $c.'delete');
+});
+
 
 #mengatur Tim
-Route::get('/tim', 'TimController@index')->middleware('role:Ketua');
-Route::get('/tim/view/{id}', 'TimController@view')->middleware('role:Ketua,Petugas,Pelapor');
-Route::get('/tim/tambah', 'TimController@tambah')->middleware('role:Ketua');
-Route::post('/tim/store', 'TimController@store')->middleware('role:Ketua');
-Route::get('/tim/edit/{id}', 'TimController@edit')->middleware('role:Ketua');
-Route::put('/tim/update/{id}', 'TimController@update')->middleware('role:Ketua');
-Route::get('/tim/hapus/{id}', 'TimController@delete')->middleware('role:Ketua');
+Route::group(['prefix' => 'tim'],function(){
+    $c = 'TimController@';
+    #Ketua
+    Route::group(['middleware' => 'role:Ketua'],function() use ($c){
+        Route::get('/', $c.'index');
+        Route::get('/tambah', $c.'tambah');
+        Route::post('/store', $c.'store');
+        Route::get('/edit/{id}', $c.'edit');
+        Route::put('/update/{id}', $c.'update');
+        Route::get('/hapus/{id}', $c.'delete');
+    });
+    #Semua
+    Route::group(['middleware' => 'role:role:Ketua,Petugas,Pelapor'],function() use ($c){
+        Route::get('/view/{id}', $c.'view');
+    });
+});
 
 #mengatur Penugasan
-Route::get('/penugasan', 'PenugasanController@index')->middleware('role:Ketua,Petugas');
-Route::get('/penugasan/view/{id}', 'PenugasanController@view')->middleware('role:Ketua,Petugas,Pelapor');
-Route::get('/penugasan/tambah', 'PenugasanController@tambah')->middleware('role:Ketua');
-Route::post('/penugasan/store', 'PenugasanController@store')->middleware('role:Ketua');
-// Route::get('/penugasan/edit/{id}', 'PenugasanController@edit')->middleware('role:Ketua');
-Route::put('/penugasan/update/{id}', 'PenugasanController@update')->middleware('role:Ketua');
-Route::get('/penugasan/hapus/{id}', 'PenugasanController@delete')->middleware('role:Ketua');
-Route::get('/penugasan/laporan/{id}', 'PenugasanController@laporan')->middleware('role:Ketua,Petugas');
-Route::put('/penugasan/selesaikan/{id}', 'PenugasanController@selesaikan')->middleware('role:Ketua,Petugas');
-
-#Mengatur Penugasan Rotasi
-Route::get('/penugasan/rotasi', 'PenugasanController@index_rotasi')->middleware('role:Ketua');
-Route::get('/penugasan/rotasi/buat_penugasan/{id}', 'PenugasanController@tambah_rotasi')->middleware('role:Ketua');
-Route::post('/penugasan/rotasi/store', 'PenugasanController@store_rotasi')->middleware('role:Ketua');
+Route::group(['prefix' => 'penugasan'],function(){
+    $c = 'PenugasanController@';
+    #Ketua
+    Route::group(['middleware' => 'role:ketua'],function() use ($c){
+        #Penugasan Biasa
+        Route::get('/tambah', $c.'tambah');
+        Route::post('/store', $c.'store');
+        // Route::get('/edit/{id}', $c.'edit');
+        Route::put('/update/{id}', $c.'update');
+        Route::get('/hapus/{id}', $c.'delete');
+        #Penugasan Rotasi
+        Route::get('/rotasi', $c.'index_rotasi');
+        Route::get('/rotasi/buat_penugasan/{id}', $c.'tambah_rotasi');
+        Route::post('/rotasi/store', $c.'store_rotasi');
+        
+    });
+    #Ketua dan Petugas
+    Route::group(['middleware' => 'role:role:Ketua,Petugas'],function() use ($c){
+        Route::get('/', $c.'index');
+        Route::get('/laporan/{id}', $c.'laporan');
+        Route::put('/selesaikan/{id}', $c.'selesaikan');
+    });
+    #Semua
+    Route::group(['middleware' => 'role:role:Ketua,Petugas,Pelapor'],function() use ($c){
+        Route::get('/view/{id}', $c.'view');
+    });
+});
 
 #mengatur Laporan
-Route::get('/laporan', 'LaporanController@index')->middleware('role:Ketua,Petugas');
-Route::get('/laporan/view/{id}', 'LaporanController@view')->middleware('role:Ketua,Petugas,Pelapor');
-Route::get('/laporan/edit/{id}', 'LaporanController@edit')->middleware('role:Ketua');
-Route::put('/laporan/update/{id}', 'LaporanController@update')->middleware('role:Ketua');
-Route::get('/laporan/hapus/{id}', 'LaporanController@delete')->middleware('role:Ketua');
+Route::group(['prefix' => 'laporan'],function(){
+    $c = 'LaporanController@';
+    #ketua
+    Route::group(['middleware' => 'role:role:Ketua'],function() use ($c){
+        Route::get('/edit/{id}', $c.'edit');
+        Route::put('/update/{id}', $c.'update');
+        Route::get('/hapus/{id}', $c.'delete');
+    });
+    #Ketua dan petugas
+    Route::group(['middleware' => 'role:role:Ketua,Petugas'],function() use ($c){
+        Route::get('/', $c.'index');
+    });
+    #Ketua petugas pelapor
+    Route::group(['middleware' => 'role:role:Ketua,Petugas,Pelapor'],function() use ($c){
+        Route::get('/view/{id}', $c.'view');
+    });
+});
 
-#mengatur Pelaporan -- Bagian Pelapor saja
-Route::get('/pelaporan', 'PelaporanController@index')->middleware('role:Ketua,Pelapor');
-Route::get('/pelaporan/tambah/{id}', 'PelaporanController@tambah')->middleware('role:Ketua,Pelapor');
-Route::get('/pelaporan/tipe_kategori_pelaporan', 'PelaporanController@tipe_kategori_pelaporan')->middleware('role:Ketua,Pelapor');
-Route::get('/pelaporan/kategori_pelaporan/{id}', 'PelaporanController@kategori_pelaporan')->middleware('role:Ketua,Pelapor');
-Route::post('/pelaporan/store', 'PelaporanController@store')->middleware('role:Ketua,Pelapor');
-Route::get('/pelaporan/hapus/{id}', 'PelaporanController@delete')->middleware('role:Ketua,Pelapor');
-
-#Mengatur Pelaporan -- Bagian Admin
-Route::get('/pelaporan/edit/{id}', 'PelaporanController@edit')->middleware('role:Ketua,Pelapor');
-Route::put('/pelaporan/update/{id}', 'PelaporanController@update')->middleware('role:Ketua,Pelapor');
-Route::get('/pelaporan/tolak/{id}', 'PelaporanController@tolak')->middleware('role:Ketua');
-Route::get('/pelaporan/buat_penugasan/{id}', 'PelaporanController@buat_penugasan')->middleware('role:Ketua');
-Route::post('/pelaporan/selesai_buat_penugasan/{id_pelaporan}', 'PelaporanController@selesai_buat_penugasan')->middleware('role:Ketua');
+#mengatur Pelaporan 
+Route::group(['prefix' => 'pelaporan'],function(){
+    $c = 'PelaporanController@';
+    #ketua
+    Route::group(['middleware' => 'role:role:Ketua'],function() use ($c){
+        Route::get('/tolak/{id}', $c.'tolak');
+        Route::get('/buat_penugasan/{id}', $c.'buat_penugasan');
+        Route::post('/selesai_buat_penugasan/{id_pelaporan}', $c.'selesai_buat_penugasan');
+    });
+    #Ketua dan pelapor
+    Route::group(['middleware' => 'role:role:Ketua,Pelapor'],function() use ($c){
+        Route::get('/', $c.'index');
+        Route::get('/tambah/{id}', $c.'tambah');
+        Route::get('/tipe_kategori_pelaporan', $c.'tipe_kategori_pelaporan');
+        Route::get('/kategori_pelaporan/{id}', $c.'kategori_pelaporan');
+        Route::post('/store', $c.'store');
+        Route::get('/hapus/{id}', $c.'delete');
+        Route::get('/edit/{id}', $c.'edit');
+        Route::put('/update/{id}', $c.'update');
+    });
+});
 
 #Mengatur Keuangan
-Route::get('/keuangan', 'KeuanganController@index')->middleware('role:Ketua');
-Route::get('/keuangan/hitung', 'KeuanganController@hitung')->middleware('role:Ketua');
+Route::group(['prefix' => 'keuangan','middleware' => 'role:Ketua'],function(){
+    $c = 'KeuanganController@';
+    Route::get('/', $c.'index');
+    Route::get('/hitung', $c.'hitung');
+});
 
 #Mengatur Tipe Kategori Pelaporan
-Route::get('/tipe_kategori_pelaporan', 'TipeKategoriPelaporanController@index')->middleware('role:Ketua');
-Route::get('/tipe_kategori_pelaporan/tambah', 'TipeKategoriPelaporanController@tambah')->middleware('role:Ketua');
-Route::post('/tipe_kategori_pelaporan/store', 'TipeKategoriPelaporanController@store')->middleware('role:Ketua');
-Route::get('/tipe_kategori_pelaporan/edit/{id}', 'TipeKategoriPelaporanController@edit')->middleware('role:Ketua');
-Route::put('/tipe_kategori_pelaporan/update/{id}', 'TipeKategoriPelaporanController@update')->middleware('role:Ketua');
-Route::get('/tipe_kategori_pelaporan/hapus/{id}', 'TipeKategoriPelaporanController@delete')->middleware('role:Ketua');
+Route::group(['prefix' => 'tipe_kategori_pelaporan','middleware' => 'role:Ketua'],function(){
+    $c = 'TipeKategoriPelaporanController@';
+    Route::get('/', $c.'index');
+    Route::get('/tambah', $c.'tambah');
+    Route::post('/store', $c.'store');
+    Route::get('/edit/{id}', $c.'edit');
+    Route::put('/update/{id}', $c.'update');
+    Route::get('/hapus/{id}', $c.'delete');
+});
 
 #Mengatur Kategori Pelaporan
-Route::get('/kategori_pelaporan', 'KategoriPelaporanController@index')->middleware('role:Ketua');
-Route::get('/kategori_pelaporan/tambah', 'KategoriPelaporanController@tambah')->middleware('role:Ketua');
-Route::post('/kategori_pelaporan/store', 'KategoriPelaporanController@store')->middleware('role:Ketua');
-Route::get('/kategori_pelaporan/edit/{id}', 'KategoriPelaporanController@edit')->middleware('role:Ketua');
-Route::put('/kategori_pelaporan/update/{id}', 'KategoriPelaporanController@update')->middleware('role:Ketua');
-Route::get('/kategori_pelaporan/hapus/{id}', 'KategoriPelaporanController@delete')->middleware('role:Ketua');
+Route::group(['prefix' => 'kategori_pelaporan','middleware' => 'role:Ketua'],function(){
+    $c = 'KategoriPelaporanController@';
+    Route::get('/', $c.'index')->middleware('role:Ketua');
+    Route::get('/tambah', $c.'tambah')->middleware('role:Ketua');
+    Route::post('/store', $c.'store')->middleware('role:Ketua');
+    Route::get('/edit/{id}', $c.'edit')->middleware('role:Ketua');
+    Route::put('/update/{id}', $c.'update')->middleware('role:Ketua');
+    Route::get('/hapus/{id}', $c.'delete')->middleware('role:Ketua');
+});

@@ -38,5 +38,8 @@ class Pelaporan extends Model
         return $this->belongsTo('App\StatusPelaporan','status');
     }
 
+    public function FotoPelaporan(){
+        return $this->hasMany('App\ItemUpload','id_upload');
+    }
     
 }

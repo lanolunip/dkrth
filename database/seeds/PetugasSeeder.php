@@ -19,6 +19,7 @@ class PetugasSeeder extends Seeder
             'nomor_telepon' => '085785453625',
         	'email' => 'michaelwilbert11@gmail.com',
             'tipe_user' => 1,
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'password' => '$2y$10$yqrUN5cBSIU9cJA9ZiB3k.V2csAcyhz0tYHDhw1OP.eLAWDOmGtaW',
         	'remember_token' => 'Zo2vMqCNNbG2NGan7gALVlbuL8yEjY2XnEMvRjYLvhTyJe70mRdeuycaxOPb',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

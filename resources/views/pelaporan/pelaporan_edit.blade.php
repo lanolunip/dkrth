@@ -95,7 +95,26 @@
                         </div>
                         @endif
                 </div>
-        
+                <!-- Upload Gambar Pelaporan -->
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <label>Gambar Pelaporan</label>    
+                        </div>
+                        <div class="row">
+                            @foreach($pelaporan->FotoPelaporan as $gambar)
+                            <div class="col d-flex m-auto justify-content-center">
+                                <img src="{{Storage::url($gambar->nama_file)}}"/>
+                            </div>   
+                            @endforeach
+                        </div>
+                    </div>
+                    @if($errors->has('gambar'))
+                    <div class="text-danger">
+                        {{ $errors->first('daerah')}}
+                    </div>
+                    @endif
+                </div> 
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Simpan">
                 </div>

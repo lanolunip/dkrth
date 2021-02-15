@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\VerifyEmail;
 
-class Petugas extends Model implements MustVerifyEmail
+class Petugas extends Model 
 {
 
     protected $table = "users";
@@ -36,7 +36,6 @@ class Petugas extends Model implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
      
     /**
      * Send the email verification notification.

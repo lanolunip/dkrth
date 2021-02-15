@@ -10,6 +10,7 @@ use App\Tim;
 use App\Penugasan;
 use App\KategoriPelaporan;
 use App\TipeKategoriPelaporan;
+use App\ItemUpload;
 
 class PelaporanController extends Controller
 {
@@ -42,20 +43,29 @@ class PelaporanController extends Controller
  
     public function store(Request $request)
     {
-        $user_id = Auth::user()->id;
+        $user_id = Auth::user()->id;        
     	$this->validate($request,[
             'deskripsi' => 'required|string',
             'daerah' => 'required',
-            'kategori_pelaporan' => 'required'
+            'kategori_pelaporan' => 'required',
+            'gambar' => 'required',
+            'gambar.*' => 'image|mimes:jpeg,png,jpg,bmp|max:3000',
     	]);
             
-        Pelaporan::create([
+        $pelaporan = Pelaporan::create([
             'deskripsi' => $request->deskripsi,
             'daerah' => $request->daerah,
             'pelapor' => $user_id,
             'kategori_pelaporan' => $request->kategori_pelaporan
     	]);
- 
+        foreach($request->gambar as $gambar){
+            $nama_file = $gambar->store('public');
+            ItemUpload::create([
+                'kategori_upload' => 1,
+                'id_upload' => $pelaporan->id,
+                'nama_file' => $nama_file,
+            ]);
+        }
     	return redirect('/pelaporan')->with('pesan', 'Berhasil Membuat Pelaporan !');
     }
 

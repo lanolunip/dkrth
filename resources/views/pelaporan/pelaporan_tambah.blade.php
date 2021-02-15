@@ -11,7 +11,7 @@
             <br/>
             <br/>
             
-            <form method="post" action="{{url('/pelaporan/store')}}">
+            <form method="post" enctype="multipart/form-data" action="{{url('/pelaporan/store')}}">
 
                 {{ csrf_field() }}
 
@@ -89,8 +89,22 @@
                         </div>
                         @endif
                 </div>
-
-              
+                <!-- Upload Gambar Pelaporan -->
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <label>Upload Gambar Pelaporan</label>    
+                        </div>
+                        <div class="row">
+                            <input multiple="multiple" name="gambar[]" type="file"> 
+                        </div>
+                    </div>
+                        @if($errors->has('gambar'))
+                        <div class="text-danger">
+                            {{ $errors->first('daerah')}}
+                        </div>
+                        @endif
+                </div> 
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Simpan">
                 </div>

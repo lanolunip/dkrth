@@ -30,5 +30,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(StepTrackerStatusSeeder::class);
         $this->call(StepTrackerSeeder::class);
+
+        $this->call(KategoriUploadSeeder::class);
     }
 }

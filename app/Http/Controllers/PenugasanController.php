@@ -19,6 +19,9 @@ class PenugasanController extends Controller
         if(Auth::user()->TipeUser->nama == 'Petugas'){
             $user_id = Auth::user()->id;
             $tim = Tim::where('petugas','like',$user_id)->first();
+            if(empty($tim->id)){
+                return redirect()->back()->with('pesan', 'Anda Belum Terdaftar Pada Tim manapun, Harap Hubungi Admin');
+            }
             $penugasan = Penugasan::where('tim','like',$tim->id)->orderBy('id', 'desc')->paginate(10);
             $laporan = Laporan::all();
         }else{

@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\VerifyEmail;
 
-class Petugas extends Model 
+class Petugas extends Model implements MustVerifyEmail
 {
 
     protected $table = "users";
@@ -34,6 +36,17 @@ class Petugas extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail); // my notification
+    }
 
     public function TipeUser(){
         return $this->belongsTo('App\TipeUser','tipe_user');

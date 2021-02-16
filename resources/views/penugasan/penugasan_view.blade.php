@@ -14,13 +14,6 @@
             <div class="form-group">
                 <label>Nama</label>
                 <input type="text" name="nama" class="form-control" placeholder="Nama Tim .." value="{{ $penugasan->nama }}" readonly>
-
-                @if($errors->has('nama'))
-                    <div class="text-danger">
-                        {{ $errors->first('nama')}}
-                    </div>
-                @endif
-
             </div>
             <!-- Deskripsi -->
             <div class="form-group">
@@ -69,51 +62,95 @@
                     <textarea type="text" name="pelapor" class="form-control" placeholder="Isi Laporan Belum Diisi" readonly></textarea>
                 </div>
             @endif
-            <!-- Banyak Pengeluaran -->
-            <div class="form-group">
-                <div class="form-row">
-                    <label>Banyak Pengeluaran</label>
-                </div>
-                <div class="form-row">
-                    <div class="col-auto">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">Rp.</div>
+            <div class="card-body">
+                <label>Pengeluaran</label>
+                <table class="table" id="tabel_pengeluaran">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nama Pengeluaran</th>
+                            <th scope="col">Banyak Pengeluaran (Rp.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($pengeluaran as $p)
+                        <tr id="pengeluaran0">
+                            <td>
+                                <p> {{$p->nama_pengeluaran}} </p>
+                            </td>
+                            
+                            <td>
+                                <p> {{$p->banyak_pengeluaran}} </p>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <!-- Total Pengeluaran -->
+                <div class="form-group">
+                    <div class="form-row">
+                        <label>Total Pengeluaran</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-auto">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Rp.</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="number" name="banyak_pengeluaran" class="form-control" placeholder="Banyak Pengeluaran .." value="{{$penugasan->banyak_pengeluaran}}" readonly>
                         </div>
                     </div>
-                    <div class="col">
-                        <input type="number" name="banyak_pengeluaran" class="form-control" placeholder="Banyak Pengeluaran .." value="{{$penugasan->banyak_pengeluaran}}" readonly>
-                    </div>
                 </div>
-                
-
             </div>
-
+            <!-- Banyak Pengeluaran -->
              <!-- Tanggal Dibuat -->
              <div class="form-group">
                 <label>Tanggal Dibuat (yyyy-mm-dd)</label>
                 <input type="text" name="nama" class="form-control" placeholder="Tanggal Mulai .." value="{{ $penugasan->created_at }}" readonly>
-
-                @if($errors->has('nama'))
-                    <div class="text-danger">
-                        {{ $errors->first('nama')}}
-                    </div>
-                @endif
-
             </div>
 
              <!-- Tanggal Selesai -->
              <div class="form-group">
                 <label>Tanggal Selesai (yyyy-mm-dd)</label>
                 <input type="text" name="nama" class="form-control" placeholder="Tanggal Selesai .." value="{{ $penugasan->tanggal_berakhir }}" readonly>
-
-                @if($errors->has('nama'))
-                    <div class="text-danger">
-                        {{ $errors->first('nama')}}
-                    </div>
-                @endif
-
             </div>
 
+            <!-- Foto Pengeluaran -->
+             <div class="form-group">
+                <div class="form-col">
+                    <div class="form-row">
+                        <label>Foto Pengeluaran</label>
+                    </div>
+                @if(!empty($foto_pengeluaran))
+                    <div class="form-row mx-auto">
+                    @foreach($foto_pengeluaran as $foto)
+                        <div class="form-col mx-auto">
+                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" width="100%" height="auto"/>
+                        </div>
+                    @endforeach
+                    </div>
+                @endif
+                </div>
+            </div>
+
+            <!-- Foto Penugasan -->
+             <div class="form-group">
+                <div class="form-col">
+                    <div class="form-row">
+                        <label>Foto Penugasan</label>
+                    </div>
+                @if(!empty($foto_penugasan))
+                    <div class="form-row mx-auto">
+                    @foreach($foto_penugasan as $foto)
+                        <div class="form-col mx-auto">
+                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}"width="100%" height="auto"/>
+                        </div>
+                    @endforeach
+                    </div>
+                @endif
+                </div>
+            </div>
         </div>
     </div>
 </div>

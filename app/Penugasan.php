@@ -33,4 +33,12 @@ class Penugasan extends Model
     public function TipePenugasan(){
         return $this->belongsTo('App\TipePenugasan','tipe_penugasan');
     }
+    
+    public function Foto(){
+        return $this->hasMany('App\ItemUpload','id');
+    }
+
+    public function Pengeluaran(){
+        return $this->hasMany('App\DetailPengeluaran','id_penugasan');
+    }
 }

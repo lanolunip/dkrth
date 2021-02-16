@@ -36,7 +36,12 @@ class PenugasanController extends Controller
     public function view($id)
     {
         $penugasan = Penugasan::find($id);
-        return view('penugasan.penugasan_view', ['penugasan' => $penugasan] );
+        $pengeluaran = $penugasan->Pengeluaran;
+        $foto_penugasan = ItemUpload::where('id_upload','like',$penugasan->id)->where('kategori_upload','like',2)->get();
+        $foto_pengeluaran = ItemUpload::where('id_upload','like',$penugasan->id)->where('kategori_upload','like',3)->get();
+        return view('penugasan.penugasan_view', ['penugasan' => $penugasan,
+            'pengeluaran' => $pengeluaran,'foto_penugasan' => $foto_penugasan,
+            'foto_pengeluaran' => $foto_pengeluaran] );
     }
 
     public function tambah()

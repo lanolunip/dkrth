@@ -11,6 +11,8 @@ use App\Laporan;
 use App\StepTracker;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\ItemUpload;
+use App\DetailPengeluaran;
 
 class PenugasanController extends Controller
 {
@@ -131,23 +133,41 @@ class PenugasanController extends Controller
 
     public function selesaikan($id,Request $request){
 
+        if($request->total_pengeluaran !=0){
+            $this->validate($request,[
+                //Bagian Penugasan
+                'total_pengeluaran' => 'required',
+                'gambar_penugasan' => 'required',
+                'gambar_pengeluaran' => 'required',
+                'gambar_penugasan.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+                'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+    
+                //Bagian Laporan
+                'isi' => 'required|string',
+            ]);
+        }else{
+            $this->validate($request,[
+                //Bagian Penugasan
+                'total_pengeluaran' => 'required',
+                'gambar_penugasan' => 'required',
+                'gambar_penugasan.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+                'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+    
+                //Bagian Laporan
+                'isi' => 'required|string',
+            ]);
+        }
 
-        $this->validate($request,[
-            //Bagian Penugasan
-            'banyak_pengeluaran' => 'required',
-
-            //Bagian Laporan
-            'isi' => 'required|string',
-        ]);
-        
         //Bagian Penugasan
         $penugasan = Penugasan::find($id);
-        $penugasan->banyak_pengeluaran = $request->banyak_pengeluaran;
+        $penugasan->banyak_pengeluaran = $request->total_pengeluaran;
         $penugasan->tanggal_berakhir = Carbon::now()->toDateTimeString();
+
         if(!empty($penugasan->Pelaporan->status)){
             $penugasan->Pelaporan->status = 3;
             $penugasan->Pelaporan->save();
         }
+
         if ($penugasan->tipe_penugasan == 2){
             $step_tracker = StepTracker::find($penugasan->Tim->kategori_daerah);
             $step_tracker->status = 1;
@@ -156,7 +176,35 @@ class PenugasanController extends Controller
         }
         $penugasan->save();
         
-
+        foreach($request->gambar_penugasan as $gambar){
+            $nama_file = $gambar->store('public');
+            ItemUpload::create([
+                'kategori_upload' => 2,
+                'id_upload' => $id,
+                'nama_file' => $nama_file,
+            ]);
+        }
+        if(!empty($request->total_pengeluaran)){
+            foreach($request->gambar_pengeluaran as $gambar){
+                $nama_file = $gambar->store('public');
+                ItemUpload::create([
+                    'kategori_upload' => 3,
+                    'id_upload' => $id,
+                    'nama_file' => $nama_file,
+                ]);
+            }
+        }
+        $nama_pengeluaran = $request->input('nama_pengeluaran', []);
+        $banyak_pengeluaran = $request->input('banyak_pengeluaran', []);
+        for($data_ke = 0;$data_ke < count($nama_pengeluaran); $data_ke++ ){
+            if($nama_pengeluaran[$data_ke] != ''){
+                DetailPengeluaran::create([
+                    'id_penugasan' => $id,
+                    'nama_pengeluaran' => $nama_pengeluaran[$data_ke],
+                    'banyak_pengeluaran' => $banyak_pengeluaran[$data_ke],
+                ]);
+            }
+        }       
         // Bagian Laporan
         Laporan::create([
             'isi' => $request->isi,

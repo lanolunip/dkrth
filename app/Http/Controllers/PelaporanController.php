@@ -49,7 +49,7 @@ class PelaporanController extends Controller
             'daerah' => 'required',
             'kategori_pelaporan' => 'required',
             'gambar' => 'required',
-            'gambar.*' => 'image|mimes:jpeg,png,jpg,bmp|max:3000',
+            'gambar.*' => 'mimes:jpeg,png,jpg,bmp',
     	]);
             
         $pelaporan = Pelaporan::create([

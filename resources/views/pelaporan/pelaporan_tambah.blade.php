@@ -10,7 +10,15 @@
             <a href="{{url('/pelaporan')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
-            
+             @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form method="post" enctype="multipart/form-data" action="{{url('/pelaporan/store')}}">
 
                 {{ csrf_field() }}
@@ -101,7 +109,7 @@
                     </div>
                         @if($errors->has('gambar'))
                         <div class="text-danger">
-                            {{ $errors->first('daerah')}}
+                            {{ $errors->first('gambar')}}
                         </div>
                         @endif
                 </div> 

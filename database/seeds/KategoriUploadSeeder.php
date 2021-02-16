@@ -18,8 +18,12 @@ class KategoriUploadSeeder extends Seeder
 
         DB::table('kategori_upload')->insert([
         	'id' => 2,
-        	'nama' => 'Laporan'
+        	'nama' => 'Penugasan'
         ]);
 
+        DB::table('kategori_upload')->insert([
+        	'id' => 3,
+        	'nama' => 'Bukti Pengeluaran'
+        ]);
     }
 }

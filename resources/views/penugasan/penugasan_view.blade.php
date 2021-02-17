@@ -72,17 +72,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($pengeluaran as $p)
-                        <tr id="pengeluaran0">
-                            <td>
-                                <p> {{$p->nama_pengeluaran}} </p>
-                            </td>
-                            
-                            <td>
-                                <p> {{$p->banyak_pengeluaran}} </p>
-                            </td>
-                        </tr>
-                        @endforeach
+                        @if(!empty($pengeluaran[0]->id))
+                            @foreach($pengeluaran as $p)
+                            <tr id="pengeluaran0">
+                                <td>
+                                    <p> {{$p->nama_pengeluaran}} </p>
+                                </td>
+                                
+                                <td>
+                                    <p> {{$p->banyak_pengeluaran}} </p>
+                                </td>
+                            </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan=2>
+                                    <b>Tidak terdapat pengeluaran / belum diselesaikan.</b>
+                                </td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
 
@@ -103,7 +111,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Banyak Pengeluaran -->
+    
              <!-- Tanggal Dibuat -->
              <div class="form-group">
                 <label>Tanggal Dibuat (yyyy-mm-dd)</label>
@@ -122,14 +130,16 @@
                     <div class="form-row">
                         <label>Foto Pengeluaran</label>
                     </div>
-                @if(!empty($foto_pengeluaran))
+                @if(!empty($foto_pengeluaran[0]->id))
                     <div class="form-row mx-auto">
                     @foreach($foto_pengeluaran as $foto)
                         <div class="form-col mx-auto">
-                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" width="100%" height="auto"/>
+                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="100%" height="auto"/>
                         </div>
                     @endforeach
                     </div>
+                @else
+                    <b>Tidak terdapat pengeluaran / belum diselesaikan.</b>
                 @endif
                 </div>
             </div>
@@ -140,15 +150,46 @@
                     <div class="form-row">
                         <label>Foto Penugasan</label>
                     </div>
-                @if(!empty($foto_penugasan))
+                    @if(!empty($foto_penugasan[0]->id))
                     <div class="form-row mx-auto">
-                    @foreach($foto_penugasan as $foto)
+                        @foreach($foto_penugasan as $foto)
                         <div class="form-col mx-auto">
-                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}"width="100%" height="auto"/>
+                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto"/>
                         </div>
-                    @endforeach
+                        @endforeach
                     </div>
-                @endif
+                    @else
+                        <b>Foto belum ada karena belum diselesaikan.</b>
+                    @endif
+                </div>
+            <!-- Foto Pelaporan -->
+            <div class="form-group mt-3">
+                <div class="form-col">
+                    <div class="form-row">
+                        <label>Foto Pelaporan</label>
+                    </div>
+                    @if(!empty($foto_pelaporan))
+                        @php
+                            $index = 0;   
+                        @endphp
+                        @foreach($foto_pelaporan as $foto)
+                            @if ($index%2 == 0 && $index!=0)
+                                </div>
+                                <hr>
+                            @endif
+                            @if ($index%2 == 0)
+                                <div class="row">
+                            @endif
+                            <div class="col m-auto">
+                                <img src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto"/>
+                            </div>
+                            @php
+                                $index++;    
+                            @endphp
+                        @endforeach
+                    @else
+                        <b>Tidak terdapat gambar pelaporan (Bukan dibuat dari Pelaporan Masyarakat).</b>
+                    @endif
                 </div>
             </div>
         </div>

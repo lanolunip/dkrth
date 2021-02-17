@@ -39,12 +39,12 @@ class KategoriPelaporanSeeder extends Seeder
         DB::table('kategori_pelaporan')->insert([
         	'id' => 6,
             'nama' => 'Permintaan Lain - Lain',
-            'tipe_kategori_pelaporan' => 2
+            'tipe_kategori_pelaporan' => 3
         ]);
         DB::table('kategori_pelaporan')->insert([
         	'id' => 7,
             'nama' => 'Gangguan Lain - Lain',
-            'tipe_kategori_pelaporan' => 1
+            'tipe_kategori_pelaporan' => 3
         ]);
     }
 }

@@ -13,11 +13,11 @@ class ItemUpload extends Model
 
     public function Upload(){
         if($this->kategori_upload == 1){
-            return $this->belongsTo('App\Pelaporan');
+            return $this->belongsTo('App\Pelaporan','id');
         }else if($this->kategori_upload == 2){
-            return $this->belongsTo('App\Penugasan');
+            return $this->belongsTo('App\Penugasan','id');
         }else{
-            return $this->belongsTo('App\Laporan');
+            return $this->belongsTo('App\Laporan','id');
         }
     }
 }

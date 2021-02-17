@@ -39,9 +39,16 @@ class PenugasanController extends Controller
         $pengeluaran = $penugasan->Pengeluaran;
         $foto_penugasan = ItemUpload::where('id_upload','like',$penugasan->id)->where('kategori_upload','like',2)->get();
         $foto_pengeluaran = ItemUpload::where('id_upload','like',$penugasan->id)->where('kategori_upload','like',3)->get();
+        if(!empty($penugasan->Pelaporan->id)){
+            $foto_pelaporan = ItemUpload::where('id_upload','like',$penugasan->Pelaporan->id)->where('kategori_upload','like',1)->get();
+        }else{
+            $foto_pelaporan = [];
+        }
+
+
         return view('penugasan.penugasan_view', ['penugasan' => $penugasan,
             'pengeluaran' => $pengeluaran,'foto_penugasan' => $foto_penugasan,
-            'foto_pengeluaran' => $foto_pengeluaran] );
+            'foto_pengeluaran' => $foto_pengeluaran,'foto_pelaporan' => $foto_pelaporan]);
     }
 
     public function tambah()

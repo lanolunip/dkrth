@@ -11,7 +11,7 @@
             <br/>
             <br/>
 
-            <form method="post" action="{{url('/pelaporan/update/'. $pelaporan->id) }}">
+            <form method="post" enctype="multipart/form-data" action="{{url('/pelaporan/update/'. $pelaporan->id) }}">
 
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
@@ -95,26 +95,53 @@
                         </div>
                         @endif
                 </div>
-                <!-- Upload Gambar Pelaporan -->
+                <!-- Gambar Pelaporan -->
                 <div class="form-group">
                     <div class="col">
                         <div class="row">
                             <label>Gambar Pelaporan</label>    
                         </div>
                         <div class="row">
+                            @php
+                                $index = 0;   
+                            @endphp
                             @foreach($pelaporan->FotoPelaporan as $gambar)
-                            <div class="col d-flex m-auto justify-content-center">
-                                <img src="{{Storage::url($gambar->nama_file)}}"/>
-                            </div>   
+                            @if ($index%2 == 0 && $index!=0)
+                                </div>
+                                <hr>
+                            @endif
+                            @if ($index%2 == 0)
+                                <div class="row">
+                            @endif
+                            <div class="col m-auto">
+                                <img src="{{Storage::url($gambar->nama_file)}}"width="100%" height="auto"/>
+                            </div>
+                            @php
+                                $index++;    
+                            @endphp
                             @endforeach
                         </div>
                     </div>
-                    @if($errors->has('gambar'))
-                    <div class="text-danger">
-                        {{ $errors->first('daerah')}}
-                    </div>
-                    @endif
                 </div> 
+                 <!-- Upload Gambar Pelaporan -->
+                 <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <label>Upload Gambar Pelaporan</label>    
+                        </div>
+                        <div class="row">
+                            <b>(Upload foto baru jika ingin mengganti foto yang sudah diunggah sebelumnya)</b>
+                        </div>
+                        <div class="row">
+                            <input multiple="multiple" name="gambar[]" type="file"> 
+                        </div>
+                    </div>
+                        @if($errors->has('gambar'))
+                        <div class="text-danger">
+                            {{ $errors->first('gambar')}}
+                        </div>
+                        @endif
+                </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Simpan">
                 </div>

@@ -85,12 +85,27 @@ class PelaporanController extends Controller
         $this->validate($request,[
             'daerah' => 'required',
             'deskripsi' => 'required',
+            'gambar.*' => 'mimes:jpeg,png,jpg,bmp',
     	]);
-    
+
         $pelaporan = Pelaporan::find($id);
         $pelaporan->daerah = $request->daerah;
         $pelaporan->deskripsi = $request->deskripsi;
         $pelaporan->save();
+
+        if(!empty($request->gambar)){
+            // hapus foto lama
+            ItemUpload::where('kategori_upload','like',1)->where('id_upload','like',$id)->delete();
+            // upload foto baru
+            foreach($request->gambar as $gambar){
+                $nama_file = $gambar->store('public');
+                ItemUpload::create([
+                    'kategori_upload' => 1,
+                    'id_upload' => $pelaporan->id,
+                    'nama_file' => $nama_file,
+                ]);
+            }
+        }
         return redirect('/pelaporan')->with('pesan', 'Berhasil Mengubah Data pelaporan !');
     }
 
@@ -114,7 +129,13 @@ class PelaporanController extends Controller
     public function buat_penugasan($id_pelaporan){
         $pelaporan = Pelaporan::find($id_pelaporan);
         $tim = Tim::where('kategori_daerah','like',$pelaporan->Daerah->kategori_daerah)->get();
-        return view('pelaporan.pelaporan_buat_penugasan', ['pelaporan' => $pelaporan,'tim' => $tim]);
+        if(!empty($pelaporan->id)){
+            $foto_pelaporan = ItemUpload::where('id_upload','like',$pelaporan->id)->where('kategori_upload','like',1)->get();
+        }else{
+            $foto_pelaporan = [];
+        }
+        return view('pelaporan.pelaporan_buat_penugasan', ['pelaporan' => $pelaporan,
+            'tim' => $tim,'foto_pelaporan' => $foto_pelaporan]);
     }
 
     public function selesai_buat_penugasan($id_pelaporan,Request $request){

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
-            CRUD Data Penugasan - <strong>EDIT DATA</strong>
+            <strong>Penyelesaian Penugasan</strong>
         </div>
         <div class="card-body">
             <a href="{{url('/penugasan')}}" class="btn btn-primary">Kembali</a>

@@ -113,7 +113,35 @@
                         </div>
                         @endif
                 </div>
-               
+                <!-- Gambar Penugasan -->
+                <div class="form-group">
+                    <div class="col">
+                        <div class="row">
+                            <label>Gambar Penugasan</label>    
+                        </div>
+                        <div class="row">
+                            @php
+                                $index = 0;   
+                            @endphp
+                            @foreach($foto_pelaporan as $foto)
+                            @if ($index%2 == 0 && $index!=0)
+                                </div>
+                                <hr>
+                            @endif
+                            @if ($index%2 == 0)
+                                <div class="row">
+                            @endif
+                            <div class="col m-auto">
+                                <img src="{{Storage::url($foto->nama_file)}}"width="100%" height="auto"/>
+                            </div>
+                            @php
+                                $index++;    
+                            @endphp
+                            @endforeach
+                        </div>
+                    </div>
+                </div> 
+                
                
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Simpan">

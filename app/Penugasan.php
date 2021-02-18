@@ -41,6 +41,10 @@ class Penugasan extends Model
     public function FotoPelaporan(){
         return $this->hasMany('App\ItemUpload','id_upload')->where('kategori_upload','like',1);
     }
+    
+    public function FotoPengeluaran(){
+        return $this->hasMany('App\ItemUpload','id_upload')->where('kategori_upload','like',3);
+    }
 
     public function Pengeluaran(){
         return $this->hasMany('App\DetailPengeluaran','id_penugasan');

@@ -136,7 +136,7 @@
                                         </div>
                                     @endif
                                     <td>
-                                        <input multiple="multiple" name="gambar_pengeluaran[]" type="file"> 
+                                        <input name="gambar_pengeluaran[]" type="file"> 
                                     </td>
                                     @if($errors->has('gambar_pengeluaran'))
                                         <div class="text-danger">

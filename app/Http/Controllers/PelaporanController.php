@@ -11,6 +11,9 @@ use App\Penugasan;
 use App\KategoriPelaporan;
 use App\TipeKategoriPelaporan;
 use App\ItemUpload;
+use File;
+// import the storage facade
+use Illuminate\Support\Facades\Storage;
 
 class PelaporanController extends Controller
 {
@@ -95,6 +98,10 @@ class PelaporanController extends Controller
 
         if(!empty($request->gambar)){
             // hapus foto lama
+            $foto_lama = ItemUpload::where('kategori_upload','like',1)->where('id_upload','like',$id)->get();
+            foreach($foto_lama as $foto){
+                unlink('.'.Storage::url($foto->nama_file));
+            }
             ItemUpload::where('kategori_upload','like',1)->where('id_upload','like',$id)->delete();
             // upload foto baru
             foreach($request->gambar as $gambar){

@@ -39,7 +39,7 @@ class Pelaporan extends Model
     }
 
     public function FotoPelaporan(){
-        return $this->hasMany('App\ItemUpload','id_upload');
+        return $this->hasMany('App\ItemUpload','id_upload')->where('kategori_upload','like',1);
     }
     
 }

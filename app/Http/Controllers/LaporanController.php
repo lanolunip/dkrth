@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Laporan;
 use App\Penugasan;
 use App\ItemUpload;
+use App\DetailPengeluaran;
+use File;
+// import the storage facade
+use Illuminate\Support\Facades\Storage;
+
 class LaporanController extends Controller
 {
 
@@ -32,7 +37,8 @@ class LaporanController extends Controller
         $this->validate($request,[
             'isi' => 'required',
             'banyak_pengeluaran' => 'required',
-            'gambar.*' => 'mimes:jpeg,png,jpg,bmp',
+            'gambar_penugasan.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+            'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
     	]);
     
         $laporan = Laporan::find($id);
@@ -41,14 +47,31 @@ class LaporanController extends Controller
         $laporan->save();
 
         $penugasan = Penugasan::find($id_penugasan);
-        $penugasan->banyak_pengeluaran = $request->banyak_pengeluaran;
+        $penugasan->banyak_pengeluaran = $request->total_pengeluaran;
         $penugasan->save();
 
-        if(!empty($request->gambar)){
+        $nama_pengeluaran = $request->input('nama_pengeluaran', []);
+        $banyak_pengeluaran = $request->input('banyak_pengeluaran', []);
+        for($data_ke = 0;$data_ke < count($nama_pengeluaran); $data_ke++ ){
+            if($nama_pengeluaran[$data_ke] != ''){
+                $pengeluaran = DetailPengeluaran::where('id_penugasan','like',$id_penugasan)->get();
+            
+                $pengeluaran[$data_ke]->nama_pengeluaran = $request->nama_pengeluaran[$data_ke];
+                $pengeluaran[$data_ke]->banyak_pengeluaran = $request->banyak_pengeluaran[$data_ke];
+                $pengeluaran[$data_ke]->save();
+            }
+        }       
+
+        if(!empty($request->gambar_penugasan)){
             // hapus foto lama
+            $foto_lama = ItemUpload::where('kategori_upload','like',2)->where('id_upload','like',$penugasan->id)->get();
+            foreach($foto_lama as $foto){
+                unlink('.'.Storage::url($foto->nama_file));
+            }
             ItemUpload::where('kategori_upload','like',2)->where('id_upload','like',$penugasan->id)->delete();
+
             // upload foto baru
-            foreach($request->gambar as $gambar){
+            foreach($request->gambar_penugasan as $gambar){
                 $nama_file = $gambar->store('public');
                 ItemUpload::create([
                     'kategori_upload' => 2,
@@ -56,7 +79,7 @@ class LaporanController extends Controller
                     'nama_file' => $nama_file,
                 ]);
             }
-            return redirect('/laporan')->with('pesan', $nama_file.$laporan->id);
+            
         }
         return redirect('/laporan')->with('pesan', 'Berhasil Mengubah Data Laporan !');
     }

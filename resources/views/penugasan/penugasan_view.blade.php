@@ -69,11 +69,15 @@
                         <tr>
                             <th scope="col">Nama Pengeluaran</th>
                             <th scope="col">Banyak Pengeluaran (Rp.)</th>
+                            <th scope="col">Foto Pengeluaran</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if(!empty($pengeluaran[0]->id))
-                            @foreach($pengeluaran as $p)
+                            @php
+                                $index = 0;
+                            @endphp
+                            @foreach($penugasan->Pengeluaran as $p)
                             <tr id="pengeluaran0">
                                 <td>
                                     <p> {{$p->nama_pengeluaran}} </p>
@@ -82,7 +86,14 @@
                                 <td>
                                     <p> {{$p->banyak_pengeluaran}} </p>
                                 </td>
+                                
+                                <td>
+                                <img class="img-thumbnail" src="{{Storage::url($penugasan->FotoPengeluaran[$index]->nama_file)}}" style=" max-width: 100%;height: auto;" width="350" height="auto"/>
+                                </td>
                             </tr>
+                            @php
+                                $index++;
+                            @endphp
                             @endforeach
                         @else
                             <tr>
@@ -125,7 +136,7 @@
             </div>
 
             <!-- Foto Pengeluaran -->
-             <div class="form-group">
+             <!-- <div class="form-group">
                 <div class="form-col">
                     <div class="form-row">
                         <label>Foto Pengeluaran</label>
@@ -134,7 +145,7 @@
                     <div class="form-row mx-auto">
                     @foreach($foto_pengeluaran as $foto)
                         <div class="form-col mx-auto">
-                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="100%" height="auto"/>
+                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="350" height="auto"/>
                         </div>
                     @endforeach
                     </div>
@@ -142,7 +153,7 @@
                     <b>Tidak terdapat pengeluaran / belum diselesaikan.</b>
                 @endif
                 </div>
-            </div>
+            </div> -->
 
             <!-- Foto Penugasan -->
              <div class="form-group">
@@ -154,7 +165,7 @@
                     <div class="form-row mx-auto">
                         @foreach($foto_penugasan as $foto)
                         <div class="form-col mx-auto">
-                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto"/>
+                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="350" height="auto"/>
                         </div>
                         @endforeach
                     </div>

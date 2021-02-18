@@ -114,7 +114,7 @@
                                 <div class="row">
                             @endif
                             <div class="col m-auto">
-                                <img src="{{Storage::url($gambar->nama_file)}}"width="100%" height="auto"/>
+                                <img src="{{Storage::url($gambar->nama_file)}}"style=" max-width: 100%;height: auto;" width="350" height="auto"/>
                             </div>
                             @php
                                 $index++;    

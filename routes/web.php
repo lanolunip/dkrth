@@ -133,6 +133,8 @@ Route::group(['middleware' => 'verified'],function(){
             Route::get('/hapus/{id}', $c.'delete');
             Route::get('/edit/{id}', $c.'edit');
             Route::put('/update/{id}', $c.'update');
+            Route::get('/review/{id}', $c.'buat_review');
+            Route::post('/review/selesai/{id}', $c.'selesai_review');
         });
     });
     

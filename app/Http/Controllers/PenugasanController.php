@@ -197,7 +197,7 @@ class PenugasanController extends Controller
                 'nama_file' => $nama_file,
             ]);
         }
-        if(!empty($request->total_pengeluaran)){
+        if(!empty($request->total_pengeluaran) && !empty($request->nama_pengeluaran)){
             foreach($request->gambar_pengeluaran as $gambar){
                 $nama_file = $gambar->store('public');
                 ItemUpload::create([

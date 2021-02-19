@@ -13,47 +13,47 @@
             <!-- Nama -->
             <div class="form-group">
                 <label>Nama</label>
-                <input type="text" name="nama" class="form-control" placeholder="Nama Tim .." value="{{ $penugasan->nama }}" readonly>
+                <input type="text" name="nama" class="form-control" placeholder="Nama Tim .." value="{{ $pelaporan->Penugasan->nama }}" readonly>
             </div>
             <!-- Deskripsi -->
             <div class="form-group">
                 <label>Deskripsi</label>
-                <textarea type="text" name="deskripsi" class="form-control" placeholder="Deskripsi .." readonly>{{ $penugasan->deskripsi }}</textarea>
+                <textarea type="text" name="deskripsi" class="form-control" placeholder="Deskripsi .." readonly>{{ $pelaporan->Penugasan->deskripsi }}</textarea>
 
             </div>
     
             <!-- Tim -->
             <div class="form-group">
                 <label>Tim</label>
-                    <input name="tim" class="form-control" placeholder="Tim .." value="{{$penugasan->Tim->nama}}" readonly>
+                    <input name="tim" class="form-control" placeholder="Tim .." value="{{$pelaporan->Penugasan->Tim->nama}}" readonly>
     
             </div>
+
             <!-- Nama Pelapor -->
-            
             <div class="form-group">
                 <label>Nama Pelapor</label>
-                @if(!empty($penugasan->Pelapor->nama))
-                <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$penugasan->Pelapor->nama}}" readonly>
+                @if(!empty($pelaporan->Penugasan->Pelapor->nama))
+                <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$pelaporan->Penugasan->Pelapor->nama}}" readonly>
                 @else
-                <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$penugasan->pelapor}}" readonly>
+                <input type="text" name="pelapor" class="form-control" placeholder="Nama Pelapor .." value="{{$pelaporan->Penugasan->pelapor}}" readonly>
                 @endif
             </div>
                       
             <!-- Nomor Telepon Pelapor -->
             <div class="form-group">
                 <label>Nomor Telepon Pelapor</label>
-                @if(!empty($penugasan->Pelapor->nomor_telepon))
-                <input type="text" name="pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$penugasan->Pelapor->nomor_telepon}}" readonly>
+                @if(!empty($pelaporan->Penugasan->Pelapor->nomor_telepon))
+                <input type="text" name="pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$pelaporan->Penugasan->Pelapor->nomor_telepon}}" readonly>
                 @else
-                <input type="text" name="pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$penugasan->nomor_telepon_pelapor}}" readonly>
+                <input type="text" name="pelapor" class="form-control" placeholder="Nomor Telepon Pelapor .." value="{{$pelaporan->Penugasan->nomor_telepon_pelapor}}" readonly>
                 @endif
             </div>
             
-            @if(!empty($penugasan->Laporan->isi))
+            @if(!empty($pelaporan->Penugasan->Laporan->isi))
             <!-- Isi Laporan -->
             <div class="form-group">
                 <label>Isi Laporan</label>
-                <textarea type="text" name="pelapor" class="form-control" placeholder="Isi Laporan .." readonly>{{$penugasan->Laporan->isi}}</textarea>
+                <textarea type="text" name="pelapor" class="form-control" placeholder="Isi Laporan .." readonly>{{$pelaporan->Penugasan->Laporan->isi}}</textarea>
             </div>
             @else
                 <!-- Isi Laporan -->
@@ -62,6 +62,8 @@
                     <textarea type="text" name="pelapor" class="form-control" placeholder="Isi Laporan Belum Diisi" readonly></textarea>
                 </div>
             @endif
+
+            <!-- Pengeluaran -->
             <div class="card-body">
                 <label>Pengeluaran</label>
                 <table class="table" id="tabel_pengeluaran">
@@ -73,11 +75,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if(!empty($penugasan->Pengeluaran[0]->id))
+                        @if(!empty($pelaporan->Penugasan->Pengeluaran[0]->id))
                             @php
                                 $index = 0;
                             @endphp
-                            @foreach($penugasan->Pengeluaran as $p)
+                            @foreach($pelaporan->Penugasan->Pengeluaran as $p)
                             <tr id="pengeluaran0">
                                 <td>
                                     <p> {{$p->nama_pengeluaran}} </p>
@@ -88,7 +90,7 @@
                                 </td>
                                 
                                 <td>
-                                <img class="img-thumbnail" src="{{Storage::url($penugasan->FotoPengeluaran[$index]->nama_file)}}" style=" max-width: 100%;height: auto;" width="350" height="auto"/>
+                                <img class="img-thumbnail" src="{{Storage::url($pelaporan->Penugasan->FotoPengeluaran[$index]->nama_file)}}" style=" max-width: 100%;height: auto;" width="350" height="auto"/>
                                 </td>
                             </tr>
                             @php
@@ -117,7 +119,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <input type="number" name="banyak_pengeluaran" class="form-control" placeholder="Banyak Pengeluaran .." value="{{$penugasan->banyak_pengeluaran}}" readonly>
+                            <input type="number" name="banyak_pengeluaran" class="form-control" placeholder="Banyak Pengeluaran .." value="{{$pelaporan->Penugasan->banyak_pengeluaran}}" readonly>
                         </div>
                     </div>
                 </div>
@@ -126,7 +128,7 @@
             <!-- Daerah -->
             <div class="form-group">
                 <label>Daerah</label>
-                    <input type="text" name="daerah" class="form-control" placeholder="Daerah .." value="{{$penugasan->Pelaporan->Daerah->nama}}" readonly>
+                    <input type="text" name="daerah" class="form-control" placeholder="Daerah .." value="{{$pelaporan->Penugasan->Pelaporan->Daerah->nama}}" readonly>
 
                     @if($errors->has('daerah'))
                     <div class="text-danger">
@@ -154,34 +156,14 @@
              <!-- Tanggal Dibuat -->
              <div class="form-group">
                 <label>Tanggal Dibuat (yyyy-mm-dd)</label>
-                <input type="text" name="nama" class="form-control" placeholder="Tanggal Mulai .." value="{{ $penugasan->created_at }}" readonly>
+                <input type="text" name="nama" class="form-control" placeholder="Tanggal Mulai .." value="{{ $pelaporan->Penugasan->created_at }}" readonly>
             </div>
 
              <!-- Tanggal Selesai -->
              <div class="form-group">
                 <label>Tanggal Selesai (yyyy-mm-dd)</label>
-                <input type="text" name="nama" class="form-control" placeholder="Tanggal Selesai .." value="{{ $penugasan->tanggal_berakhir }}" readonly>
+                <input type="text" name="nama" class="form-control" placeholder="Tanggal Selesai .." value="{{ $pelaporan->Penugasan->tanggal_berakhir }}" readonly>
             </div>
-
-            <!-- Foto Pengeluaran -->
-             <!-- <div class="form-group">
-                <div class="form-col">
-                    <div class="form-row">
-                        <label>Foto Pengeluaran</label>
-                    </div>
-                @if(!empty($foto_pengeluaran[0]->id))
-                    <div class="form-row mx-auto">
-                    @foreach($foto_pengeluaran as $foto)
-                        <div class="form-col mx-auto">
-                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="350" height="auto"/>
-                        </div>
-                    @endforeach
-                    </div>
-                @else
-                    <b>Tidak terdapat pengeluaran / belum diselesaikan.</b>
-                @endif
-                </div>
-            </div> -->
 
             <!-- File Penugasan -->
             <div class="form-group">
@@ -189,9 +171,9 @@
                     <div class="form-row">
                         <label>File Penugasan</label>
                     </div>
-                    @if(!empty($foto_penugasan[0]->id))
+                    @if(!empty($pelaporan->Penugasan->FilePenugasan[0]->id))
                     <div class="form-row">
-                        @foreach($foto_penugasan as $file)
+                        @foreach($pelaporan->Penugasan->FilePenugasan as $file)
                         <div class="form-col">
                             
                             <a href="{{Storage::url($file->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto">File Penugasan</a>
@@ -210,11 +192,11 @@
                     <div class="form-row">
                         <label>Foto Pelaporan</label>
                     </div>
-                    @if(!empty($foto_pelaporan))
+                    @if(!empty($pelaporan->FotoPelaporan))
                         @php
                             $index = 0;   
                         @endphp
-                        @foreach($foto_pelaporan as $foto)
+                        @foreach($pelaporan->FotoPelaporan as $foto)
                             @if ($index%2 == 0 && $index!=0)
                                 </div>
                                 <hr>
@@ -234,14 +216,51 @@
                     @endif
                 </div>
             </div>
+
+            <form method="post" action="{{url('/pelaporan/review/selesai/'.$pelaporan->id)}}">
+                {{ csrf_field() }}
+                <!-- Review -->
+                <div class="form-group">
+                    <label>Review</label>
+                    <textarea type="text" name="review" class="form-control" placeholder="Isi Kritik / Saran..."></textarea>
+
+                    @if($errors->has('review'))
+                        <div class="text-danger">
+                            {{ $errors->first('review')}}
+                        </div>
+                    @endif
+
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="form-row">
+                        @for($index = 1;$index<=5;$index++)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rating" id="inlineRadio{{$index}}" value="{{$index}}">
+                            <label class="form-check-label" for="inlineRadio{{$index}}">{{$index}}*</label>
+                        </div>
+                        @endfor
+                    </div>
+                    @if($errors->has('rating'))
+                        <div class="text-danger">
+                            {{ $errors->first('rating')}}
+                        </div>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Simpan">
+                </div>
+                    
+            </form>
+
         </div>
     </div>
 </div>
 <script>
  function myMap() {
-    var koordinat_awal = {   lat:{{$penugasan->Koordinat->latitude}} ,lng:{{$penugasan->Koordinat->longitude}} };
+    var koordinat_awal = {   lat:{{$pelaporan->Penugasan->Koordinat->latitude}} ,lng:{{$pelaporan->Penugasan->Koordinat->longitude}} };
     var mapProp= {
-        center:new google.maps.LatLng({{$penugasan->Koordinat->latitude}},{{$penugasan->Koordinat->longitude}}),
+        center:new google.maps.LatLng({{$pelaporan->Penugasan->Koordinat->latitude}},{{$pelaporan->Penugasan->Koordinat->longitude}}),
         zoom:15,
     };
     var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);

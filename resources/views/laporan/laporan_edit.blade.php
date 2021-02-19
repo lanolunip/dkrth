@@ -38,7 +38,6 @@
                     <div class="card-header">
                         Pengeluaran
                     </div>
-                    <b>Upload foto baru pada bagian yang ingin diubah </b>
                     <div class="card-body">
                         <table class="table" id="tabel_pengeluaran">
                             <thead>
@@ -49,7 +48,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(!empty($laporan->Penugasan->Pengeluaran))
+                                @if(!empty($laporan->Penugasan->Pengeluaran[0]))
                                     @php
                                         $index = 0;
                                     @endphp
@@ -88,7 +87,11 @@
                                         @endphp
                                     @endforeach    
                                 @else
-                                    <b>Tidak terdapat Pengeluaran</b>
+                                    <tr>
+                                        <td colspan="3">
+                                            <b>Tidak terdapat Pengeluaran</b>
+                                        </td>
+                                    </tr>
                                 @endif
                             </tbody>
                         </table>
@@ -138,7 +141,7 @@
                                 <div class="row">
                             @endif
                             <div class="col m-auto">
-                                <!-- <img src="{{Storage::url($file->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto"/> -->
+                                
                                 <a href="{{Storage::url($file->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto">File Penugasan</a>
                             </div>
                             @php

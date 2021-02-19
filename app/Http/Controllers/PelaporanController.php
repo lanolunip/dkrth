@@ -12,6 +12,7 @@ use App\KategoriPelaporan;
 use App\TipeKategoriPelaporan;
 use App\ItemUpload;
 use App\KoordinatPenugasan;
+use App\Review;
 use File;
 // import the storage facade
 use Illuminate\Support\Facades\Storage;
@@ -174,10 +175,6 @@ class PelaporanController extends Controller
             'tim' => 'required',
             'koordinat' => 'required',
             'koordinat.*' => 'numeric'
-            // 'pelapor' => 'required',
-            // 'nomor_telepon_pelapor' => 'required',
-            // 'banyak_pengeluaran' => 'required',
-            // 'laporan' => 'required',
     	]);
  
         $penugasan = Penugasan::create([
@@ -202,5 +199,25 @@ class PelaporanController extends Controller
  
     	return redirect('/penugasan')->with('pesan', 'Berhasil Membuat Penugasan !');
 
+    }
+
+    public function buat_review($id){
+        $pelaporan = Pelaporan::find($id);
+        return view('pelaporan.pelaporan_review', ['pelaporan' => $pelaporan] );
+    }
+
+    public function selesai_review($id,Request $request){
+        
+        $this->validate($request,[
+            'review' => 'required|string',
+            'rating' => 'required',
+    	]);
+
+        Review::create([
+            'id_pelaporan' => $id,
+            'review' => $request->review,
+            'rating' => $request->rating
+        ]);
+        return redirect('/pelaporan')->with('pesan', 'Berhasil Membuat Review !');
     }
 }

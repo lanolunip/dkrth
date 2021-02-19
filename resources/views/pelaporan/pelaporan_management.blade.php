@@ -66,7 +66,28 @@
                             <td>Belum Terselesaikan</td>
                         @endif
                         
-                        <td>{{ $pl->StatusPelaporan->nama }}</td>
+                        <td>
+                            <div class="container m-auto">
+                                <div class="row">
+                                    {{ $pl->StatusPelaporan->nama }}
+                                </div>
+                                @if(!empty($pl->Review))
+                                <hr>
+                                <div class="row">
+                                    <div class="container mt-1">
+                                        <div class="row">
+                                            Rating : {{$pl->Review->rating}}*
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            Review : {{$pl->Review->review}}
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif  
+                            </div>
+                        </td>
+                        
 
                         @if (Auth::user()->TipeUser->nama == "Ketua")
                             <td>
@@ -82,6 +103,9 @@
                                     @endif
                                 @else
                                     <a href="{{url('/pelaporan/hapus/' . $pl->id) }}" class="btn btn-danger">Hapus</a>
+                                    @if(empty($pl->Review))
+                                    <a href="{{url('/pelaporan/review/' . $pl->id) }}" class="btn btn-secondary">Review</a>
+                                    @endif
                                 @endif
                                 
                             </td>
@@ -91,9 +115,10 @@
                                 @if($pl->status != 2)
                                     <a href="{{url('/pelaporan/edit/' . $pl->id) }}" class="btn btn-warning">Edit</a>
                                 @endif
-                                    <a href="{{url('/pelaporan/hapus/' . $pl->id) }}" class="btn btn-danger">Hapus</a>
+                                    @if(empty($pl->Review))
+                                        <a href="{{url('/pelaporan/review/' . $pl->id) }}" class="btn btn-secondary">Review</a>
+                                    @endif
                                 </td>
-                                
                             @endif
                         @elseif($pl->status==3)
                             <td></td>

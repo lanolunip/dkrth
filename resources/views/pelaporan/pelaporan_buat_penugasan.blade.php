@@ -129,11 +129,11 @@
                     @endif
                 </div>
                
-                <!-- Gambar Penugasan -->
+                <!-- Gambar Pelaporan -->
                 <div class="form-group">
                     <div class="col">
                         <div class="row">
-                            <label>Gambar Penugasan</label>    
+                            <label>Gambar Pelaporan</label>    
                         </div>
                         <div class="row">
                             @php
@@ -148,7 +148,7 @@
                                 <div class="row">
                             @endif
                             <div class="col m-auto">
-                                <img src="{{Storage::url($foto->nama_file)}}"width="100%" height="350px"/>
+                                <img src="{{Storage::url($foto->nama_file)}}" width="auto" height="350px"/>
                             </div>
                             @php
                                 $index++;    

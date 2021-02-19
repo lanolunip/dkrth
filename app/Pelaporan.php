@@ -45,5 +45,9 @@ class Pelaporan extends Model
     public function Koordinat(){
         return $this->hasOne('App\KoordinatPenugasan','id_pelaporan');
     }
+
+    public function Review(){
+        return $this->hasOne('App\Review','id_pelaporan');
+    }
     
 }

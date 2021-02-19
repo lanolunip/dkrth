@@ -17,4 +17,8 @@ class Laporan extends Model
         return $this->belongsTo('App\Penugasan','penugasan');
     }
 
+    public function Review(){
+        return $this->hasOne('App\Review','id_laporan');
+    }
+
 }

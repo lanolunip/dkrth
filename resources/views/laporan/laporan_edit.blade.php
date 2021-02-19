@@ -119,17 +119,17 @@
                     </div>
                 </div>
                 
-                <!-- Gambar Penugasan -->
+                <!-- File Penugasan -->
                 <div class="form-group">
                     <div class="col">
                         <div class="row">
-                            <label>Gambar Penugasan</label>    
+                            <label>File Penugasan</label>    
                         </div>
                         <div class="row">
                             @php
                                 $index = 0;   
                             @endphp
-                            @foreach($laporan->Penugasan->FotoPenugasan as $gambar)
+                            @foreach($laporan->Penugasan->FilePenugasan as $file)
                             @if ($index%2 == 0 && $index!=0)
                                 </div>
                                 <hr>
@@ -138,7 +138,8 @@
                                 <div class="row">
                             @endif
                             <div class="col m-auto">
-                                <img src="{{Storage::url($gambar->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto"/>
+                                <!-- <img src="{{Storage::url($file->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto"/> -->
+                                <a href="{{Storage::url($file->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto">File Penugasan</a>
                             </div>
                             @php
                                 $index++;
@@ -147,22 +148,22 @@
                         </div>
                     </div>
                 </div> 
-                 <!-- Upload Gambar Penugasan -->
+                 <!-- Upload File Penugasan -->
                  <div class="form-group">
                     <div class="col">
                         <div class="row">
-                            <label>Upload Gambar Penugasan</label>    
+                            <label>Upload File Penugasan</label>    
                         </div>
                         <div class="row">
-                            <b>(Upload foto baru jika ingin mengganti foto yang sudah diunggah sebelumnya)</b>
+                            <b>(Upload file baru jika ingin mengganti file yang sudah diunggah sebelumnya)</b>
                         </div>
                         <div class="row">
-                            <input multiple="multiple" name="gambar_penugasan[]" type="file"> 
+                            <input multiple="multiple" name="file_penugasan[]" type="file"> 
                         </div>
                     </div>
-                        @if($errors->has('gambar_penugasan'))
+                        @if($errors->has('file_penugasan'))
                         <div class="text-danger">
-                            {{ $errors->first('gambar_penugasan')}}
+                            {{ $errors->first('file_penugasan')}}
                         </div>
                         @endif
                 </div>

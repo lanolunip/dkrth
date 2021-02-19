@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('custom')
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
@@ -50,7 +50,7 @@
                     @endif
 
                 </div>
-        
+            
                 <!-- Tim -->
                 <div class="form-group">
                     <label>Tim</label>
@@ -102,6 +102,32 @@
                     @endif
 
                 </div>
+                <!-- Daerah -->
+                <div class="form-group">
+                    <label>Daerah</label>
+                        <input type="text" name="daerah" class="form-control" placeholder="Daerah .." value="{{$penugasan->Pelaporan->Daerah->nama}}" readonly>
+
+                        @if($errors->has('daerah'))
+                        <div class="text-danger">
+                            {{ $errors->first('daerah')}}
+                        </div>
+                        @endif
+                </div>
+                <!-- Koordinat -->
+                <div class="form-group">
+                   
+                   <label>Koordinat</label>
+
+                   <div id="googleMap" style="width:100%;height:400px;"></div>
+                   <input id="longitude" type="hidden" name="koordinat[]" class="form-control">
+                   <input id="latitude" type="hidden" name="koordinat[]" class="form-control">
+                   <!-- <div id="lokasi_peta">Belum Ada</div> -->
+                   @if($errors->has('koordinat'))
+                       <div class="text-danger">
+                           {{ $errors->first('koordinat')}}
+                       </div>
+                   @endif
+               </div>
                 <!-- Pengeluaran -->
                 <div class="card">
                     <div class="card-header">
@@ -179,19 +205,19 @@
                         </div>
                     </div>
                 </div>
-                <!-- Upload Gambar Penugasan -->
+                <!-- Upload File Penugasan -->
                 <div class="form-group">
                     <div class="col">
                         <div class="row">
-                            <label>Upload Gambar Penugasan</label>    
+                            <label>Upload File Penugasan</label>    
                         </div>
                         <div class="row">
-                            <input multiple="multiple" name="gambar_penugasan[]" type="file"> 
+                            <input multiple="multiple" name="file_penugasan[]" type="file"> 
                         </div>
                     </div>
-                        @if($errors->has('gambar_penugasan'))
+                        @if($errors->has('file_penugasan'))
                         <div class="text-danger">
-                            {{ $errors->first('gambar_penugasan')}}
+                            {{ $errors->first('file_penugasan')}}
                         </div>
                         @endif
                 </div>
@@ -236,4 +262,28 @@
         }
     });
 </script>
+<script>
+ function myMap() {
+    var koordinat_awal = {   lat:{{$penugasan->Koordinat->latitude}} ,lng:{{$penugasan->Koordinat->longitude}} };
+    var mapProp= {
+        center:new google.maps.LatLng({{$penugasan->Koordinat->latitude}},{{$penugasan->Koordinat->longitude}}),
+        zoom:15,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var marker = new google.maps.Marker({
+        position: koordinat_awal,
+        map: map
+    });   
+
+    ubahLokasi();
+
+    function ubahLokasi(){
+        // document.getElementById("lokasi_peta").innerHTML="<p>Lat:" + marker.getPosition().lat() + "</p> <p>Long:" + marker.getPosition().lng() + "</p>"; 
+        document.getElementById("longitude").value= marker.getPosition().lng();
+        document.getElementById("latitude").value= marker.getPosition().lat();
+    }
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAP_KEY&callback=myMap"></script>
 @endsection

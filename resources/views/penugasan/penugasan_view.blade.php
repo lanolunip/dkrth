@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('custom')
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
@@ -122,7 +122,35 @@
                     </div>
                 </div>
             </div>
-    
+
+            <!-- Daerah -->
+            <div class="form-group">
+                <label>Daerah</label>
+                    <input type="text" name="daerah" class="form-control" placeholder="Daerah .." value="{{$penugasan->Pelaporan->Daerah->nama}}" readonly>
+
+                    @if($errors->has('daerah'))
+                    <div class="text-danger">
+                        {{ $errors->first('daerah')}}
+                    </div>
+                    @endif
+            </div>
+
+            <!-- Koordinat -->
+            <div class="form-group">
+                   
+                   <label>Koordinat</label>
+
+                   <div id="googleMap" style="width:100%;height:400px;"></div>
+                   <input id="longitude" type="hidden" name="koordinat[]" class="form-control">
+                   <input id="latitude" type="hidden" name="koordinat[]" class="form-control">
+                   <!-- <div id="lokasi_peta">Belum Ada</div> -->
+                   @if($errors->has('koordinat'))
+                       <div class="text-danger">
+                           {{ $errors->first('koordinat')}}
+                       </div>
+                   @endif
+               </div>
+
              <!-- Tanggal Dibuat -->
              <div class="form-group">
                 <label>Tanggal Dibuat (yyyy-mm-dd)</label>
@@ -155,22 +183,23 @@
                 </div>
             </div> -->
 
-            <!-- Foto Penugasan -->
+            <!-- File Penugasan -->
              <div class="form-group">
                 <div class="form-col">
                     <div class="form-row">
-                        <label>Foto Penugasan</label>
+                        <label>File Penugasan</label>
                     </div>
                     @if(!empty($foto_penugasan[0]->id))
-                    <div class="form-row mx-auto">
-                        @foreach($foto_penugasan as $foto)
-                        <div class="form-col mx-auto">
-                            <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="350" height="auto"/>
+                    <div class="form-row m-auto">
+                        @foreach($foto_penugasan as $file)
+                        <div class="form-col m-auto">
+                            <!-- <img class="img-thumbnail" src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="350" height="auto"/> -->
+                            <a href="{{Storage::url($file->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto">File Penugasan</a>
                         </div>
                         @endforeach
                     </div>
                     @else
-                        <b>Foto belum ada karena belum diselesaikan.</b>
+                        <b>File belum ada karena belum diselesaikan.</b>
                     @endif
                 </div>
             <!-- Foto Pelaporan -->
@@ -192,7 +221,7 @@
                                 <div class="row">
                             @endif
                             <div class="col m-auto">
-                                <img src="{{Storage::url($foto->nama_file)}}" style=" max-width: 100%;height: auto;" width="500" height="auto"/>
+                                <img src="{{Storage::url($foto->nama_file)}}" width="350px" height="auto"/>
                             </div>
                             @php
                                 $index++;    
@@ -206,4 +235,28 @@
         </div>
     </div>
 </div>
+<script>
+ function myMap() {
+    var koordinat_awal = {   lat:{{$penugasan->Koordinat->latitude}} ,lng:{{$penugasan->Koordinat->longitude}} };
+    var mapProp= {
+        center:new google.maps.LatLng({{$penugasan->Koordinat->latitude}},{{$penugasan->Koordinat->longitude}}),
+        zoom:15,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var marker = new google.maps.Marker({
+        position: koordinat_awal,
+        map: map
+    });   
+
+    ubahLokasi();
+
+    function ubahLokasi(){
+        // document.getElementById("lokasi_peta").innerHTML="<p>Lat:" + marker.getPosition().lat() + "</p> <p>Long:" + marker.getPosition().lng() + "</p>"; 
+        document.getElementById("longitude").value= marker.getPosition().lng();
+        document.getElementById("latitude").value= marker.getPosition().lat();
+    }
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAP_KEY&callback=myMap"></script>
 @endsection

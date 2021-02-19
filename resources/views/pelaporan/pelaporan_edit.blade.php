@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('custom')
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
@@ -95,6 +95,24 @@
                         </div>
                         @endif
                 </div>
+                <!-- Koordinat -->
+                <div class="form-group">
+                    <div class="row">
+                        <label>Koordinat</label>
+                    </div>
+                    <div class="row">
+                        <b>Klik tempat baru jika ingin merubah lokasi</b>
+                    </div>
+                    <div id="googleMap" style="width:100%;height:400px;"></div>
+                    <input id="longitude" type="hidden" name="koordinat[]" class="form-control">
+                    <input id="latitude" type="hidden" name="koordinat[]" class="form-control">
+                    <!-- <div id="lokasi_peta">Belum Ada</div> -->
+                    @if($errors->has('koordinat'))
+                        <div class="text-danger">
+                            {{ $errors->first('koordinat')}}
+                        </div>
+                    @endif
+                </div>
                 <!-- Gambar Pelaporan -->
                 <div class="form-group">
                     <div class="col">
@@ -151,4 +169,48 @@
         </div>
     </div>
 </div>
+<script>
+ function myMap() {
+    var koordinat_awal = {   lat:{{$pelaporan->Koordinat->latitude}} ,lng:{{$pelaporan->Koordinat->longitude}} };
+    var mapProp= {
+        center:new google.maps.LatLng({{$pelaporan->Koordinat->latitude}},{{$pelaporan->Koordinat->longitude}}),
+        zoom:15,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var marker = new google.maps.Marker({
+        position: koordinat_awal,
+        map: map
+    });   
+
+    google.maps.event.addListener(map, 'click', function(event) {
+        placeMarker(event.latLng);
+    });
+
+
+    function placeMarker(location) {
+
+        if (marker == null)
+        {
+            marker = new google.maps.Marker({
+                position: location,
+                map: map
+            }); 
+        } 
+        else 
+        {
+            marker.setPosition(location); 
+            
+        } 
+        ubahLokasi();
+    }
+
+    function ubahLokasi(){
+        // document.getElementById("lokasi_peta").innerHTML="<p>Lat:" + marker.getPosition().lat() + "</p> <p>Long:" + marker.getPosition().lng() + "</p>"; 
+        document.getElementById("longitude").value= marker.getPosition().lng();
+        document.getElementById("latitude").value= marker.getPosition().lat();
+    }
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAP_KEY&callback=myMap"></script>
 @endsection

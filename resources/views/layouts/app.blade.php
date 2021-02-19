@@ -87,5 +87,6 @@
             @yield('content')
         </main>
     </div>
+    @yield('custom')
 </body>
 </html>

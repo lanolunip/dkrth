@@ -11,6 +11,7 @@ use App\Penugasan;
 use App\KategoriPelaporan;
 use App\TipeKategoriPelaporan;
 use App\ItemUpload;
+use App\KoordinatPenugasan;
 use File;
 // import the storage facade
 use Illuminate\Support\Facades\Storage;
@@ -50,6 +51,8 @@ class PelaporanController extends Controller
     	$this->validate($request,[
             'deskripsi' => 'required|string',
             'daerah' => 'required',
+            'koordinat' => 'required',
+            'koordinat.*' => 'numeric',
             'kategori_pelaporan' => 'required',
             'gambar' => 'required',
             'gambar.*' => 'mimes:jpeg,png,jpg,bmp',
@@ -61,6 +64,13 @@ class PelaporanController extends Controller
             'pelapor' => $user_id,
             'kategori_pelaporan' => $request->kategori_pelaporan
     	]);
+
+        KoordinatPenugasan::create([
+            'id_pelaporan' => $pelaporan->id,
+            'longitude' => $request->koordinat[0],
+            'latitude' => $request->koordinat[1]
+        ]);
+
         foreach($request->gambar as $gambar){
             $nama_file = $gambar->store('public');
             ItemUpload::create([
@@ -113,6 +123,13 @@ class PelaporanController extends Controller
                 ]);
             }
         }
+
+        if(!empty($request->koordinat)){
+            $pelaporan->Koordinat->longitude = $request->koordinat[0];
+            $pelaporan->Koordinat->latitude = $request->koordinat[1];
+            $pelaporan->Koordinat->save();
+
+        }
         return redirect('/pelaporan')->with('pesan', 'Berhasil Mengubah Data pelaporan !');
     }
 
@@ -155,13 +172,15 @@ class PelaporanController extends Controller
     		'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'tim' => 'required',
+            'koordinat' => 'required',
+            'koordinat.*' => 'numeric'
             // 'pelapor' => 'required',
             // 'nomor_telepon_pelapor' => 'required',
             // 'banyak_pengeluaran' => 'required',
             // 'laporan' => 'required',
     	]);
  
-        Penugasan::create([
+        $penugasan = Penugasan::create([
     		'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
             'tim' => $request->tim,
@@ -171,8 +190,15 @@ class PelaporanController extends Controller
         ]);
         
         //Bagian Pelaporan
-        $pelaporan->penugasan = Penugasan::all()->last()->id;
+        $pelaporan->penugasan = $penugasan->id;
         $pelaporan->save();
+
+        //Bagian Koordinat
+        $pelaporan->Koordinat->id_penugasan = $penugasan->id;
+        $pelaporan->Koordinat->longitude = $request->koordinat[0];
+        $pelaporan->Koordinat->latitude = $request->koordinat[1];
+        $pelaporan->Koordinat->save();
+
  
     	return redirect('/penugasan')->with('pesan', 'Berhasil Membuat Penugasan !');
 

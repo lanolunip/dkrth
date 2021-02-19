@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('custom')
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
@@ -10,17 +10,7 @@
             <a href="{{url('/pelaporan')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
-            <!-- @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif -->
             <form method="post" enctype="multipart/form-data" action="{{url('/pelaporan/store')}}">
-
                 {{ csrf_field() }}
 
                 <!-- Nama -->
@@ -35,6 +25,7 @@
                     @endif
 
                 </div>
+
                 <!-- Nomor Telepon Pelapor -->
                 <div class="form-group">
                     <label>Nomor Telepon</label>
@@ -47,6 +38,7 @@
                     @endif
 
                 </div>
+               
                 <!-- Kategori Pelaporan -->
                 <div class="form-group">
                     <label>Kategori Pelaporan</label>
@@ -59,6 +51,7 @@
                     @endif
 
                 </div>
+
                 <!-- Deskripsi -->
                 <div class="form-group">
                     <label>Deskripsi</label>
@@ -71,7 +64,7 @@
                     @endif
 
                 </div>
-                
+
                 <!-- Daerah -->
                 <div class="form-group">
                     <label>Daerah</label>
@@ -97,6 +90,21 @@
                         </div>
                         @endif
                 </div>
+
+                <!-- Koordinat -->
+                <div class="form-group">
+                    <label>Koordinat</label>
+                    <div id="googleMap" style="width:100%;height:400px;"></div>
+                    <input id="longitude" type="hidden" name="koordinat[]" class="form-control">
+                    <input id="latitude" type="hidden" name="koordinat[]" class="form-control">
+                    <!-- <div id="lokasi_peta">Belum Ada</div> -->
+                    @if($errors->has('koordinat'))
+                        <div class="text-danger">
+                            {{ $errors->first('koordinat')}}
+                        </div>
+                    @endif
+                </div>
+
                 <!-- Upload Gambar Pelaporan -->
                 <div class="form-group">
                     <div class="col">
@@ -113,12 +121,54 @@
                         </div>
                         @endif
                 </div> 
+
                 <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Simpan">
                 </div>
             </form>
-
         </div>
     </div>
 </div>
+
+<script>
+ function myMap() {
+    var mapProp= {
+        center:new google.maps.LatLng(-7.2575,112.7521),
+        zoom:15,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var marker;
+
+    google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng);
+    });
+
+
+    function placeMarker(location) {
+
+        if (marker == null)
+        {
+            marker = new google.maps.Marker({
+                position: location,
+                map: map
+            }); 
+        } 
+        else 
+        {
+            marker.setPosition(location); 
+            
+        } 
+        ubahLokasi();
+    }
+
+    function ubahLokasi(){
+        // document.getElementById("lokasi_peta").innerHTML="<p>Lat:" + marker.getPosition().lat() + "</p> <p>Long:" + marker.getPosition().lng() + "</p>"; 
+        document.getElementById("longitude").value= marker.getPosition().lng();
+        document.getElementById("latitude").value= marker.getPosition().lat();
+    }
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAP_KEY&callback=myMap"></script>
+
 @endsection

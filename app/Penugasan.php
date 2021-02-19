@@ -34,7 +34,7 @@ class Penugasan extends Model
         return $this->belongsTo('App\TipePenugasan','tipe_penugasan');
     }
     
-    public function FotoPenugasan(){
+    public function FilePenugasan(){
         return $this->hasMany('App\ItemUpload','id_upload')->where('kategori_upload','like',2);
     }
 
@@ -48,5 +48,9 @@ class Penugasan extends Model
 
     public function Pengeluaran(){
         return $this->hasMany('App\DetailPengeluaran','id_penugasan');
+    }
+
+    public function Koordinat(){
+        return $this->hasOne('App\KoordinatPenugasan','id_penugasan');
     }
 }

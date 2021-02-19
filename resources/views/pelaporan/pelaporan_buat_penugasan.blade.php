@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('content')
+@section('custom')
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
-            CRUD Data Penugasan - <strong>EDIT DATA</strong>
+            <strong>Buat Penugasan</strong>
         </div>
         <div class="card-body">
             <a href="{{url('/pelaporan')}}" class="btn btn-primary">Kembali</a>
@@ -76,20 +76,8 @@
                     @endif
 
                 </div>
-                <!-- Daerah -->
-                <div class="form-group">
-                    <label>Daerah</label>
-                    <input type="text" name="daerah" class="form-control" placeholder="Nama Pelapor .." value="{{$pelaporan->Daerah->nama}} - {{ $pelaporan->Daerah->KategoriDaerah->nama }}" readonly>
-
-                    @if($errors->has('daerah'))
-                        <div class="text-danger">
-                            {{ $errors->first('daerah')}}
-                        </div>
-                    @endif
-
-                </div>
-                <!-- Tim -->
-                <div class="form-group">
+                 <!-- Tim -->
+                 <div class="form-group">
                     <label>Tim</label>
                         <select size="0" name="tim" class="form-control" placeholder="Tim ..">
                            
@@ -113,6 +101,34 @@
                         </div>
                         @endif
                 </div>
+                <!-- Daerah -->
+                <div class="form-group">
+                    <label>Daerah</label>
+                    <input type="text" name="daerah" class="form-control" placeholder="Nama Pelapor .." value="{{$pelaporan->Daerah->nama}} - {{ $pelaporan->Daerah->KategoriDaerah->nama }}" readonly>
+
+                    @if($errors->has('daerah'))
+                        <div class="text-danger">
+                            {{ $errors->first('daerah')}}
+                        </div>
+                    @endif
+
+                </div>
+                <!-- Koordinat -->
+                <div class="form-group">
+                   
+                    <label>Koordinat</label>
+
+                    <div id="googleMap" style="width:100%;height:400px;"></div>
+                    <input id="longitude" type="hidden" name="koordinat[]" class="form-control">
+                    <input id="latitude" type="hidden" name="koordinat[]" class="form-control">
+                    <!-- <div id="lokasi_peta">Belum Ada</div> -->
+                    @if($errors->has('koordinat'))
+                        <div class="text-danger">
+                            {{ $errors->first('koordinat')}}
+                        </div>
+                    @endif
+                </div>
+               
                 <!-- Gambar Penugasan -->
                 <div class="form-group">
                     <div class="col">
@@ -132,7 +148,7 @@
                                 <div class="row">
                             @endif
                             <div class="col m-auto">
-                                <img src="{{Storage::url($foto->nama_file)}}"width="100%" height="auto"/>
+                                <img src="{{Storage::url($foto->nama_file)}}"width="100%" height="350px"/>
                             </div>
                             @php
                                 $index++;    
@@ -143,7 +159,7 @@
                 </div> 
                 
                
-                <div class="form-group">
+                <div class="form-group mt-4">
                     <input type="submit" class="btn btn-success" value="Simpan">
                 </div>
 
@@ -152,4 +168,28 @@
         </div>
     </div>
 </div>
+<script>
+ function myMap() {
+    var koordinat_awal = {   lat:{{$pelaporan->Koordinat->latitude}} ,lng:{{$pelaporan->Koordinat->longitude}} };
+    var mapProp= {
+        center:new google.maps.LatLng({{$pelaporan->Koordinat->latitude}},{{$pelaporan->Koordinat->longitude}}),
+        zoom:15,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var marker = new google.maps.Marker({
+        position: koordinat_awal,
+        map: map
+    });   
+
+    ubahLokasi();
+
+    function ubahLokasi(){
+        // document.getElementById("lokasi_peta").innerHTML="<p>Lat:" + marker.getPosition().lat() + "</p> <p>Long:" + marker.getPosition().lng() + "</p>"; 
+        document.getElementById("longitude").value= marker.getPosition().lng();
+        document.getElementById("latitude").value= marker.getPosition().lat();
+    }
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAP_KEY&callback=myMap"></script>
 @endsection

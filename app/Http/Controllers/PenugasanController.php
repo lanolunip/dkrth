@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\ItemUpload;
 use App\DetailPengeluaran;
+use App\KoordinatPenugasan;
 
 class PenugasanController extends Controller
 {
@@ -149,9 +150,9 @@ class PenugasanController extends Controller
             $this->validate($request,[
                 //Bagian Penugasan
                 'total_pengeluaran' => 'required',
-                'gambar_penugasan' => 'required',
+                'file_penugasan' => 'required',
                 'gambar_pengeluaran' => 'required',
-                'gambar_penugasan.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+                'file_penugasan.*' => 'mimes:pdf,zip|max:3000',
                 'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
     
                 //Bagian Laporan
@@ -161,8 +162,8 @@ class PenugasanController extends Controller
             $this->validate($request,[
                 //Bagian Penugasan
                 'total_pengeluaran' => 'required',
-                'gambar_penugasan' => 'required',
-                'gambar_penugasan.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+                'file_penugasan' => 'required',
+                'file_penugasan.*' => 'mimes:pdf,zip|max:3000',
                 'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
     
                 //Bagian Laporan
@@ -188,7 +189,7 @@ class PenugasanController extends Controller
         }
         $penugasan->save();
         
-        foreach($request->gambar_penugasan as $gambar){
+        foreach($request->file_penugasan as $gambar){
             $nama_file = $gambar->store('public');
             ItemUpload::create([
                 'kategori_upload' => 2,

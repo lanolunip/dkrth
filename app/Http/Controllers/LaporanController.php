@@ -7,6 +7,8 @@ use App\Laporan;
 use App\Penugasan;
 use App\ItemUpload;
 use App\DetailPengeluaran;
+use App\KoordinatPenugasan;
+
 use File;
 // import the storage facade
 use Illuminate\Support\Facades\Storage;
@@ -37,7 +39,7 @@ class LaporanController extends Controller
         $this->validate($request,[
             'isi' => 'required',
             'banyak_pengeluaran' => 'required',
-            'gambar_penugasan.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+            'file_penugasan.*' => 'mimes:pdf,zip|max:3000',
             'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
     	]);
     
@@ -62,17 +64,17 @@ class LaporanController extends Controller
             }
         }       
 
-        if(!empty($request->gambar_penugasan)){
-            // hapus foto lama
-            $foto_lama = ItemUpload::where('kategori_upload','like',2)->where('id_upload','like',$penugasan->id)->get();
-            foreach($foto_lama as $foto){
-                unlink('.'.Storage::url($foto->nama_file));
+        if(!empty($request->file_penugasan)){
+            // hapus file lama
+            $file_lama = ItemUpload::where('kategori_upload','like',2)->where('id_upload','like',$penugasan->id)->get();
+            foreach($file_lama as $file){
+                unlink('.'.Storage::url($file->nama_file));
             }
             ItemUpload::where('kategori_upload','like',2)->where('id_upload','like',$penugasan->id)->delete();
 
-            // upload foto baru
-            foreach($request->gambar_penugasan as $gambar){
-                $nama_file = $gambar->store('public');
+            // upload file baru
+            foreach($request->file_penugasan as $file){
+                $nama_file = $file->store('public');
                 ItemUpload::create([
                     'kategori_upload' => 2,
                     'id_upload' => $penugasan->id,

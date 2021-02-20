@@ -152,8 +152,8 @@ class PenugasanController extends Controller
                 'total_pengeluaran' => 'required',
                 'file_penugasan' => 'required',
                 'gambar_pengeluaran' => 'required',
-                'file_penugasan.*' => 'mimes:pdf,zip|max:3000',
-                'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+                'file_penugasan.*' => 'mimes:doc,docx,pdf,zip',
+                'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp',
     
                 //Bagian Laporan
                 'isi' => 'required|string',
@@ -163,8 +163,8 @@ class PenugasanController extends Controller
                 //Bagian Penugasan
                 'total_pengeluaran' => 'required',
                 'file_penugasan' => 'required',
-                'file_penugasan.*' => 'mimes:pdf,zip|max:3000',
-                'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+                'file_penugasan.*' => 'mimes:pdf,zip',
+                'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp',
     
                 //Bagian Laporan
                 'isi' => 'required|string',

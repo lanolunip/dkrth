@@ -39,8 +39,8 @@ class LaporanController extends Controller
         $this->validate($request,[
             'isi' => 'required',
             'total_pengeluaran' => 'required',
-            'file_penugasan.*' => 'mimes:pdf,zip|max:3000',
-            'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp|max:3000',
+            'file_penugasan.*' => 'mimes:pdf,zip',
+            'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp',
     	]);
     
         $laporan = Laporan::find($id);

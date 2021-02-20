@@ -15,9 +15,7 @@ Route::get('/test',function(){
     return view('test');
 });    
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HalamanDepanController@index');
 
 Auth::routes(['register' => true,'verify' => true]);
 
@@ -72,8 +70,8 @@ Route::group(['middleware' => 'verified'],function(){
         #Ketua
         Route::group(['middleware' => 'role:ketua'],function() use ($c){
             #Penugasan Biasa
-            Route::get('/tambah', $c.'tambah');
-            Route::post('/store', $c.'store');
+            // Route::get('/tambah', $c.'tambah');
+            // Route::post('/store', $c.'store');
             // Route::get('/edit/{id}', $c.'edit');
             Route::put('/update/{id}', $c.'update');
             Route::get('/hapus/{id}', $c.'delete');
@@ -122,6 +120,7 @@ Route::group(['middleware' => 'verified'],function(){
             Route::get('/tolak/{id}', $c.'tolak');
             Route::get('/buat_penugasan/{id}', $c.'buat_penugasan');
             Route::post('/selesai_buat_penugasan/{id_pelaporan}', $c.'selesai_buat_penugasan');
+            Route::get('/hapus/{id}', $c.'delete');
         });
         #Ketua dan pelapor
         Route::group(['middleware' => 'role:role:Ketua,Pelapor'],function() use ($c){
@@ -130,7 +129,6 @@ Route::group(['middleware' => 'verified'],function(){
             Route::get('/tipe_kategori_pelaporan', $c.'tipe_kategori_pelaporan');
             Route::get('/kategori_pelaporan/{id}', $c.'kategori_pelaporan');
             Route::post('/store', $c.'store');
-            Route::get('/hapus/{id}', $c.'delete');
             Route::get('/edit/{id}', $c.'edit');
             Route::put('/update/{id}', $c.'update');
             Route::get('/review/{id}', $c.'buat_review');

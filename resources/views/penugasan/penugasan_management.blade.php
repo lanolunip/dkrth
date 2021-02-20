@@ -9,9 +9,9 @@
         <div class="card-body" style="overflow-x:auto;">
             @if (Auth::user()->TipeUser->nama == "Ketua")
                 <div class="row ">
-                    <div class="col d-flex m-auto justify-content-center">
+                    <!-- <div class="col d-flex m-auto justify-content-center">
                         <a href="{{url('/penugasan/tambah')}}" class="btn btn-primary">TAMBAH PENUGASAN</a>
-                    </div>
+                    </div> -->
                     <div class="col d-flex m-auto justify-content-center">
                         <a href="{{url('/penugasan/rotasi')}}" class="btn btn-primary">MANAGEMENT PENUGASAN ROTASI</a>
                     </div>

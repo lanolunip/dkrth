@@ -71,6 +71,7 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+                color: black;
             }
 
             .m-b-md {
@@ -89,8 +90,13 @@
                 background-color: #00b09b;
             }
 
+            #statistik{
+                background-color: #fcba03;
+            }
+
             #SOP{
                 background-color: lightgray;
+                min-height:100vh;
             }
 
             .row > p {
@@ -128,7 +134,7 @@
                 <h2>DEPARTEMEN POHON DAN TANAMAN</h2>
             </div>
         </div>
-        <div id="fungsi" class="position-ref full-height flex-center">
+        <div id="fungsi" class="flex-container full-height flex-center">
             <div class= "content">
                 <div class="container">
                     
@@ -138,6 +144,35 @@
                     
                     <div class="row">
                         <p>Melakukan Pemeliharan, Serta Mengurus Segala Hal Yang Berhubungan Dengan Pohon dan Tanaman Di Kota Surabaya</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="statistik" class="flex-container full-height flex-center">
+            <div class= "content">
+                <div class="container">
+                    
+                    <div class="sub-title m-b-md">
+                        <b>STATISTIK</b>
+                    </div>
+                    <div class="row">
+                        <div class="col my-auto">
+                            <h2>PELAPORAN YANG DITERIMA</h2>
+                            <hr> 
+                            <h1>{{$jumlah_pelaporan}}</h1>
+                        </div>
+                        <div class="col my-auto">
+                            <h2>PENUGASAN YANG DIBUAT</h2>
+                            <hr>
+                            <h1>{{$jumlah_penugasan}}</h1>
+                        </div>
+                        <div class="col my-auto">
+                            <h2>RATA - RATA REVIEW</h2>
+                            <br>
+                            <hr>
+                            <h1>{{$rata_rata_rating}}</h1>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -154,37 +189,42 @@
                     <div class="card-deck">  
 
                         <div class="card">
-                            <h2 class="card-img-top">1</h2>
+                            <h2>1<h2>
+                            <h2 class="card-img-top">Melakukan Pelaporan</h2>
                             <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">Laporkan keluhan atau permintaan anda dengan jelas dan lengkap</p>
                             </div>
                         </div>
                     
                         <div class="card">
-                            <h2 class="card-img-top">2</h2>
+                            <h2>2<h2>
+                            <h2 class="card-img-top">Menunggu Tanggapan Dari Pengurus</h2>
                             <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">Selama tahap ini, anda dapat melakukan penggantian data jika terjadi kesalahan</p>
                             </div>
                         </div>
                     
                         <div class="card">
-                            <h2 class="card-img-top">3</h2>
+                            <h2>3<h2>
+                            <h2 class="card-img-top">Pelaporan Telah Ditugaskan</h2>
                             <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">Setelah pelaporan anda diterima, maka anda hanya perlu menunggu penugasan untuk diselesaikan</p>
                             </div>
                         </div>
                     
                         <div class="card">
-                            <h2 class="card-img-top">4</h2>
+                            <h2>4<h2>
+                            <h2 class="card-img-top">Penugasan Untuk Pelaporan Anda Telah Diselesaikan</h2>
                             <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">Setelah penugasan telah diselesaikan, maka anda dapat memberikan review pengerjaan</p>
                             </div>
                         </div>
                 
                         <div class="card">
-                            <h2 class="card-img-top">5</h2>
+                            <h2>5<h2>
+                            <h2 class="card-img-top">Review Telah Selesai Dibuat</h2>
                             <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">Anda masih dapat melihat pelaporan beserta penugasan yang telah anda buat pada halaman pelaporan</p>
                             </div>
                         </div>
 

@@ -4,14 +4,14 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header text-center">
-            CRUD Data Keuangan
+            Statistik Penugasan
         </div>
         <div class="card-body">
             <a href="{{url('/home')}}" class="btn btn-primary">Kembali</a>
             <br/>
             <br/>
         
-            <form method="get" action="{{url('/keuangan/hitung')}}">
+            <form method="get" action="{{url('/penugasan/statistik/cari')}}">
 
                 {{ csrf_field() }}
 
@@ -37,38 +37,15 @@
                     @endif
 
                 </div>
-                <!-- Banyak Pengeluaran -->
-                <div class="form-group">
-                    <div class="form-row">
-                        <label>Total Pengeluaran</label>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-auto">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">Rp.</div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <input type="number" name="total_pengeluaran" class="form-control" placeholder="Banyak Pengeluaran .." value="{{$keuangan}}" readonly>
-                        </div>
-                    </div>
-                    
-                    @if($errors->has('total_pengeluaran'))
-                        <div class="text-danger">
-                            {{ $errors->first('total_pengeluaran')}}
-                        </div>
-                    @endif
-
-                </div>
 
                 <div class="form-group">
                     <button type="submit" name="cari" class="btn btn-success" value="Cari">Cari</button>
                 </div>
             </form>
             
-            @if(!empty($penugasan))
+            @if(!empty($penugasan[0]))
             <hr>
-            <form method="get" action="{{url('/keuangan/print_pdf')}}" target="_blank">
+            <form method="get" action="{{url('/penugasan/statistik/print_pdf')}}" target="_blank">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="tanggal_mulai_penugasan" value="{{$tanggal_mulai}}">
                     <input type="hidden" class="form-control" name="tanggal_akhir_penugasan" value="{{$tanggal_berakhir}}">
@@ -79,9 +56,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Penugasan</th>
-                        <th>Pengeluaran</th>
-                        <th>Total Pengeluaran</th>
+                        <th>Nama Penugasan</th>
+                        <th>Jenis Penugasan</th>
+                        <th>Tim Yang Bertugas</th>
+                        <th>Banyak Pengeluaran</th>
+                        <th>Status Penugasan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,16 +72,16 @@
                     <tr>
                         <td>{{ $i }}</td>
                         <td><a href="{{url('/penugasan/view/'. $p->id)}}">{{ $p->nama }}</a></td>
-                        <td>
-                            @foreach($p->Pengeluaran as $dp)
-                            <ol>
-                                <li>
-                                    {{$dp->nama_pengeluaran}} - Rp.{{$dp->banyak_pengeluaran}}
-                                </li>
-                            </ol>
-                            @endforeach
-                        </td>
+                        <td> {{$p->Pelaporan->KategoriPelaporan->TipeKategoriPelaporan->nama}} - {{ $p->Pelaporan->KategoriPelaporan->nama}}</td>
+                        <td> {{$p->Tim->nama}}
                         <td>Rp.{{ $p->banyak_pengeluaran }}</td>
+                        <td>
+                            {{$p->Pelaporan->StatusPelaporan->nama}}
+                            @if(!empty($p->tanggal_berakhir))
+                                <hr>
+                                Pada : <br>{{date('d-m-Y', strtotime($p->tanggal_berakhir))}}
+                            @endif
+                        </td>
                     </tr>
                     @php
                     $i++

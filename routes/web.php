@@ -79,6 +79,9 @@ Route::group(['middleware' => 'verified'],function(){
             Route::get('/rotasi', $c.'index_rotasi');
             Route::get('/rotasi/buat_penugasan/{id}', $c.'tambah_rotasi');
             Route::post('/rotasi/store', $c.'store_rotasi');
+            Route::get('/statistik', $c.'statistik');
+            Route::get('/statistik/cari', $c.'cari_data');
+            Route::get('/statistik/print_pdf', $c.'print_pdf');
             
         });
         #Ketua dan Petugas
@@ -141,6 +144,7 @@ Route::group(['middleware' => 'verified'],function(){
         $c = 'KeuanganController@';
         Route::get('/', $c.'index');
         Route::get('/hitung', $c.'hitung');
+        Route::get('/print_pdf', $c.'print_pdf');
     });
     
     #Mengatur Tipe Kategori Pelaporan

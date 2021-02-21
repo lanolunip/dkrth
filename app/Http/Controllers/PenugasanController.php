@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use App\ItemUpload;
 use App\DetailPengeluaran;
 use App\KoordinatPenugasan;
+use PDF;
 
 class PenugasanController extends Controller
 {
@@ -265,5 +266,41 @@ class PenugasanController extends Controller
         $step_tracker->save();
  
     	return redirect('/penugasan/rotasi')->with('pesan', 'Penugasan Rotasi Berhasil Dibuat !');
+    }
+
+    public function statistik(){
+        return view('penugasan.penugasan_statistik',['penugasan' => null,'tanggal_mulai' => '','tanggal_akhir' => '']);
+    }
+
+    public function cari_data(Request $request){
+        $this->validate($request,[
+    		'tanggal_mulai' => 'required',
+            'tanggal_akhir' => 'required',
+        ]);
+        $penugasan = Penugasan::whereDate('created_at','>=',$request->tanggal_mulai)->whereDate('created_at','<=',$request->tanggal_akhir)->get();
+
+        if(empty($penugasan[0])){
+            $pesan = "Data Kosong !";
+        }
+        else{
+            $pesan = "Berhasil Mencari Data!";
+        }
+        
+        return view('penugasan.penugasan_statistik',['penugasan' => $penugasan,'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_akhir' => $request->tanggal_akhir,'tanggal_mulai'=>$request->tanggal_mulai,
+            'tanggal_berakhir'=>$request->tanggal_akhir])->with('pesan', $pesan);
+    }
+
+    public function print_pdf(Request $request){
+
+        $this->validate($request,[
+    		'tanggal_mulai_penugasan' => 'required',
+            'tanggal_akhir_penugasan' => 'required',
+        ]);
+        $penugasan = Penugasan::whereDate('created_at','>=',$request->tanggal_mulai_penugasan)->whereDate('created_at','<=',$request->tanggal_akhir_penugasan)->get();
+        $total_pengeluaran = $penugasan->sum('banyak_pengeluaran');
+        $pdf = PDF::loadview('penugasan.penugasan_print_pdf',['penugasan'=>$penugasan,'tanggal_mulai' => $request->tanggal_mulai_penugasan,
+        'tanggal_akhir' => $request->tanggal_akhir_penugasan,'total_pengeluaran' => $total_pengeluaran]);
+        return $pdf->stream();
     }
 }

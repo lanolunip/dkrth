@@ -13,10 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                        <!-- <div class="row mb-4">
-                            Status Akun Anda :
-                            {{Auth::user()->TipeUser->nama}}
-                        </div> -->
                     @if (Auth::user()->TipeUser->nama == 'Ketua')
                         <center>
                             <h1 class="display-4"> Bagian Data</h1>
@@ -138,7 +134,7 @@
                         </div>
                         <hr>
                         <center>
-                            <h1 class="display-4"> Bagian Keuangan</h1>
+                            <h1 class="display-4"> Bagian Laporan</h1>
                         </center>
                         <div class="row my-2 justify-content-md-center">
                             <div class="card-deck">
@@ -156,10 +152,23 @@
                                     </div>
                                     </center>
                                 </div>
+                                <div class="card card-small">
+                                    <img class="card-img-top" src="{{asset('images/home_card/price-tag.png')}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Penugasan</h5>
+                                        <p class="card-text">Penugasan untuk melihat data penugasan pada periode tertentu.
+                                        </p>
+                                    </div>
+                                    <center>
+                                    <div class="card-footer">
+                                        <a href="{{url('/penugasan/statistik')}}" type="button" class="btn btn-primary btn-lg mx-auto">Click !</a>
+                                    </div>
+                                    </center>
+                                </div>
                             </div>
                         </div>
                     @elseif (Auth::user()->TipeUser->nama == 'Petugas')
-                    <center>
+                        <center>
                             <h1 class="display-4"> Bagian Penugasan</h1>
                         </center>
                         <div class="row my-2 justify-content-md-center">
@@ -181,7 +190,7 @@
                             </div>
                         </div>
                     @else
-                    <center>
+                        <center>
                             <h1 class="display-4"> Bagian Penugasan</h1>
                         </center>
                         <div class="row my-2 justify-content-md-center">

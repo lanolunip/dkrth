@@ -104,8 +104,8 @@
                         <b>Klik tempat baru jika ingin merubah lokasi</b>
                     </div>
                     <div id="googleMap" style="width:100%;height:400px;"></div>
-                    <input id="longitude" type="hidden" name="koordinat[]" class="form-control">
-                    <input id="latitude" type="hidden" name="koordinat[]" class="form-control">
+                    <input id="longitude" type="hidden" name="koordinat[]" class="form-control" value="{{$pelaporan->Koordinat->longitude}}">
+                    <input id="latitude" type="hidden" name="koordinat[]" class="form-control" value="{{$pelaporan->Koordinat->latitude}}">
                     <!-- <div id="lokasi_peta">Belum Ada</div> -->
                     @if($errors->has('koordinat'))
                         <div class="text-danger">

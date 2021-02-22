@@ -3,11 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 use App\Notifications\VerifyEmail;
 
-class Petugas extends Model 
+class Petugas extends Authenticatable implements MustVerifyEmail
 {
+
+    use Notifiable;
 
     protected $table = "users";
 

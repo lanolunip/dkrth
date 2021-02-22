@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 use App\Petugas;
 use App\TipeUser;
 use Auth;
+use RegistersUsers;
+use Illuminate\Auth\Events\Verified;
+use App\Notifications\InvoicePaid;
 
 class PetugasController extends Controller
 {
+    
 
     public function index()
     {
@@ -33,7 +37,7 @@ class PetugasController extends Controller
             'password' => 'required|string|min:6'
     	]);
  
-        Petugas::create([
+        $petugas = Petugas::create([
     		'nama' => $request->nama,
             'alamat' => $request->alamat,
             'nip' => $request->nip,
@@ -42,6 +46,8 @@ class PetugasController extends Controller
             'tipe_user' => 2,
             'password' => Hash::make($request->password),
     	]);
+
+        $petugas->sendEmailVerificationNotification();
  
     	return redirect('/petugas')->with('pesan', 'Berhasil Menambahkan Petugas Baru !');
     }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Laporan Keuangan</title>
+	<title>Laporan Penugasan</title>
 	
     <style type="text/css">
         table tr td,
@@ -22,7 +22,7 @@
 </head>
 <body>
     <center>
-        <h4>Laporan Keuangan</h4>
+        <h4>Laporan Penugasan</h4>
     </center>
     Tanggal Mulai : {{date('d-m-Y', strtotime($tanggal_mulai))}} 
     <br>

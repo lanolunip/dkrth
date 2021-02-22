@@ -118,6 +118,9 @@
         </div>
     </div>
 </div>
+<img src="https://maps.googleapis.com/maps/api/staticmap?center=-7.2514082,112.7705321&zoom=15&format=png&markers=color:blue%7Clabel:Lokasi%7C-7.2514082,112.7705321&size=400x400&key=GOOGLE_MAP_KEY">
+<img src="https://maps.googleapis.com/maps/api/staticmap?center=-7.2514082,112.7705321&zoom=15&markers=color:blue%7Clabel:Lokasi%7C-7.2514082,112.7705321&size=400x400&key=GOOGLE_MAP_KEY">
+<img src="https://storage.googleapis.com/gd-wagtail-prod-assets/original_images/evolving_google_identity_videoposter_006.jpg" height="350px" width="350px"/>
 <script>
 function myMap() {
     var mapProp= {

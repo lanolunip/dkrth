@@ -87,6 +87,7 @@ Route::group(['middleware' => 'verified'],function(){
         #Ketua dan Petugas
         Route::group(['middleware' => 'role:role:Ketua,Petugas'],function() use ($c){
             Route::get('/', $c.'index');
+            Route::get('/print_penugasan/{id}', $c.'print_penugasan');
             Route::get('/laporan/{id}', $c.'laporan');
             Route::put('/selesaikan/{id}', $c.'selesaikan');
         });

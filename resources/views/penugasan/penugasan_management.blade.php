@@ -68,7 +68,6 @@
 
                         <td>{{ $pn->banyak_pengeluaran}}</td>
                         @if (!empty($pn->Laporan->penugasan))
-                        
                             @if (Auth::user()->TipeUser->nama == "Ketua")
                                 <td><a href="{{url('/laporan/edit/' . $pn->Laporan->id) }}">link laporan</a></td>
                             @elseif (Auth::user()->TipeUser->nama == "Petugas")
@@ -86,10 +85,12 @@
                                 <a href="{{url('/penugasan/hapus/' . $pn->id) }}" class="btn btn-danger">Hapus</a>
                                 @if (empty($pn->Laporan->penugasan))
                                     <a href="{{url('/penugasan/laporan/' . $pn->id) }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
+                                    <a href="{{url('/penugasan/print_penugasan/' . $pn->id) }}" type="button" class="btn btn-dark" target="_blank">Print Penugasan</a>
                                 @endif
                             @elseif (Auth::user()->id == $pn->Tim->Petugas->id)
                                 @if (empty($pn->Laporan->penugasan))
                                     <a href="{{url('/penugasan/laporan/' . $pn->id) }}" type="button" class="btn btn-info">Selesaikan Penugasan</a>
+                                    <a href="{{url('/penugasan/print_penugasan/' . $pn->id) }}" type="button" class="btn btn-dark" target="_blank">Print Penugasan</a>
                                 @endif
                             @endif
                             

@@ -303,4 +303,10 @@ class PenugasanController extends Controller
         'tanggal_akhir' => $request->tanggal_akhir_penugasan,'total_pengeluaran' => $total_pengeluaran]);
         return $pdf->stream();
     }
+
+    public function print_penugasan($id){
+        $penugasan = Penugasan::find($id);
+        $pdf = PDF::setOptions(['isRemoteEnabled' => true])->loadview('penugasan.penugasan_print_penugasan',['penugasan'=>$penugasan]);
+        return $pdf->stream();
+    }
 }

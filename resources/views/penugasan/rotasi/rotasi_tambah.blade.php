@@ -22,7 +22,7 @@
                 <!-- Nama -->
                 <div class="form-group">
                     <label>Nama</label>
-                    <input type="text" name="nama" class="form-control" placeholder="Nama Penugasan .." value="Penugasan Rotasi - {{$daerah->nama}}" readonly>
+                    <input type="text" name="nama" class="form-control" placeholder="Nama Penugasan .." value="{{$daerah->nama}}" readonly>
 
                     @if($errors->has('nama'))
                         <div class="text-danger">

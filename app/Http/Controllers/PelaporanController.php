@@ -31,7 +31,11 @@ class PelaporanController extends Controller
     }
     
     public function tipe_kategori_pelaporan(){
-        $tipe_kategori_pelaporan = TipeKategoriPelaporan::all();
+        if(Auth::user()->tipe_user == '1'){
+            $tipe_kategori_pelaporan = TipeKategoriPelaporan::all();
+        }else{
+            $tipe_kategori_pelaporan = TipeKategoriPelaporan::where('nama','!=','KEGIATAN PENUGASAN')->get();
+        }
         return view('pelaporan.tipe_kategori_pelaporan',['tipe_kategori_pelaporan' => $tipe_kategori_pelaporan]);
     }
     public function kategori_pelaporan($id_tipe_kategori_pelaporan){

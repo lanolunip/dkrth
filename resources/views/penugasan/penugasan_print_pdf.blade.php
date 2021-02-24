@@ -48,14 +48,28 @@
             @endphp
             @foreach($penugasan as $p)
             <tr>
-            
                 <td>{{ $i }}</td>
                 <td><a href="{{url('/penugasan/view/'. $p->id)}}">{{ $p->nama }}</a></td>
-                <td> {{$p->Pelaporan->KategoriPelaporan->TipeKategoriPelaporan->nama}} - {{ $p->Pelaporan->KategoriPelaporan->nama}}</td>
+                @if(!empty($p->Pelaporan))
+                
+                    <td> {{$p->Pelaporan->KategoriPelaporan->TipeKategoriPelaporan->nama}} - {{ $p->Pelaporan->KategoriPelaporan->nama}}</td>
+                @else
+                    <td> PENUGASAN ROTASI </td>
+                @endif
                 <td> {{$p->Tim->nama}}
                 <td>Rp.{{ $p->banyak_pengeluaran }}</td>
                 <td>
-                    {{$p->Pelaporan->StatusPelaporan->nama}}
+                    @if(!empty($p->Pelaporan))
+                        {{$p->Pelaporan->StatusPelaporan->nama}}
+                    @else
+                        @if(empty($p->tanggal_berakhir))
+                            Dalam Proses
+                        @else
+                        Telah diselesaikan
+                        <hr>
+                        Pada : <br>{{date('d-m-Y', strtotime($p->tanggal_berakhir))}}
+                        @endif
+                    @endif
                     @if(!empty($p->tanggal_berakhir))
                         <hr>
                         Pada : <br>{{date('d-m-Y', strtotime($p->tanggal_berakhir))}}
@@ -72,5 +86,6 @@
             </tr> -->
         </tbody>
     </table>
+    <br>
 </body>
 </html>

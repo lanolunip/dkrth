@@ -105,8 +105,11 @@
                 <!-- Daerah -->
                 <div class="form-group">
                     <label>Daerah</label>
+                        @if(!empty($penugasan->Pelaporan))
                         <input type="text" name="daerah" class="form-control" placeholder="Daerah .." value="{{$penugasan->Pelaporan->Daerah->nama}}" readonly>
-
+                        @else
+                        <input type="text" name="daerah" class="form-control" placeholder="Daerah .." value="{{$penugasan->nama}}" readonly>
+                        @endif
                         @if($errors->has('daerah'))
                         <div class="text-danger">
                             {{ $errors->first('daerah')}}
@@ -114,6 +117,7 @@
                         @endif
                 </div>
                 <!-- Koordinat -->
+                @if(!empty($penugasan->Pelaporan))
                 <div class="form-group">
                    
                    <label>Koordinat</label>
@@ -128,6 +132,7 @@
                        </div>
                    @endif
                </div>
+               @endif
                 <!-- Pengeluaran -->
                 <div class="card">
                     <div class="card-header">
@@ -262,6 +267,7 @@
         }
     });
 </script>
+@if(!empty($penugasan->Pelaporan))
 <script>
  function myMap() {
     var koordinat_awal = {   lat:{{$penugasan->Koordinat->latitude}} ,lng:{{$penugasan->Koordinat->longitude}} };
@@ -286,4 +292,5 @@
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAP_KEY&callback=myMap"></script>
+@endif
 @endsection

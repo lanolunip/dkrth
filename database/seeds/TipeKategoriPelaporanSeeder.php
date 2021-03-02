@@ -23,5 +23,9 @@ class TipeKategoriPelaporanSeeder extends Seeder
         	'id' => 3,
             'nama' => 'LAIN - LAIN',
         ]);
+        DB::table('tipe_kategori_pelaporan')->insert([
+        	'id' => 4,
+            'nama' => 'KEGIATAN PENUGASAN',
+        ]);
     }
 }

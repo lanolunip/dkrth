@@ -42,16 +42,16 @@ class LaporanController extends Controller
             'file_penugasan.*' => 'mimes:pdf,zip',
             'gambar_pengeluaran.*' => 'mimes:jpeg,png,jpg,bmp',
     	]);
-    
+        #bagian laporan
         $laporan = Laporan::find($id);
         $id_penugasan = $laporan->penugasan;
         $laporan->isi = $request->isi;
         $laporan->save();
-
+        #bagian penugasan
         $penugasan = Penugasan::find($id_penugasan);
-        $penugasan->banyak_pengeluaran = $request->total_pengeluaran;
+        $penugasan->banyak_pengeluaran = 
+            $request->total_pengeluaran;
         $penugasan->save();
-
         $nama_pengeluaran = $request->input('nama_pengeluaran', []);
         $banyak_pengeluaran = $request->input('banyak_pengeluaran', []);
         for($data_ke = 0;$data_ke < count($nama_pengeluaran); $data_ke++ ){

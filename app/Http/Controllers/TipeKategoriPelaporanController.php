@@ -22,7 +22,7 @@ class TipeKategoriPelaporanController extends Controller
     public function store(Request $request)
     {
     	$this->validate($request,[
-            'nama' => 'required|string|max:255',
+            'nama' => 'required|string|max:255|unique:tipe_kategori_pelaporan',
             
     	]);
  
@@ -42,7 +42,7 @@ class TipeKategoriPelaporanController extends Controller
     public function update($id, Request $request)
     {
         $this->validate($request,[
-            'nama' => 'required|string|max:255',
+            'nama' => 'required|string|max:255|unique:tipe_kategori_pelaporan',
     	]);
     
         $tipe_kategori_pelaporan = TipeKategoriPelaporan::find($id);
